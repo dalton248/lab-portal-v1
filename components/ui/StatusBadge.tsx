@@ -7,15 +7,17 @@ interface StatusBadgeProps {
 
 export function StatusBadge({ status }: StatusBadgeProps) {
   const styles = {
-    pending: 'bg-yellow-100 text-yellow-800 border-yellow-200',
+    submitted: 'bg-slate-100 text-slate-800 border-slate-200',
     in_progress: 'bg-blue-100 text-blue-800 border-blue-200',
+    on_hold: 'bg-orange-100 text-orange-800 border-orange-200',
     completed: 'bg-green-100 text-green-800 border-green-200',
     rejected: 'bg-red-100 text-red-800 border-red-200',
   };
 
   const labels = {
-    pending: 'Pending',
+    submitted: 'Submitted',
     in_progress: 'In Progress',
+    on_hold: 'On Hold',
     completed: 'Completed',
     rejected: 'Rejected',
   };

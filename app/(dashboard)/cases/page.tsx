@@ -2,11 +2,12 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { Search } from 'lucide-react';
 import { Card, CardHeader, CardContent } from '@/components/ui/Card';
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from '@/components/ui/Table';
 import { StatusBadge } from '@/components/ui/StatusBadge';
 import { Select } from '@/components/ui/Select';
-import { getCurrentUser, getCasesForCurrentUser } from '@/lib/mock-data';
+import { getCurrentUser, getCasesForCurrentUser, searchCases } from '@/lib/mock-data';
 import { CaseStatus } from '@/lib/types';
 
 export default function CasesPage() {
@@ -14,11 +15,14 @@ export default function CasesPage() {
   const currentUser = getCurrentUser();
   const allCases = getCasesForCurrentUser();
   const [statusFilter, setStatusFilter] = useState<string>('all');
+  const [searchQuery, setSearchQuery] = useState('');
 
-  const filteredCases =
+  const statusFiltered =
     statusFilter === 'all'
       ? allCases
       : allCases.filter((c) => c.status === statusFilter);
+
+  const filteredCases = searchCases(searchQuery, statusFiltered);
 
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('en-US', {
@@ -30,9 +34,11 @@ export default function CasesPage() {
 
   const filterOptions = [
     { value: 'all', label: 'All Cases' },
-    { value: 'pending', label: 'Pending' },
+    { value: 'submitted', label: 'Submitted' },
     { value: 'in_progress', label: 'In Progress' },
+    { value: 'on_hold', label: 'On Hold' },
     { value: 'completed', label: 'Completed' },
+    { value: 'rejected', label: 'Rejected' },
   ];
 
   return (
@@ -48,7 +54,7 @@ export default function CasesPage() {
 
       <Card>
         <CardHeader>
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between mb-4">
             <h2 className="text-lg font-semibold text-slate-900">All Cases</h2>
             {currentUser.role === 'lab_admin' && (
               <div className="w-48">
@@ -59,6 +65,16 @@ export default function CasesPage() {
                 />
               </div>
             )}
+          </div>
+          <div className="relative">
+            <Search className="absolute left-3 top-3 h-5 w-5 text-slate-400" />
+            <input
+              type="text"
+              placeholder="Search by case ID, patient name, or status..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full pl-10 pr-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
+            />
           </div>
         </CardHeader>
         <CardContent className="p-0">
@@ -77,7 +93,7 @@ export default function CasesPage() {
               {filteredCases.length === 0 ? (
                 <TableRow>
                   <TableCell colSpan={6} className="text-center py-8 text-slate-500">
-                    No cases found
+                    {searchQuery || statusFilter !== 'all' ? 'No cases match your filters' : 'No cases found'}
                   </TableCell>
                 </TableRow>
               ) : (

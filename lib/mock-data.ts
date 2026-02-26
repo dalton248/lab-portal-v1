@@ -45,7 +45,7 @@ export const mockCases: Case[] = [
     patientName: 'Emily Davis',
     caseType: 'Bridge',
     shade: 'B1',
-    status: 'pending',
+    status: 'submitted',
     dueDate: '2024-03-20',
     createdAt: '2024-02-22T09:15:00Z',
     updatedAt: '2024-02-22T09:15:00Z',
@@ -53,6 +53,21 @@ export const mockCases: Case[] = [
     dentistName: 'Dr. Sarah Johnson',
     labId: 'lab-1',
     notes: '3-unit bridge, teeth 14-16.',
+  },
+  {
+    id: '7',
+    caseId: 'CS-2024-007',
+    patientName: 'Michael Chang',
+    caseType: 'Crown',
+    shade: 'A2',
+    status: 'on_hold',
+    dueDate: '2024-03-22',
+    createdAt: '2024-02-20T14:00:00Z',
+    updatedAt: '2024-02-24T11:15:00Z',
+    dentistId: 'user-1',
+    dentistName: 'Dr. Sarah Johnson',
+    labId: 'lab-1',
+    notes: 'Awaiting confirmation on prep margins from dentist.',
   },
   {
     id: '3',
@@ -88,7 +103,7 @@ export const mockCases: Case[] = [
     patientName: 'David Thompson',
     caseType: 'Implant Crown',
     shade: 'A1',
-    status: 'pending',
+    status: 'submitted',
     dueDate: '2024-03-25',
     createdAt: '2024-02-23T15:00:00Z',
     updatedAt: '2024-02-23T15:00:00Z',
@@ -96,6 +111,20 @@ export const mockCases: Case[] = [
     dentistName: 'Dr. Sarah Johnson',
     labId: 'lab-1',
     notes: 'Implant crown on #19. Abutment attached.',
+  },
+  {
+    id: '8',
+    caseId: 'CS-2024-008',
+    patientName: 'Rachel Brooks',
+    caseType: 'Denture',
+    status: 'on_hold',
+    dueDate: '2024-03-28',
+    createdAt: '2024-02-19T10:45:00Z',
+    updatedAt: '2024-02-24T16:30:00Z',
+    dentistId: 'user-3',
+    dentistName: 'Dr. James Wilson',
+    labId: 'lab-1',
+    notes: 'Patient scheduling conflict - waiting for new appointment date.',
   },
   {
     id: '6',
@@ -199,4 +228,17 @@ export const getCaseById = (id: string): Case | undefined => {
 
 export const getMessagesForCase = (caseId: string): Message[] => {
   return mockMessages.filter(m => m.caseId === caseId);
+};
+
+export const searchCases = (query: string, cases: Case[]): Case[] => {
+  if (!query.trim()) return cases;
+
+  const lowerQuery = query.toLowerCase();
+
+  return cases.filter(caseItem =>
+    caseItem.caseId.toLowerCase().includes(lowerQuery) ||
+    caseItem.patientName.toLowerCase().includes(lowerQuery) ||
+    caseItem.dentistName.toLowerCase().includes(lowerQuery) ||
+    caseItem.status.toLowerCase().includes(lowerQuery)
+  );
 };

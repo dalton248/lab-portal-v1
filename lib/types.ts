@@ -1,6 +1,6 @@
 export type UserRole = 'lab_admin' | 'dentist';
 
-export type CaseStatus = 'pending' | 'in_progress' | 'completed' | 'rejected';
+export type CaseStatus = 'submitted' | 'in_progress' | 'on_hold' | 'completed' | 'rejected';
 
 export interface User {
   id: string;

@@ -18,7 +18,7 @@ export default function CaseDetailPage() {
   const caseData = getCaseById(params.id as string);
   const messages = getMessagesForCase(params.id as string);
   const [newMessage, setNewMessage] = useState('');
-  const [caseStatus, setCaseStatus] = useState<CaseStatus>(caseData?.status || 'pending');
+  const [caseStatus, setCaseStatus] = useState<CaseStatus>(caseData?.status || 'submitted');
 
   if (!caseData) {
     return (
