@@ -7,6 +7,7 @@ import { Avatar } from '@/components/ui/Avatar';
 import { User } from '@/lib/types';
 import { useLanguage } from '@/components/providers/LanguageProvider';
 import { LanguageSwitcher } from '@/components/LanguageSwitcher';
+import { useAuth } from '@/components/providers/AuthProvider';
 
 interface HeaderProps {
   currentUser: User;
@@ -15,11 +16,11 @@ interface HeaderProps {
 
 export function Header({ currentUser, onMenuClick }: HeaderProps) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const router = useRouter();
+  const { signOut } = useAuth();
   const { t } = useLanguage();
 
-  const handleLogout = () => {
-    router.push('/login');
+  const handleLogout = async () => {
+    await signOut();
   };
 
   return (

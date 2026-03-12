@@ -4,14 +4,37 @@ import { useState } from 'react';
 import { Sidebar } from '@/components/layout/Sidebar';
 import { MobileSidebar } from '@/components/layout/MobileSidebar';
 import { Header } from '@/components/layout/Header';
-import { getCurrentUser, mockLab } from '@/lib/mock-data';
+import { useAuth } from '@/components/providers/AuthProvider';
+import { mockLab } from '@/lib/mock-data';
 
 export default function DashboardLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const currentUser = getCurrentUser();
+  const { profile, loading } = useAuth();
+
+  if (loading) {
+    return (
+      <div className="h-screen flex items-center justify-center bg-slate-50">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+      </div>
+    );
+  }
+
+  if (!profile) {
+    return null; // Will be redirected by AuthProvider
+  }
+
+  // Create a user object compatible with the existing components for now
+  const currentUser = {
+    id: profile.id,
+    email: profile.email,
+    labId: profile.lab_id || 'lab-1',
+    role: profile.role === 'lab_admin' ? 'lab_admin' : 'dentist',
+    name: profile.full_name || profile.email.split('@')[0],
+    officeName: profile.office_name || 'N/A',
+  } as const;
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (

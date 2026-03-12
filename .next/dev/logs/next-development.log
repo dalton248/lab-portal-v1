@@ -214,3 +214,32 @@
 [01:25:51.873] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
 [05:16:43.256] Server  LOG       Reload env: .env.local
 [05:26:13.228] Server  LOG       Reload env: .env.local
+[06:41:36.835] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[07:16:22.815] Browser ERROR   ./lab-portal-v1/app/layout.tsx:26:6
+Parsing ecmascript source code failed
+  24 |         </AuthProvider>
+  25 |       </body>
+> 26 |     </html>
+     |      ^^^^^^
+  27 |   );
+  28 | }
+  29 |
+
+Unterminated regexp literal
+[07:16:36.274] Server  LOG     ✓ Compiled in 362ms
+[07:16:37.085] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[07:16:38.186] Browser ERROR   Error fetching profile: {"code":"PGRST116","details":"The result contains 0 rows","hint":null,"message":"Cannot coerce the result to a single JSON object"}
+[07:16:38.282] Browser ERROR   Error fetching profile: {"code":"PGRST116","details":"The result contains 0 rows","hint":null,"message":"Cannot coerce the result to a single JSON object"}
+[07:17:19.555] Server  LOG     ✓ Compiled in 109ms
+[07:17:19.693] Browser ERROR   uncaughtError: ReferenceError: useEffect is not defined
+[07:17:34.800] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[07:17:34.820] Server  LOG     ✓ Compiled in 58ms
+[07:17:35.418] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[07:17:35.713] Browser ERROR   Error fetching profile: {"code":"PGRST116","details":"The result contains 0 rows","hint":null,"message":"Cannot coerce the result to a single JSON object"}
+[07:17:35.840] Browser ERROR   Error fetching profile: {"code":"PGRST116","details":"The result contains 0 rows","hint":null,"message":"Cannot coerce the result to a single JSON object"}
+[07:28:29.732] Browser ERROR   Error fetching profile: {"code":"PGRST116","details":"The result contains 0 rows","hint":null,"message":"Cannot coerce the result to a single JSON object"}
+[07:30:04.788] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[07:30:24.082] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[07:31:02.300] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[07:37:07.108] Server  LOG     ✓ Compiled in 49ms
+[07:39:05.212] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
