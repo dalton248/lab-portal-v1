@@ -7,12 +7,23 @@ import { Button } from '@/components/ui/Button';
 import { Card, CardHeader, CardContent } from '@/components/ui/Card';
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from '@/components/ui/Table';
 import { StatusBadge } from '@/components/ui/StatusBadge';
-import { getCurrentUser, getCasesForCurrentUser, searchCases } from '@/lib/mock-data';
+import { getCasesForCurrentUser, searchCases } from '@/lib/mock-data';
 import { useLanguage } from '@/components/providers/LanguageProvider';
+import { useAuth } from '@/components/providers/AuthProvider';
 
 export default function DashboardPage() {
   const router = useRouter();
-  const currentUser = getCurrentUser();
+  const { profile } = useAuth();
+  
+  // Create a compatible user object from the profile
+  const currentUser = profile ? {
+    id: profile.id,
+    email: profile.email,
+    role: profile.role === 'lab_admin' ? 'lab_admin' : 'dentist',
+    name: profile.full_name || profile.email.split('@')[0],
+    officeName: profile.office_name || 'N/A',
+  } : null;
+
   const allCases = getCasesForCurrentUser();
   const [searchQuery, setSearchQuery] = useState('');
   const filteredCases = searchCases(searchQuery, allCases);

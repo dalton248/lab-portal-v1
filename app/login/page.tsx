@@ -54,8 +54,8 @@ export default function LoginPage() {
       return;
     }
 
-    // Rely on AuthProvider's context update to trigger the useEffect redirect
-    // We don't push(router) here because we want to wait for profile fetch
+    // Force route immediately rather than relying on the listener alone
+    router.push('/dashboard');
   };
 
   const handleSignUp = async (e: React.FormEvent) => {

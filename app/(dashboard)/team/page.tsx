@@ -6,11 +6,21 @@ import { Card, CardHeader, CardContent } from '@/components/ui/Card';
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from '@/components/ui/Table';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
-import { getCurrentUser, mockTeamMembers } from '@/lib/mock-data';
+import { mockTeamMembers } from '@/lib/mock-data';
 import { useLanguage } from '@/components/providers/LanguageProvider';
+import { useAuth } from '@/components/providers/AuthProvider';
 
 export default function TeamPage() {
-  const currentUser = getCurrentUser();
+  const { profile } = useAuth();
+  
+  // Create a compatible user object from the profile
+  const currentUser = profile ? {
+    id: profile.id,
+    email: profile.email,
+    role: profile.role === 'lab_admin' ? 'lab_admin' : 'dentist',
+    name: profile.full_name || profile.email.split('@')[0],
+    officeName: profile.office_name || 'N/A',
+  } : null;
   const [showInviteForm, setShowInviteForm] = useState(false);
   const [inviteEmail, setInviteEmail] = useState('');
   const [inviteName, setInviteName] = useState('');

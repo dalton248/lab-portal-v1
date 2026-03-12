@@ -8,14 +8,24 @@ import { StatusBadge } from '@/components/ui/StatusBadge';
 import { Button } from '@/components/ui/Button';
 import { Select } from '@/components/ui/Select';
 import { Textarea } from '@/components/ui/Textarea';
-import { getCurrentUser, getCaseById, getMessagesForCase } from '@/lib/mock-data';
+import { getCaseById, getMessagesForCase } from '@/lib/mock-data';
 import { CaseStatus } from '@/lib/types';
 import { useLanguage } from '@/components/providers/LanguageProvider';
+import { useAuth } from '@/components/providers/AuthProvider';
 
 export default function CaseDetailPage() {
   const params = useParams();
   const router = useRouter();
-  const currentUser = getCurrentUser();
+  const { profile } = useAuth();
+  
+  // Create a compatible user object from the profile
+  const currentUser = profile ? {
+    id: profile.id,
+    email: profile.email,
+    role: profile.role === 'lab_admin' ? 'lab_admin' : 'dentist',
+    name: profile.full_name || profile.email.split('@')[0],
+    officeName: profile.office_name || 'N/A',
+  } : null;
   const caseData = getCaseById(params.id as string);
   const messages = getMessagesForCase(params.id as string);
   const [newMessage, setNewMessage] = useState('');
@@ -160,7 +170,7 @@ export default function CaseDetailPage() {
                                 <p className="text-xs font-medium">{message.senderName}</p>
                                 <p
                                   className={`text-xs ${
-                                    message.senderId === currentUser.id
+                                    message.senderId === currentUser?.id
                                       ? 'text-blue-100'
                                       : 'text-slate-500'
                                   }`}

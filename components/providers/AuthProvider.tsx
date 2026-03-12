@@ -45,9 +45,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         await fetchProfile(session.user.id);
       } else {
         setLoading(false);
-        if (pathname !== '/login') {
-          router.push('/login');
-        }
       }
     };
 
@@ -64,9 +61,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         setProfile(null);
         setProfileError(null);
         setLoading(false);
-        if (pathname !== '/login') {
-          router.push('/login');
-        }
       }
     });
 
@@ -107,7 +101,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const signOut = async () => {
     await supabase.auth.signOut();
-    router.push('/login');
   };
 
   return (

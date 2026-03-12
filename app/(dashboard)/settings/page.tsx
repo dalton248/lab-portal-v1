@@ -4,11 +4,20 @@ import React from 'react';
 import { Card, CardHeader, CardContent } from '@/components/ui/Card';
 import { Input } from '@/components/ui/Input';
 import { Button } from '@/components/ui/Button';
-import { getCurrentUser } from '@/lib/mock-data';
 import { useLanguage } from '@/components/providers/LanguageProvider';
+import { useAuth } from '@/components/providers/AuthProvider';
 
 export default function SettingsPage() {
-  const currentUser = getCurrentUser();
+  const { profile } = useAuth();
+  
+  // Create a compatible user object from the profile
+  const currentUser = profile ? {
+    id: profile.id,
+    email: profile.email,
+    role: profile.role === 'lab_admin' ? 'lab_admin' : 'dentist',
+    name: profile.full_name || profile.email.split('@')[0],
+    officeName: profile.office_name || 'N/A',
+  } : null;
   const { t } = useLanguage();
 
   return (
