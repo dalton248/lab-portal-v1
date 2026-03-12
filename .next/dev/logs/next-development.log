@@ -12,3 +12,24 @@
 [00:05:09.494] Server  LOG     ✓ Compiled in 40ms
 [00:05:09.872] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
 [00:05:20.020] Server  LOG     ✓ Compiled in 45ms
+[00:11:33.691] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:32:12.295] Server  LOG     ✓ Compiled in 155ms
+[00:32:12.700] Browser ERROR   uncaughtError: ReferenceError: Inbox is not defined
+[00:32:26.242] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:32:26.256] Server  LOG     ✓ Compiled in 116ms
+[00:32:26.287] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:32:27.063] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:32:27.413] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./lab-portal-v1/lib/translations.ts changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[00:32:27.553] Server  LOG     ✓ Compiled in 18ms
+[00:32:27.782] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:34:12.827] Server  LOG     ✓ Compiled in 176ms
+[00:43:47.976] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:51:32.123] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./lab-portal-v1/lib/translations.ts changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[00:51:32.123] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./lab-portal-v1/lib/translations.ts changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[00:51:32.124] Server  LOG     ✓ Compiled in 140ms
+[00:51:32.963] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:51:33.020] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:51:51.216] Server  LOG     ✓ Compiled in 136ms
+[00:52:25.469] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:54:21.777] Server  LOG     ✓ Compiled in 181ms
+[00:54:36.429] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
