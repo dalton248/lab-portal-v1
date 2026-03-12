@@ -38,15 +38,15 @@ export default function DashboardPage() {
       <div className="flex justify-between items-center">
         <div>
           <h1 className="text-2xl font-bold text-slate-900">
-            {currentUser.role === 'dentist' ? t('dashboard.myCases') : t('dashboard.allCases')}
+            {currentUser?.role === 'dentist' ? t('dashboard.myCases') : t('dashboard.allCases')}
           </h1>
           <p className="mt-1 text-sm text-slate-500">
-            {currentUser.role === 'dentist'
+            {currentUser?.role === 'dentist'
               ? t('dashboard.dentistSubtitle')
               : t('dashboard.labSubtitle')}
           </p>
         </div>
-        {currentUser.role === 'dentist' && (
+        {currentUser?.role === 'dentist' && (
           <Button
             variant="primary"
             onClick={() => router.push('/cases/new')}
@@ -58,7 +58,7 @@ export default function DashboardPage() {
         )}
       </div>
 
-      {currentUser.role === 'lab_admin' && (
+      {currentUser?.role === 'lab_admin' && (
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
           <Card className="bg-slate-50/50 border-dashed">
             <CardContent className="pt-5 pb-5">
@@ -87,7 +87,7 @@ export default function DashboardPage() {
         </div>
       )}
 
-      {currentUser.role === 'lab_admin' && (
+      {currentUser?.role === 'lab_admin' && (
         <div className="space-y-4">
           <div className="flex items-center justify-between">
             <h2 className="text-lg font-semibold text-slate-900">{t('inbox.title')}</h2>

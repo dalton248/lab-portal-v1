@@ -16,7 +16,7 @@ export default function TeamPage() {
   const [inviteName, setInviteName] = useState('');
   const { t, language } = useLanguage();
 
-  if (currentUser.role !== 'lab_admin') {
+  if (currentUser?.role !== 'lab_admin') {
     return (
       <div className="text-center py-12">
         <p className="text-slate-500">{t('team.accessDenied')}</p>

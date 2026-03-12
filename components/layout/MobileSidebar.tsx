@@ -19,7 +19,7 @@ export function MobileSidebar({ currentUser, labName, isOpen, onClose }: MobileS
   const navigation = [
     { name: 'Dashboard', href: '/dashboard', icon: LayoutDashboard, show: true },
     { name: 'Cases', href: '/cases', icon: FileText, show: true },
-    { name: 'Team', href: '/team', icon: Users, show: currentUser.role === 'lab_admin' },
+    { name: 'Team', href: '/team', icon: Users, show: currentUser?.role === 'lab_admin' },
     { name: 'Settings', href: '/settings', icon: Settings, show: true },
   ];
 

@@ -28,17 +28,17 @@ export default function SettingsPage() {
           <Input
             label={t('settings.nameLabel')}
             type="text"
-            defaultValue={currentUser.name}
+            defaultValue={currentUser?.name || ''}
           />
           <Input
             label={t('settings.emailLabel')}
             type="email"
-            defaultValue={currentUser.email}
+            defaultValue={currentUser?.email || ''}
           />
           <Input
             label={t('settings.roleLabel')}
             type="text"
-            defaultValue={t(`roles.${currentUser.role}`)}
+            defaultValue={currentUser?.role ? t(`roles.${currentUser.role}`) : ''}
             disabled
             className="bg-slate-50"
           />

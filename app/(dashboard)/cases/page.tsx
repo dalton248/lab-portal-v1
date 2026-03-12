@@ -57,7 +57,7 @@ export default function CasesPage() {
         <CardHeader>
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-lg font-semibold text-slate-900">{t('cases.allCases')}</h2>
-            {currentUser.role === 'lab_admin' && (
+            {currentUser?.role === 'lab_admin' && (
               <div className="w-48">
                 <Select
                   options={filterOptions}

@@ -168,3 +168,47 @@
 [01:16:16.079] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'role')
 [01:16:16.702] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'role')
 [01:16:16.704] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'role')
+[01:18:13.587] Server  ERROR   ⨯ TypeError: Cannot read properties of undefined (reading 'role')
+[01:18:13.761] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:18:13.890] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'role')
+[01:18:19.007] Server  ERROR   ⨯ TypeError: Cannot read properties of undefined (reading 'role')
+[01:18:19.202] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:18:19.330] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'role')
+[01:18:34.314] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:23:47.750] Server  LOG     ✓ Compiled in 206ms
+[01:23:47.753] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[01:23:47.754] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[01:23:47.756] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[01:23:47.756] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[01:23:48.054] Server  LOG     ✓ Compiled in 7ms
+[01:23:48.139] Server  ERROR   ⨯ TypeError: Cannot read properties of undefined (reading 'name')
+[01:23:48.256] Server  ERROR   ⨯ TypeError: Cannot read properties of undefined (reading 'name')
+[01:23:48.664] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:23:48.684] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:23:49.702] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'name')
+[01:23:49.702] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'name')
+[01:23:50.063] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[01:23:50.063] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[01:23:50.156] Server  LOG     ✓ Compiled in 39ms
+[01:23:50.318] Server  ERROR   ⨯ TypeError: Cannot read properties of undefined (reading 'role')
+[01:23:50.699] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:23:50.740] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:23:51.706] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'role')
+[01:23:52.116] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[01:23:52.128] Server  LOG     ✓ Compiled in 51ms
+[01:23:52.301] Server  ERROR   ⨯ TypeError: Cannot read properties of undefined (reading 'role')
+[01:23:52.545] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:23:53.701] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'role')
+[01:24:00.908] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[01:24:00.937] Server  LOG     ✓ Compiled in 39ms
+[01:24:01.155] Server  ERROR   ⨯ TypeError: Cannot read properties of undefined (reading 'role')
+[01:24:01.406] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:24:01.701] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'role')
+[01:24:08.376] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[01:24:08.391] Server  LOG     ✓ Compiled in 37ms
+[01:24:08.586] Server  ERROR   ⨯ TypeError: Cannot read properties of undefined (reading 'role')
+[01:24:08.906] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:24:09.701] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'role')
+[01:25:51.254] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[01:25:51.256] Server  LOG     ✓ Compiled in 76ms
+[01:25:51.873] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold

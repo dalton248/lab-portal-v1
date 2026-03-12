@@ -116,7 +116,7 @@ export default function CaseDetailPage() {
                   <p className="mt-1 text-sm text-slate-900">{caseData.notes}</p>
                 </div>
               )}
-              {currentUser.role === 'lab_admin' && (
+              {currentUser?.role === 'lab_admin' && (
                 <div className="pt-4 border-t border-slate-200">
                   <Select
                     label={t('cases.updateStatusLabel')}
@@ -144,14 +144,14 @@ export default function CaseDetailPage() {
                     <div
                       key={message.id}
                       className={`flex ${
-                        message.senderId === currentUser.id
+                        message.senderId === currentUser?.id
                           ? 'justify-end'
                           : 'justify-start'
                       }`}
                     >
                       <div
                         className={`max-w-md rounded-lg px-4 py-2 ${
-                          message.senderId === currentUser.id
+                          message.senderId === currentUser?.id
                                   ? 'bg-blue-600 text-white'
                                   : 'bg-slate-100 text-slate-900'
                               }`}

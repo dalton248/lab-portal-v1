@@ -206,7 +206,7 @@ export const mockTeamMembers: TeamMember[] = [
   },
 ];
 
-let currentUser: User = mockUsers.lab_admin;
+let currentUser: User = mockUsers.labAdmin;
 
 export const getCurrentUser = (): User => currentUser;
 
@@ -216,6 +216,7 @@ export const setCurrentUser = (role: 'dentist' | 'labAdmin'): void => {
 
 export const getCasesForCurrentUser = (): Case[] => {
   const user = getCurrentUser();
+  if (!user) return [];
   if (user.role === 'lab_admin') {
     return mockCases;
   }

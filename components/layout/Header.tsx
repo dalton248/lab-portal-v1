@@ -49,12 +49,12 @@ export function Header({ currentUser, onMenuClick }: HeaderProps) {
                 className="flex items-center space-x-3 focus:outline-none"
               >
                 <div className="hidden sm:block text-right">
-                  <p className="text-sm font-medium text-slate-900">{currentUser.name}</p>
+                  <p className="text-sm font-medium text-slate-900">{currentUser?.name}</p>
                   <p className="text-xs text-slate-500 capitalize">
-                    {t(`roles.${currentUser.role}`)}
+                    {currentUser?.role ? t(`roles.${currentUser.role}`) : ''}
                   </p>
                 </div>
-                <Avatar name={currentUser.name} />
+                <Avatar name={currentUser?.name || ''} />
               </button>
 
               {dropdownOpen && (
@@ -65,8 +65,8 @@ export function Header({ currentUser, onMenuClick }: HeaderProps) {
                   />
                   <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-slate-200 py-1 z-20">
                     <div className="px-4 py-2 border-b border-slate-200">
-                      <p className="text-sm font-medium text-slate-900">{currentUser.name}</p>
-                      <p className="text-xs text-slate-500">{currentUser.email}</p>
+                      <p className="text-sm font-medium text-slate-900">{currentUser?.name}</p>
+                      <p className="text-xs text-slate-500">{currentUser?.email}</p>
                     </div>
                     <button
                       onClick={() => {
