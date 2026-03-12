@@ -5,6 +5,8 @@ import { useRouter } from 'next/navigation';
 import { LogOut, User as UserIcon, Menu } from 'lucide-react';
 import { Avatar } from '@/components/ui/Avatar';
 import { User } from '@/lib/types';
+import { useLanguage } from '@/components/providers/LanguageProvider';
+import { LanguageSwitcher } from '@/components/LanguageSwitcher';
 
 interface HeaderProps {
   currentUser: User;
@@ -14,6 +16,7 @@ interface HeaderProps {
 export function Header({ currentUser, onMenuClick }: HeaderProps) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const router = useRouter();
+  const { t } = useLanguage();
 
   const handleLogout = () => {
     router.push('/login');
@@ -33,7 +36,11 @@ export function Header({ currentUser, onMenuClick }: HeaderProps) {
             </button>
           </div>
 
-          <div className="flex-1" />
+          <div className="flex-1 flex justify-end md:justify-start items-center space-x-4">
+             <div className="hidden md:block">
+                <LanguageSwitcher />
+             </div>
+          </div>
 
           <div className="flex items-center space-x-4">
             <div className="relative">
@@ -44,7 +51,7 @@ export function Header({ currentUser, onMenuClick }: HeaderProps) {
                 <div className="hidden sm:block text-right">
                   <p className="text-sm font-medium text-slate-900">{currentUser.name}</p>
                   <p className="text-xs text-slate-500 capitalize">
-                    {currentUser.role.replace('_', ' ')}
+                    {t(`roles.${currentUser.role}`)}
                   </p>
                 </div>
                 <Avatar name={currentUser.name} />
@@ -68,14 +75,14 @@ export function Header({ currentUser, onMenuClick }: HeaderProps) {
                       className="w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 flex items-center"
                     >
                       <UserIcon className="h-4 w-4 mr-2" />
-                      Profile
+                      {t('nav.profile')}
                     </button>
                     <button
                       onClick={handleLogout}
                       className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-slate-50 flex items-center"
                     >
                       <LogOut className="h-4 w-4 mr-2" />
-                      Logout
+                      {t('nav.logout')}
                     </button>
                   </div>
                 </>

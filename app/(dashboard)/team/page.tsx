@@ -7,17 +7,19 @@ import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from '@
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
 import { getCurrentUser, mockTeamMembers } from '@/lib/mock-data';
+import { useLanguage } from '@/components/providers/LanguageProvider';
 
 export default function TeamPage() {
   const currentUser = getCurrentUser();
   const [showInviteForm, setShowInviteForm] = useState(false);
   const [inviteEmail, setInviteEmail] = useState('');
   const [inviteName, setInviteName] = useState('');
+  const { t, language } = useLanguage();
 
   if (currentUser.role !== 'lab_admin') {
     return (
       <div className="text-center py-12">
-        <p className="text-slate-500">Access denied. This page is only available to lab administrators.</p>
+        <p className="text-slate-500">{t('team.accessDenied')}</p>
       </div>
     );
   }
@@ -30,7 +32,7 @@ export default function TeamPage() {
   };
 
   const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
+    return new Date(dateString).toLocaleDateString(language === 'en' ? 'en-US' : 'zh-CN', {
       month: 'short',
       day: 'numeric',
       year: 'numeric',
@@ -41,9 +43,9 @@ export default function TeamPage() {
     <div className="space-y-6">
       <div className="flex justify-between items-center">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900">Team</h1>
+          <h1 className="text-2xl font-bold text-slate-900">{t('team.title')}</h1>
           <p className="mt-1 text-sm text-slate-500">
-            Manage dentists and team members
+            {t('team.subtitle')}
           </p>
         </div>
         <Button
@@ -52,20 +54,20 @@ export default function TeamPage() {
           className="flex items-center"
         >
           <UserPlus className="h-4 w-4 mr-2" />
-          Invite Dentist
+          {t('team.inviteButton')}
         </Button>
       </div>
 
       {showInviteForm && (
         <Card>
           <CardHeader>
-            <h2 className="text-lg font-semibold text-slate-900">Invite New Dentist</h2>
+            <h2 className="text-lg font-semibold text-slate-900">{t('team.inviteTitle')}</h2>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleInvite} className="space-y-4">
               <div className="grid grid-cols-2 gap-4">
                 <Input
-                  label="Name"
+                  label={t('team.nameLabel')}
                   type="text"
                   required
                   value={inviteName}
@@ -73,7 +75,7 @@ export default function TeamPage() {
                   placeholder="Dr. Jane Smith"
                 />
                 <Input
-                  label="Email"
+                  label={t('team.emailLabel')}
                   type="email"
                   required
                   value={inviteEmail}
@@ -87,10 +89,10 @@ export default function TeamPage() {
                   variant="secondary"
                   onClick={() => setShowInviteForm(false)}
                 >
-                  Cancel
+                  {t('team.cancel')}
                 </Button>
                 <Button type="submit" variant="primary">
-                  Send Invitation
+                  {t('team.sendInvitation')}
                 </Button>
               </div>
             </form>
@@ -100,16 +102,16 @@ export default function TeamPage() {
 
       <Card>
         <CardHeader>
-          <h2 className="text-lg font-semibold text-slate-900">Dentists</h2>
+          <h2 className="text-lg font-semibold text-slate-900">{t('team.dentistsTitle')}</h2>
         </CardHeader>
         <CardContent className="p-0">
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead>Name</TableHead>
-                <TableHead>Email</TableHead>
-                <TableHead>Status</TableHead>
-                <TableHead>Joined</TableHead>
+                <TableHead>{t('table.name')}</TableHead>
+                <TableHead>{t('table.email')}</TableHead>
+                <TableHead>{t('table.status')}</TableHead>
+                <TableHead>{t('table.joined')}</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -125,7 +127,7 @@ export default function TeamPage() {
                           : 'bg-yellow-100 text-yellow-800'
                       }`}
                     >
-                      {member.status.charAt(0).toUpperCase() + member.status.slice(1)}
+                      {t(`status.${member.status}`)}
                     </span>
                   </TableCell>
                   <TableCell className="text-slate-500">

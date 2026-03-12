@@ -5,79 +5,81 @@ import { Card, CardHeader, CardContent } from '@/components/ui/Card';
 import { Input } from '@/components/ui/Input';
 import { Button } from '@/components/ui/Button';
 import { getCurrentUser } from '@/lib/mock-data';
+import { useLanguage } from '@/components/providers/LanguageProvider';
 
 export default function SettingsPage() {
   const currentUser = getCurrentUser();
+  const { t } = useLanguage();
 
   return (
     <div className="max-w-3xl space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-slate-900">Settings</h1>
+        <h1 className="text-2xl font-bold text-slate-900">{t('settings.title')}</h1>
         <p className="mt-1 text-sm text-slate-500">
-          Manage your account settings and preferences
+          {t('settings.subtitle')}
         </p>
       </div>
 
       <Card>
         <CardHeader>
-          <h2 className="text-lg font-semibold text-slate-900">Profile Information</h2>
+          <h2 className="text-lg font-semibold text-slate-900">{t('settings.profileTitle')}</h2>
         </CardHeader>
         <CardContent className="space-y-4">
           <Input
-            label="Name"
+            label={t('settings.nameLabel')}
             type="text"
             defaultValue={currentUser.name}
           />
           <Input
-            label="Email"
+            label={t('settings.emailLabel')}
             type="email"
             defaultValue={currentUser.email}
           />
           <Input
-            label="Role"
+            label={t('settings.roleLabel')}
             type="text"
-            defaultValue={currentUser.role.replace('_', ' ')}
+            defaultValue={t(`roles.${currentUser.role}`)}
             disabled
             className="bg-slate-50"
           />
           <div className="flex justify-end">
-            <Button variant="primary">Save Changes</Button>
+            <Button variant="primary">{t('settings.saveChanges')}</Button>
           </div>
         </CardContent>
       </Card>
 
       <Card>
         <CardHeader>
-          <h2 className="text-lg font-semibold text-slate-900">Change Password</h2>
+          <h2 className="text-lg font-semibold text-slate-900">{t('settings.passwordTitle')}</h2>
         </CardHeader>
         <CardContent className="space-y-4">
           <Input
-            label="Current Password"
+            label={t('settings.currentPasswordLabel')}
             type="password"
           />
           <Input
-            label="New Password"
+            label={t('settings.newPasswordLabel')}
             type="password"
           />
           <Input
-            label="Confirm New Password"
+            label={t('settings.confirmPasswordLabel')}
             type="password"
           />
           <div className="flex justify-end">
-            <Button variant="primary">Update Password</Button>
+            <Button variant="primary">{t('settings.updatePassword')}</Button>
           </div>
         </CardContent>
       </Card>
 
       <Card>
         <CardHeader>
-          <h2 className="text-lg font-semibold text-slate-900">Notifications</h2>
+          <h2 className="text-lg font-semibold text-slate-900">{t('settings.notificationsTitle')}</h2>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-slate-900">Email Notifications</p>
-              <p className="text-sm text-slate-500">Receive email updates about case status changes</p>
+              <p className="text-sm font-medium text-slate-900">{t('settings.emailNotificationsLabel')}</p>
+              <p className="text-sm text-slate-500">{t('settings.emailNotificationsDesc')}</p>
             </div>
             <input
               type="checkbox"
@@ -87,8 +89,8 @@ export default function SettingsPage() {
           </div>
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-slate-900">Case Updates</p>
-              <p className="text-sm text-slate-500">Get notified when cases are updated</p>
+              <p className="text-sm font-medium text-slate-900">{t('settings.caseUpdatesLabel')}</p>
+              <p className="text-sm text-slate-500">{t('settings.caseUpdatesDesc')}</p>
             </div>
             <input
               type="checkbox"
@@ -98,8 +100,8 @@ export default function SettingsPage() {
           </div>
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-slate-900">New Messages</p>
-              <p className="text-sm text-slate-500">Receive notifications for new messages</p>
+              <p className="text-sm font-medium text-slate-900">{t('settings.newMessagesLabel')}</p>
+              <p className="text-sm text-slate-500">{t('settings.newMessagesDesc')}</p>
             </div>
             <input
               type="checkbox"

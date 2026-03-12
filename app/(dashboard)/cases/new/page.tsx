@@ -8,6 +8,7 @@ import { Input } from '@/components/ui/Input';
 import { Select } from '@/components/ui/Select';
 import { Textarea } from '@/components/ui/Textarea';
 import { Button } from '@/components/ui/Button';
+import { useLanguage } from '@/components/providers/LanguageProvider';
 
 export default function NewCasePage() {
   const router = useRouter();
@@ -16,13 +17,14 @@ export default function NewCasePage() {
   const [shade, setShade] = useState('');
   const [dueDate, setDueDate] = useState('');
   const [notes, setNotes] = useState('');
+  const { t } = useLanguage();
 
   const caseTypeOptions = [
-    { value: 'crown', label: 'Crown' },
-    { value: 'bridge', label: 'Bridge' },
-    { value: 'denture', label: 'Denture' },
-    { value: 'implant', label: 'Implant Crown' },
-    { value: 'veneer', label: 'Veneer' },
+    { value: 'crown', label: t('caseTypes.crown') },
+    { value: 'bridge', label: t('caseTypes.bridge') },
+    { value: 'denture', label: t('caseTypes.denture') },
+    { value: 'implant', label: t('caseTypes.implant') },
+    { value: 'veneer', label: t('caseTypes.veneer') },
   ];
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -37,46 +39,46 @@ export default function NewCasePage() {
   return (
     <div className="max-w-3xl">
       <div className="mb-6">
-        <h1 className="text-2xl font-bold text-slate-900">New Case</h1>
+        <h1 className="text-2xl font-bold text-slate-900">{t('cases.newCaseTitle')}</h1>
         <p className="mt-1 text-sm text-slate-500">
-          Submit a new case to the laboratory
+          {t('cases.newCaseSubtitle')}
         </p>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-6">
         <Card>
           <CardHeader>
-            <h2 className="text-lg font-semibold text-slate-900">Case Information</h2>
+            <h2 className="text-lg font-semibold text-slate-900">{t('cases.infoTitle')}</h2>
           </CardHeader>
           <CardContent className="space-y-4">
             <Input
-              label="Patient Name"
+              label={t('cases.patientLabel')}
               type="text"
               required
               value={patientName}
               onChange={(e) => setPatientName(e.target.value)}
-              placeholder="Enter patient name"
+              placeholder={t('cases.patientPlaceholder')}
             />
 
             <div className="grid grid-cols-2 gap-4">
               <Select
-                label="Case Type"
+                label={t('cases.typeLabel')}
                 options={caseTypeOptions}
                 value={caseType}
                 onChange={(e) => setCaseType(e.target.value)}
               />
 
               <Input
-                label="Shade"
+                label={t('cases.shadeLabel')}
                 type="text"
                 value={shade}
                 onChange={(e) => setShade(e.target.value)}
-                placeholder="e.g., A2, B1"
+                placeholder={t('cases.shadePlaceholder')}
               />
             </div>
 
             <Input
-              label="Due Date"
+              label={t('cases.dueDateLabel')}
               type="date"
               required
               value={dueDate}
@@ -84,27 +86,27 @@ export default function NewCasePage() {
             />
 
             <Textarea
-              label="Special Instructions"
+              label={t('cases.instructionsLabel')}
               rows={4}
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
-              placeholder="Enter any special instructions or notes for the lab..."
+              placeholder={t('cases.instructionsPlaceholder')}
             />
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader>
-            <h2 className="text-lg font-semibold text-slate-900">Files</h2>
+            <h2 className="text-lg font-semibold text-slate-900">{t('cases.filesTitle')}</h2>
           </CardHeader>
           <CardContent>
             <div className="border-2 border-dashed border-slate-300 rounded-lg p-12 text-center hover:border-slate-400 transition-colors">
               <Upload className="mx-auto h-12 w-12 text-slate-400" />
               <p className="mt-2 text-sm font-medium text-slate-900">
-                Drop files here or click to upload
+                {t('cases.dropFiles')}
               </p>
               <p className="mt-1 text-xs text-slate-500">
-                Supports: STL, PLY, JPEG, PNG, PDF
+                {t('cases.supports')}
               </p>
               <input
                 type="file"
@@ -117,7 +119,7 @@ export default function NewCasePage() {
                 className="mt-4 inline-flex cursor-pointer"
               >
                 <Button type="button" variant="secondary">
-                  Select Files
+                  {t('cases.selectFiles')}
                 </Button>
               </label>
             </div>
@@ -130,10 +132,10 @@ export default function NewCasePage() {
             variant="secondary"
             onClick={handleSaveDraft}
           >
-            Save Draft
+            {t('cases.saveDraft')}
           </Button>
           <Button type="submit" variant="primary">
-            Submit Case
+            {t('cases.submitCase')}
           </Button>
         </div>
       </form>

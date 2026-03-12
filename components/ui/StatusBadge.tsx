@@ -1,11 +1,16 @@
+'use client';
+
 import React from 'react';
 import { CaseStatus } from '@/lib/types';
+import { useLanguage } from '@/components/providers/LanguageProvider';
 
 interface StatusBadgeProps {
   status: CaseStatus;
 }
 
 export function StatusBadge({ status }: StatusBadgeProps) {
+  const { t } = useLanguage();
+
   const styles = {
     submitted: 'bg-slate-100 text-slate-800 border-slate-200',
     in_progress: 'bg-blue-100 text-blue-800 border-blue-200',
@@ -14,19 +19,11 @@ export function StatusBadge({ status }: StatusBadgeProps) {
     rejected: 'bg-red-100 text-red-800 border-red-200',
   };
 
-  const labels = {
-    submitted: 'Submitted',
-    in_progress: 'In Progress',
-    on_hold: 'On Hold',
-    completed: 'Completed',
-    rejected: 'Rejected',
-  };
-
   return (
     <span
       className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border ${styles[status]}`}
     >
-      {labels[status]}
+      {t(`status.${status}`)}
     </span>
   );
 }

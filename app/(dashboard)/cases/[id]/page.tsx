@@ -10,6 +10,7 @@ import { Select } from '@/components/ui/Select';
 import { Textarea } from '@/components/ui/Textarea';
 import { getCurrentUser, getCaseById, getMessagesForCase } from '@/lib/mock-data';
 import { CaseStatus } from '@/lib/types';
+import { useLanguage } from '@/components/providers/LanguageProvider';
 
 export default function CaseDetailPage() {
   const params = useParams();
@@ -19,17 +20,18 @@ export default function CaseDetailPage() {
   const messages = getMessagesForCase(params.id as string);
   const [newMessage, setNewMessage] = useState('');
   const [caseStatus, setCaseStatus] = useState<CaseStatus>(caseData?.status || 'submitted');
+  const { t, language } = useLanguage();
 
   if (!caseData) {
     return (
       <div className="text-center py-12">
-        <p className="text-slate-500">Case not found</p>
+        <p className="text-slate-500">{t('cases.caseNotFound')}</p>
       </div>
     );
   }
 
   const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
+    return new Date(dateString).toLocaleDateString(language === 'en' ? 'en-US' : 'zh-CN', {
       month: 'short',
       day: 'numeric',
       year: 'numeric',
@@ -37,7 +39,7 @@ export default function CaseDetailPage() {
   };
 
   const formatTime = (dateString: string) => {
-    return new Date(dateString).toLocaleString('en-US', {
+    return new Date(dateString).toLocaleString(language === 'en' ? 'en-US' : 'zh-CN', {
       month: 'short',
       day: 'numeric',
       hour: 'numeric',
@@ -46,10 +48,10 @@ export default function CaseDetailPage() {
   };
 
   const statusOptions = [
-    { value: 'pending', label: 'Pending' },
-    { value: 'in_progress', label: 'In Progress' },
-    { value: 'completed', label: 'Completed' },
-    { value: 'rejected', label: 'Rejected' },
+    { value: 'pending', label: t('status.pending') },
+    { value: 'in_progress', label: t('status.in_progress') },
+    { value: 'completed', label: t('status.completed') },
+    { value: 'rejected', label: t('status.rejected') },
   ];
 
   const handleSendMessage = (e: React.FormEvent) => {
@@ -69,7 +71,7 @@ export default function CaseDetailPage() {
         <div className="flex-1">
           <h1 className="text-2xl font-bold text-slate-900">{caseData.caseId}</h1>
           <p className="mt-1 text-sm text-slate-500">
-            Patient: {caseData.patientName}
+            {t('cases.patientLabel')}: {caseData.patientName}
           </p>
         </div>
         <StatusBadge status={caseStatus} />
@@ -79,45 +81,45 @@ export default function CaseDetailPage() {
         <div className="lg:col-span-2 space-y-6">
           <Card>
             <CardHeader>
-              <h2 className="text-lg font-semibold text-slate-900">Case Details</h2>
+              <h2 className="text-lg font-semibold text-slate-900">{t('cases.detailsTitle')}</h2>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <p className="text-sm font-medium text-slate-500">Case Type</p>
+                  <p className="text-sm font-medium text-slate-500">{t('cases.typeLabel')}</p>
                   <p className="mt-1 text-sm text-slate-900">{caseData.caseType}</p>
                 </div>
                 <div>
-                  <p className="text-sm font-medium text-slate-500">Shade</p>
-                  <p className="mt-1 text-sm text-slate-900">{caseData.shade || 'N/A'}</p>
+                  <p className="text-sm font-medium text-slate-500">{t('cases.shadeLabel')}</p>
+                  <p className="mt-1 text-sm text-slate-900">{caseData.shade || t('common.na')}</p>
                 </div>
                 <div>
-                  <p className="text-sm font-medium text-slate-500">Due Date</p>
+                  <p className="text-sm font-medium text-slate-500">{t('cases.dueDateLabel')}</p>
                   <p className="mt-1 text-sm text-slate-900">{formatDate(caseData.dueDate)}</p>
                 </div>
                 <div>
-                  <p className="text-sm font-medium text-slate-500">Submitted By</p>
+                  <p className="text-sm font-medium text-slate-500">{t('cases.submittedByLabel')}</p>
                   <p className="mt-1 text-sm text-slate-900">{caseData.dentistName}</p>
                 </div>
                 <div>
-                  <p className="text-sm font-medium text-slate-500">Created</p>
+                  <p className="text-sm font-medium text-slate-500">{t('cases.createdLabel')}</p>
                   <p className="mt-1 text-sm text-slate-900">{formatDate(caseData.createdAt)}</p>
                 </div>
                 <div>
-                  <p className="text-sm font-medium text-slate-500">Last Updated</p>
+                  <p className="text-sm font-medium text-slate-500">{t('cases.lastUpdatedLabel')}</p>
                   <p className="mt-1 text-sm text-slate-900">{formatDate(caseData.updatedAt)}</p>
                 </div>
               </div>
               {caseData.notes && (
                 <div>
-                  <p className="text-sm font-medium text-slate-500">Notes</p>
+                  <p className="text-sm font-medium text-slate-500">{t('cases.notesLabel')}</p>
                   <p className="mt-1 text-sm text-slate-900">{caseData.notes}</p>
                 </div>
               )}
               {currentUser.role === 'lab_admin' && (
                 <div className="pt-4 border-t border-slate-200">
                   <Select
-                    label="Update Status"
+                    label={t('cases.updateStatusLabel')}
                     options={statusOptions}
                     value={caseStatus}
                     onChange={(e) => setCaseStatus(e.target.value as CaseStatus)}
@@ -129,13 +131,13 @@ export default function CaseDetailPage() {
 
           <Card>
             <CardHeader>
-              <h2 className="text-lg font-semibold text-slate-900">Messages</h2>
+              <h2 className="text-lg font-semibold text-slate-900">{t('cases.messagesTitle')}</h2>
             </CardHeader>
             <CardContent>
               <div className="space-y-4 mb-4">
                 {messages.length === 0 ? (
                   <p className="text-sm text-slate-500 text-center py-4">
-                    No messages yet
+                    {t('cases.noMessages')}
                   </p>
                 ) : (
                   messages.map((message) => (
@@ -150,86 +152,86 @@ export default function CaseDetailPage() {
                       <div
                         className={`max-w-md rounded-lg px-4 py-2 ${
                           message.senderId === currentUser.id
-                            ? 'bg-blue-600 text-white'
-                            : 'bg-slate-100 text-slate-900'
-                        }`}
-                      >
-                        <div className="flex items-baseline space-x-2 mb-1">
-                          <p className="text-xs font-medium">{message.senderName}</p>
-                          <p
-                            className={`text-xs ${
-                              message.senderId === currentUser.id
-                                ? 'text-blue-100'
-                                : 'text-slate-500'
-                            }`}
-                          >
-                            {formatTime(message.createdAt)}
+                                  ? 'bg-blue-600 text-white'
+                                  : 'bg-slate-100 text-slate-900'
+                              }`}
+                            >
+                              <div className="flex items-baseline space-x-2 mb-1">
+                                <p className="text-xs font-medium">{message.senderName}</p>
+                                <p
+                                  className={`text-xs ${
+                                    message.senderId === currentUser.id
+                                      ? 'text-blue-100'
+                                      : 'text-slate-500'
+                                  }`}
+                                >
+                                  {formatTime(message.createdAt)}
+                                </p>
+                              </div>
+                              <p className="text-sm">{message.message}</p>
+                            </div>
+                          </div>
+                        ))
+                      )}
+                    </div>
+      
+                    <form onSubmit={handleSendMessage} className="border-t border-slate-200 pt-4">
+                      <div className="flex space-x-2">
+                        <Textarea
+                          value={newMessage}
+                          onChange={(e) => setNewMessage(e.target.value)}
+                          placeholder={t('cases.typeMessage')}
+                          rows={2}
+                          className="flex-1"
+                        />
+                        <Button type="submit" variant="primary" className="self-end">
+                          <Send className="h-4 w-4" />
+                        </Button>
+                      </div>
+                    </form>
+                  </CardContent>
+                </Card>
+              </div>
+      
+              <div>
+                <Card>
+                  <CardHeader>
+                    <h2 className="text-lg font-semibold text-slate-900">{t('cases.filesTitle')}</h2>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-2">
+                      <div className="flex items-center space-x-3 p-3 border border-slate-200 rounded-lg hover:bg-slate-50 cursor-pointer">
+                        <FileText className="h-8 w-8 text-slate-400" />
+                        <div className="flex-1 min-w-0">
+                          <p className="text-sm font-medium text-slate-900 truncate">
+                            impression_scan.stl
                           </p>
+                          <p className="text-xs text-slate-500">2.4 MB</p>
                         </div>
-                        <p className="text-sm">{message.message}</p>
+                      </div>
+                      <div className="flex items-center space-x-3 p-3 border border-slate-200 rounded-lg hover:bg-slate-50 cursor-pointer">
+                        <FileText className="h-8 w-8 text-slate-400" />
+                        <div className="flex-1 min-w-0">
+                          <p className="text-sm font-medium text-slate-900 truncate">
+                            shade_reference.jpg
+                          </p>
+                          <p className="text-xs text-slate-500">1.1 MB</p>
+                        </div>
+                      </div>
+                      <div className="flex items-center space-x-3 p-3 border border-slate-200 rounded-lg hover:bg-slate-50 cursor-pointer">
+                        <FileText className="h-8 w-8 text-slate-400" />
+                        <div className="flex-1 min-w-0">
+                          <p className="text-sm font-medium text-slate-900 truncate">
+                            prescription.pdf
+                          </p>
+                          <p className="text-xs text-slate-500">345 KB</p>
+                        </div>
                       </div>
                     </div>
-                  ))
-                )}
+                  </CardContent>
+                </Card>
               </div>
-
-              <form onSubmit={handleSendMessage} className="border-t border-slate-200 pt-4">
-                <div className="flex space-x-2">
-                  <Textarea
-                    value={newMessage}
-                    onChange={(e) => setNewMessage(e.target.value)}
-                    placeholder="Type your message..."
-                    rows={2}
-                    className="flex-1"
-                  />
-                  <Button type="submit" variant="primary" className="self-end">
-                    <Send className="h-4 w-4" />
-                  </Button>
-                </div>
-              </form>
-            </CardContent>
-          </Card>
-        </div>
-
-        <div>
-          <Card>
-            <CardHeader>
-              <h2 className="text-lg font-semibold text-slate-900">Files</h2>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-2">
-                <div className="flex items-center space-x-3 p-3 border border-slate-200 rounded-lg hover:bg-slate-50 cursor-pointer">
-                  <FileText className="h-8 w-8 text-slate-400" />
-                  <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-slate-900 truncate">
-                      impression_scan.stl
-                    </p>
-                    <p className="text-xs text-slate-500">2.4 MB</p>
-                  </div>
-                </div>
-                <div className="flex items-center space-x-3 p-3 border border-slate-200 rounded-lg hover:bg-slate-50 cursor-pointer">
-                  <FileText className="h-8 w-8 text-slate-400" />
-                  <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-slate-900 truncate">
-                      shade_reference.jpg
-                    </p>
-                    <p className="text-xs text-slate-500">1.1 MB</p>
-                  </div>
-                </div>
-                <div className="flex items-center space-x-3 p-3 border border-slate-200 rounded-lg hover:bg-slate-50 cursor-pointer">
-                  <FileText className="h-8 w-8 text-slate-400" />
-                  <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-slate-900 truncate">
-                      prescription.pdf
-                    </p>
-                    <p className="text-xs text-slate-500">345 KB</p>
-                  </div>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-      </div>
-    </div>
-  );
-}
+            </div>
+          </div>
+        );
+      }

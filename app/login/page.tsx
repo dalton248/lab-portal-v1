@@ -6,11 +6,14 @@ import { Building2 } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
 import { setCurrentUser } from '@/lib/mock-data';
+import { useLanguage } from '@/components/providers/LanguageProvider';
+import { LanguageSwitcher } from '@/components/LanguageSwitcher';
 
 export default function LoginPage() {
   const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const { t } = useLanguage();
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
@@ -25,16 +28,20 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-slate-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8 relative">
+      <div className="absolute top-4 right-4 sm:top-8 sm:right-8">
+        <LanguageSwitcher />
+      </div>
+
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <div className="flex justify-center">
           <Building2 className="h-12 w-12 text-blue-600" />
         </div>
         <h2 className="mt-6 text-center text-3xl font-bold text-slate-900">
-          LabOps
+          {t('login.title')}
         </h2>
         <p className="mt-2 text-center text-sm text-slate-600">
-          Sign in to your account
+          {t('login.subtitle')}
         </p>
       </div>
 
@@ -42,23 +49,23 @@ export default function LoginPage() {
         <div className="bg-white py-8 px-4 shadow-sm rounded-lg border border-slate-200 sm:px-10">
           <form className="space-y-6" onSubmit={handleLogin}>
             <Input
-              label="Email address"
+              label={t('login.email')}
               type="email"
               autoComplete="email"
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="you@example.com"
+              placeholder={t('login.emailPlaceholder')}
             />
 
             <Input
-              label="Password"
+              label={t('login.password')}
               type="password"
               autoComplete="current-password"
               required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              placeholder="••••••••"
+              placeholder={t('login.passwordPlaceholder')}
             />
 
             <div className="flex items-center justify-between">
@@ -70,19 +77,19 @@ export default function LoginPage() {
                   className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-slate-300 rounded"
                 />
                 <label htmlFor="remember-me" className="ml-2 block text-sm text-slate-900">
-                  Remember me
+                  {t('login.rememberMe')}
                 </label>
               </div>
 
               <div className="text-sm">
                 <a href="#" className="font-medium text-blue-600 hover:text-blue-500">
-                  Forgot password?
+                  {t('login.forgotPassword')}
                 </a>
               </div>
             </div>
 
             <Button type="submit" variant="primary" className="w-full">
-              Sign in
+              {t('login.signIn')}
             </Button>
           </form>
 
@@ -92,7 +99,7 @@ export default function LoginPage() {
                 <div className="w-full border-t border-slate-300" />
               </div>
               <div className="relative flex justify-center text-sm">
-                <span className="px-2 bg-white text-slate-500">Demo Accounts</span>
+                <span className="px-2 bg-white text-slate-500">{t('login.demoAccounts')}</span>
               </div>
             </div>
 
@@ -106,7 +113,7 @@ export default function LoginPage() {
                 }}
                 className="text-xs"
               >
-                Dentist
+                {t('login.dentist')}
               </Button>
               <Button
                 type="button"
@@ -117,7 +124,7 @@ export default function LoginPage() {
                 }}
                 className="text-xs"
               >
-                Lab Admin
+                {t('login.labAdmin')}
               </Button>
             </div>
           </div>

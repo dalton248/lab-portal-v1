@@ -7,8 +7,8 @@ import { Button } from '@/components/ui/Button';
 import { Card, CardHeader, CardContent } from '@/components/ui/Card';
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from '@/components/ui/Table';
 import { StatusBadge } from '@/components/ui/StatusBadge';
-import { Input } from '@/components/ui/Input';
 import { getCurrentUser, getCasesForCurrentUser, searchCases } from '@/lib/mock-data';
+import { useLanguage } from '@/components/providers/LanguageProvider';
 
 export default function DashboardPage() {
   const router = useRouter();
@@ -16,6 +16,7 @@ export default function DashboardPage() {
   const allCases = getCasesForCurrentUser();
   const [searchQuery, setSearchQuery] = useState('');
   const filteredCases = searchCases(searchQuery, allCases);
+  const { t, language } = useLanguage();
 
   const stats = {
     total: allCases.length,
@@ -25,7 +26,7 @@ export default function DashboardPage() {
   };
 
   const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
+    return new Date(dateString).toLocaleDateString(language === 'en' ? 'en-US' : 'zh-CN', {
       month: 'short',
       day: 'numeric',
       year: 'numeric',
@@ -37,12 +38,12 @@ export default function DashboardPage() {
       <div className="flex justify-between items-center">
         <div>
           <h1 className="text-2xl font-bold text-slate-900">
-            {currentUser.role === 'dentist' ? 'My Cases' : 'All Cases'}
+            {currentUser.role === 'dentist' ? t('dashboard.myCases') : t('dashboard.allCases')}
           </h1>
           <p className="mt-1 text-sm text-slate-500">
             {currentUser.role === 'dentist'
-              ? 'Manage and track your dental lab cases'
-              : 'Overview of all laboratory cases'}
+              ? t('dashboard.dentistSubtitle')
+              : t('dashboard.labSubtitle')}
           </p>
         </div>
         {currentUser.role === 'dentist' && (
@@ -52,7 +53,7 @@ export default function DashboardPage() {
             className="flex items-center"
           >
             <Plus className="h-4 w-4 mr-2" />
-            New Case
+            {t('dashboard.newCase')}
           </Button>
         )}
       </div>
@@ -63,7 +64,7 @@ export default function DashboardPage() {
             <CardContent className="pt-5">
               <div className="flex items-center">
                 <div className="flex-1">
-                  <p className="text-sm font-medium text-slate-600">Total Cases</p>
+                  <p className="text-sm font-medium text-slate-600">{t('dashboard.totalCases')}</p>
                   <p className="mt-1 text-3xl font-semibold text-slate-900">{stats.total}</p>
                 </div>
               </div>
@@ -74,7 +75,7 @@ export default function DashboardPage() {
             <CardContent className="pt-5">
               <div className="flex items-center">
                 <div className="flex-1">
-                  <p className="text-sm font-medium text-slate-600">In Progress</p>
+                  <p className="text-sm font-medium text-slate-600">{t('dashboard.inProgress')}</p>
                   <p className="mt-1 text-3xl font-semibold text-blue-600">{stats.inProgress}</p>
                 </div>
               </div>
@@ -85,7 +86,7 @@ export default function DashboardPage() {
             <CardContent className="pt-5">
               <div className="flex items-center">
                 <div className="flex-1">
-                  <p className="text-sm font-medium text-slate-600">On Hold</p>
+                  <p className="text-sm font-medium text-slate-600">{t('dashboard.onHold')}</p>
                   <p className="mt-1 text-3xl font-semibold text-orange-600">{stats.onHold}</p>
                 </div>
               </div>
@@ -96,7 +97,7 @@ export default function DashboardPage() {
             <CardContent className="pt-5">
               <div className="flex items-center">
                 <div className="flex-1">
-                  <p className="text-sm font-medium text-slate-600">Completed</p>
+                  <p className="text-sm font-medium text-slate-600">{t('dashboard.completed')}</p>
                   <p className="mt-1 text-3xl font-semibold text-green-600">{stats.completed}</p>
                 </div>
               </div>
@@ -108,13 +109,13 @@ export default function DashboardPage() {
       <Card>
         <CardHeader>
           <div className="flex justify-between items-center">
-            <h2 className="text-lg font-semibold text-slate-900">Recent Cases</h2>
+            <h2 className="text-lg font-semibold text-slate-900">{t('dashboard.recentCases')}</h2>
           </div>
           <div className="mt-4 relative">
             <Search className="absolute left-3 top-3 h-5 w-5 text-slate-400" />
             <input
               type="text"
-              placeholder="Search by case ID, patient name, or status..."
+              placeholder={t('dashboard.searchPlaceholder')}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full pl-10 pr-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
@@ -125,18 +126,18 @@ export default function DashboardPage() {
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead>Case ID</TableHead>
-                <TableHead>Patient</TableHead>
-                <TableHead>Status</TableHead>
-                <TableHead>Due Date</TableHead>
-                <TableHead>Last Updated</TableHead>
+                <TableHead>{t('table.caseId')}</TableHead>
+                <TableHead>{t('table.patient')}</TableHead>
+                <TableHead>{t('table.status')}</TableHead>
+                <TableHead>{t('table.dueDate')}</TableHead>
+                <TableHead>{t('table.lastUpdated')}</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {filteredCases.length === 0 ? (
                 <TableRow>
                   <TableCell colSpan={5} className="text-center py-8 text-slate-500">
-                    {searchQuery ? 'No cases match your search' : 'No cases found'}
+                    {searchQuery ? t('dashboard.noSearchMatches') : t('dashboard.noCasesFound')}
                   </TableCell>
                 </TableRow>
               ) : (

@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { LayoutDashboard, FileText, Users, Settings, Building2 } from 'lucide-react';
 import { User } from '@/lib/types';
+import { useLanguage } from '@/components/providers/LanguageProvider';
 
 interface SidebarProps {
   currentUser: User;
@@ -13,12 +14,13 @@ interface SidebarProps {
 
 export function Sidebar({ currentUser, labName }: SidebarProps) {
   const pathname = usePathname();
+  const { t } = useLanguage();
 
   const navigation = [
-    { name: 'Dashboard', href: '/dashboard', icon: LayoutDashboard, show: true },
-    { name: 'Cases', href: '/cases', icon: FileText, show: true },
-    { name: 'Team', href: '/team', icon: Users, show: currentUser.role === 'lab_admin' },
-    { name: 'Settings', href: '/settings', icon: Settings, show: true },
+    { name: t('nav.dashboard'), href: '/dashboard', icon: LayoutDashboard, show: true },
+    { name: t('nav.cases'), href: '/cases', icon: FileText, show: true },
+    { name: t('nav.team'), href: '/team', icon: Users, show: currentUser.role === 'lab_admin' },
+    { name: t('nav.settings'), href: '/settings', icon: Settings, show: true },
   ];
 
   const isActive = (href: string) => pathname === href || pathname.startsWith(href + '/');
@@ -41,7 +43,7 @@ export function Sidebar({ currentUser, labName }: SidebarProps) {
               </div>
               <div className="flex-1 min-w-0">
                 <p className="text-sm font-medium text-white truncate">{labName}</p>
-                <p className="text-xs text-slate-400">Laboratory</p>
+                <p className="text-xs text-slate-400">{t('nav.laboratory')}</p>
               </div>
             </div>
           </div>

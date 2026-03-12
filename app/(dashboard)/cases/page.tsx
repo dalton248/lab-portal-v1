@@ -8,7 +8,7 @@ import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from '@
 import { StatusBadge } from '@/components/ui/StatusBadge';
 import { Select } from '@/components/ui/Select';
 import { getCurrentUser, getCasesForCurrentUser, searchCases } from '@/lib/mock-data';
-import { CaseStatus } from '@/lib/types';
+import { useLanguage } from '@/components/providers/LanguageProvider';
 
 export default function CasesPage() {
   const router = useRouter();
@@ -16,6 +16,7 @@ export default function CasesPage() {
   const allCases = getCasesForCurrentUser();
   const [statusFilter, setStatusFilter] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState('');
+  const { t, language } = useLanguage();
 
   const statusFiltered =
     statusFilter === 'all'
@@ -25,7 +26,7 @@ export default function CasesPage() {
   const filteredCases = searchCases(searchQuery, statusFiltered);
 
   const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
+    return new Date(dateString).toLocaleDateString(language === 'en' ? 'en-US' : 'zh-CN', {
       month: 'short',
       day: 'numeric',
       year: 'numeric',
@@ -33,21 +34,21 @@ export default function CasesPage() {
   };
 
   const filterOptions = [
-    { value: 'all', label: 'All Cases' },
-    { value: 'submitted', label: 'Submitted' },
-    { value: 'in_progress', label: 'In Progress' },
-    { value: 'on_hold', label: 'On Hold' },
-    { value: 'completed', label: 'Completed' },
-    { value: 'rejected', label: 'Rejected' },
+    { value: 'all', label: t('cases.filterAll') },
+    { value: 'submitted', label: t('status.submitted') },
+    { value: 'in_progress', label: t('status.in_progress') },
+    { value: 'on_hold', label: t('status.on_hold') },
+    { value: 'completed', label: t('status.completed') },
+    { value: 'rejected', label: t('status.rejected') },
   ];
 
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900">Cases</h1>
+          <h1 className="text-2xl font-bold text-slate-900">{t('cases.title')}</h1>
           <p className="mt-1 text-sm text-slate-500">
-            View and manage all cases
+            {t('cases.subtitle')}
           </p>
         </div>
       </div>
@@ -55,7 +56,7 @@ export default function CasesPage() {
       <Card>
         <CardHeader>
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-lg font-semibold text-slate-900">All Cases</h2>
+            <h2 className="text-lg font-semibold text-slate-900">{t('cases.allCases')}</h2>
             {currentUser.role === 'lab_admin' && (
               <div className="w-48">
                 <Select
@@ -70,7 +71,7 @@ export default function CasesPage() {
             <Search className="absolute left-3 top-3 h-5 w-5 text-slate-400" />
             <input
               type="text"
-              placeholder="Search by case ID, patient name, or status..."
+              placeholder={t('dashboard.searchPlaceholder')}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full pl-10 pr-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
@@ -81,19 +82,19 @@ export default function CasesPage() {
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead>Case ID</TableHead>
-                <TableHead>Patient</TableHead>
-                <TableHead>Type</TableHead>
-                <TableHead>Status</TableHead>
-                <TableHead>Due Date</TableHead>
-                <TableHead>Last Updated</TableHead>
+                <TableHead>{t('table.caseId')}</TableHead>
+                <TableHead>{t('table.patient')}</TableHead>
+                <TableHead>{t('table.type')}</TableHead>
+                <TableHead>{t('table.status')}</TableHead>
+                <TableHead>{t('table.dueDate')}</TableHead>
+                <TableHead>{t('table.lastUpdated')}</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {filteredCases.length === 0 ? (
                 <TableRow>
                   <TableCell colSpan={6} className="text-center py-8 text-slate-500">
-                    {searchQuery || statusFilter !== 'all' ? 'No cases match your filters' : 'No cases found'}
+                    {searchQuery || statusFilter !== 'all' ? t('cases.noFilterMatches') : t('dashboard.noCasesFound')}
                   </TableCell>
                 </TableRow>
               ) : (
