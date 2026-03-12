@@ -206,7 +206,7 @@ export const mockTeamMembers: TeamMember[] = [
   },
 ];
 
-let currentUser: User = mockUsers.dentist;
+let currentUser: User = mockUsers.lab_admin;
 
 export const getCurrentUser = (): User => currentUser;
 

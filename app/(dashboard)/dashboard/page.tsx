@@ -60,49 +60,70 @@ export default function DashboardPage() {
 
       {currentUser.role === 'lab_admin' && (
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          <Card>
-            <CardContent className="pt-5">
-              <div className="flex items-center">
-                <div className="flex-1">
-                  <p className="text-sm font-medium text-slate-600">{t('dashboard.totalCases')}</p>
-                  <p className="mt-1 text-3xl font-semibold text-slate-900">{stats.total}</p>
-                </div>
-              </div>
+          <Card className="bg-slate-50/50 border-dashed">
+            <CardContent className="pt-5 pb-5">
+              <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">{t('dashboard.totalCases')}</p>
+              <p className="text-3xl font-bold text-slate-900">{stats.total}</p>
             </CardContent>
           </Card>
+          <Card className="bg-blue-50/50 border-blue-100">
+            <CardContent className="pt-5 pb-5">
+              <p className="text-xs font-bold text-blue-400 uppercase tracking-widest mb-1">{t('dashboard.inProgress')}</p>
+              <p className="text-3xl font-bold text-blue-600">{stats.inProgress}</p>
+            </CardContent>
+          </Card>
+          <Card className="bg-orange-50/50 border-orange-100">
+            <CardContent className="pt-5 pb-5">
+              <p className="text-xs font-bold text-orange-400 uppercase tracking-widest mb-1">{t('dashboard.onHold')}</p>
+              <p className="text-3xl font-bold text-orange-600">{stats.onHold}</p>
+            </CardContent>
+          </Card>
+          <Card className="bg-green-50/50 border-green-100">
+            <CardContent className="pt-5 pb-5">
+              <p className="text-xs font-bold text-green-400 uppercase tracking-widest mb-1">{t('dashboard.completed')}</p>
+              <p className="text-3xl font-bold text-green-600">{stats.completed}</p>
+            </CardContent>
+          </Card>
+        </div>
+      )}
 
-          <Card>
-            <CardContent className="pt-5">
-              <div className="flex items-center">
-                <div className="flex-1">
-                  <p className="text-sm font-medium text-slate-600">{t('dashboard.inProgress')}</p>
-                  <p className="mt-1 text-3xl font-semibold text-blue-600">{stats.inProgress}</p>
+      {currentUser.role === 'lab_admin' && (
+        <div className="space-y-4">
+          <div className="flex items-center justify-between">
+            <h2 className="text-lg font-semibold text-slate-900">{t('inbox.title')}</h2>
+            <Button variant="secondary" size="sm" onClick={() => router.push('/case-inbox')}>
+              {t('inbox.viewCases')}
+            </Button>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <Card className="hover:border-blue-200 transition-colors cursor-pointer" onClick={() => router.push('/case-inbox')}>
+              <CardContent className="pt-4 pb-4 flex items-center justify-between">
+                <div className="flex items-center space-x-3">
+                  <div className="w-8 h-8 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600 font-bold text-xs">3S</div>
+                  <span className="font-medium text-slate-700">3Shape</span>
                 </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardContent className="pt-5">
-              <div className="flex items-center">
-                <div className="flex-1">
-                  <p className="text-sm font-medium text-slate-600">{t('dashboard.onHold')}</p>
-                  <p className="mt-1 text-3xl font-semibold text-orange-600">{stats.onHold}</p>
+                <span className="text-lg font-bold text-slate-900">2</span>
+              </CardContent>
+            </Card>
+            <Card className="hover:border-blue-200 transition-colors cursor-pointer" onClick={() => router.push('/case-inbox')}>
+              <CardContent className="pt-4 pb-4 flex items-center justify-between">
+                <div className="flex items-center space-x-3">
+                  <div className="w-8 h-8 rounded-lg bg-cyan-100 flex items-center justify-center text-cyan-600 font-bold text-xs">iT</div>
+                  <span className="font-medium text-slate-700">iTero</span>
                 </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardContent className="pt-5">
-              <div className="flex items-center">
-                <div className="flex-1">
-                  <p className="text-sm font-medium text-slate-600">{t('dashboard.completed')}</p>
-                  <p className="mt-1 text-3xl font-semibold text-green-600">{stats.completed}</p>
+                <span className="text-lg font-bold text-slate-900">1</span>
+              </CardContent>
+            </Card>
+            <Card className="hover:border-blue-200 transition-colors cursor-pointer" onClick={() => router.push('/case-inbox')}>
+              <CardContent className="pt-4 pb-4 flex items-center justify-between">
+                <div className="flex items-center space-x-3">
+                  <div className="w-8 h-8 rounded-lg bg-indigo-100 flex items-center justify-center text-indigo-600 font-bold text-xs">@</div>
+                  <span className="font-medium text-slate-700">{language === 'en' ? 'Email' : '邮件上传'}</span>
                 </div>
-              </div>
-            </CardContent>
-          </Card>
+                <span className="text-lg font-bold text-slate-900">1</span>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       )}
 

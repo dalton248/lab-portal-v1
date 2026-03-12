@@ -5,14 +5,14 @@ import { Card, CardHeader, CardContent } from '@/components/ui/Card';
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from '@/components/ui/Table';
 import { Button } from '@/components/ui/Button';
 import { useLanguage } from '@/components/providers/LanguageProvider';
-import { Download, ChevronRight, User as UserIcon } from 'lucide-react';
+import { Download, ChevronRight, User as UserIcon, FileText } from 'lucide-react';
 
 // Mock data for the inbox
 const inboxSources = [
   { 
     id: '3shape', 
     name: '3Shape', 
-    count: 12, 
+    count: 2, 
     logo: '3S',
     examples: [
       { patient: 'John Smith', dentist: 'Dr. Sarah Johnson' },
@@ -22,21 +22,19 @@ const inboxSources = [
   { 
     id: 'itero', 
     name: 'iTero', 
-    count: 8, 
+    count: 1, 
     logo: 'iT',
     examples: [
       { patient: 'Emily Brown', dentist: 'Dr. James Wilson' },
-      { patient: 'Michael Chang', dentist: 'Dr. James Wilson' }
     ]
   },
   { 
     id: 'email', 
     name: 'Email', 
-    count: 5, 
+    count: 1, 
     logo: '@',
     examples: [
       { patient: 'Robert Wilson', dentist: 'Dr. Maria Garcia' },
-      { patient: 'David Thompson', dentist: 'Dr. Sarah Johnson' }
     ]
   },
 ];
@@ -167,7 +165,7 @@ export default function CaseInboxPage() {
         <CardHeader className="flex flex-row items-center justify-between border-b border-slate-100 pb-4">
           <div className="flex items-center space-x-2">
             <h2 className="text-lg font-semibold text-slate-900">
-              {filter ? `${inboxSources.find(s => s.id === filter)?.name} ${t('nav.cases')}` : t('inbox.title')}
+              {filter ? `${inboxSources.find(s => s.id === filter)?.name} ${t('nav.cases')}` : t('inbox.recentPatients')}
             </h2>
             {filter && (
               <span className="bg-blue-100 text-blue-700 text-xs px-2 py-0.5 rounded-full font-medium">
