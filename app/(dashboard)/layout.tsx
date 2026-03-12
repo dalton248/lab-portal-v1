@@ -1,6 +1,7 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import { Sidebar } from '@/components/layout/Sidebar';
 import { MobileSidebar } from '@/components/layout/MobileSidebar';
 import { Header } from '@/components/layout/Header';
@@ -13,17 +14,21 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   const { profile, loading } = useAuth();
+  const router = useRouter();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  if (loading) {
+  useEffect(() => {
+    if (!loading && !profile) {
+      router.push('/login');
+    }
+  }, [loading, profile, router]);
+
+  if (loading || !profile) {
     return (
       <div className="h-screen flex items-center justify-center bg-slate-50">
         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
       </div>
     );
-  }
-
-  if (!profile) {
-    return null; // Will be redirected by AuthProvider
   }
 
   // Create a user object compatible with the existing components for now
@@ -35,7 +40,6 @@ export default function DashboardLayout({
     name: profile.full_name || profile.email.split('@')[0],
     officeName: profile.office_name || 'N/A',
   } as const;
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
     <div className="h-screen flex overflow-hidden bg-slate-50">

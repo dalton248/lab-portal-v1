@@ -243,3 +243,10 @@ Unterminated regexp literal
 [07:31:02.300] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
 [07:37:07.108] Server  LOG     ✓ Compiled in 49ms
 [07:39:05.212] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[09:32:55.585] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[09:33:05.023] Browser ERROR   uncaughtError: Error: Rendered fewer hooks than expected. This may be caused by an accidental early return statement.
+[09:33:43.889] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[09:33:43.909] Server  LOG     ✓ Compiled in 166ms
+[09:33:44.371] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[09:34:35.976] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[09:34:41.323] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
