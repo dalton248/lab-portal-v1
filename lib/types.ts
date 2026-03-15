@@ -31,6 +31,13 @@ export interface Case {
   dentistName: string;
   labId: string;
   notes?: string;
+  teeth_numbers?: string[];
+  additional_info?: string;
+  stl_links?: { name: string; url: string; size?: string }[];
+  submitted_date?: string;
+  unn?: string;
+  n8n_failed?: boolean;
+  threeShapeId?: string;
 }
 
 export interface Message {

@@ -27,21 +27,33 @@ export default function LoginPage() {
 
   // Redirect if already logged in and profile loaded, or show error if fetch fails
   useEffect(() => {
-    if (authLoading) return;
+    // If auth is taking too long to initialize, don't block the UI indefinitely
+    const authTimeout = setTimeout(() => {
+      if (authLoading && !session) {
+        console.warn('Auth initialization timed out, allowing user interaction');
+        // We don't have a direct way to set authLoading to false, but we can 
+        // handle it in our local UI logic if needed.
+      }
+    }, 3000);
+
+    if (authLoading) return () => clearTimeout(authTimeout);
 
     if (session && profile) {
       router.replace('/dashboard');
     } else if (profileError) {
-      // Use a slightly longer timeout to allow for retries/recovery in AuthProvider
       const timer = setTimeout(() => {
-        // Double check if error still persists and we haven't recovered session
         if (profileError && !profile) {
           setError(`Failed to load profile: ${profileError}`);
           setLoading(false);
         }
-      }, 2000);
-      return () => clearTimeout(timer);
+      }, 1000);
+      return () => {
+        clearTimeout(timer);
+        clearTimeout(authTimeout);
+      };
     }
+    
+    return () => clearTimeout(authTimeout);
   }, [session, profile, authLoading, profileError, router]);
 
   const handleLogin = async (e: React.FormEvent) => {
@@ -50,19 +62,34 @@ export default function LoginPage() {
     setError(null);
     setSuccessMsg(null);
 
-    const { error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
+    try {
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
 
-    if (error) {
-      setError(error.message);
+      if (error) {
+        setError(error.message);
+        setLoading(false);
+        return;
+      }
+
+      console.log('Login successful, pushing to dashboard');
+      // On success, we don't setLoading(false) because we expect a redirect.
+      // However, if the redirect hangs, the button stays stuck.
+      // Let's add a safety timeout to clear loading if redirect doesn't happen.
+      setTimeout(() => {
+        if (window.location.pathname === '/login') {
+          setLoading(false);
+        }
+      }, 5000);
+
+      router.push('/dashboard');
+    } catch (err: any) {
+      console.error('Login error:', err);
+      setError(err.message || 'An unexpected error occurred during login');
       setLoading(false);
-      return;
     }
-
-    // Force route immediately rather than relying on the listener alone
-    router.push('/dashboard');
   };
 
   const handleSignUp = async (e: React.FormEvent) => {

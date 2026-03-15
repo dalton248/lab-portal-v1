@@ -52,6 +52,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       try {
         setProfileError(null);
         
+        console.log(`Fetching profile for ${userId}...`);
         const { data, error } = await supabase
           .from('Users')
           .select('*')
@@ -67,9 +68,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
             setProfileError(error.message);
           }
         } else if (data) {
+          console.log('Profile fetched successfully');
           setProfile({
             id: data.id,
-            role: data['role (dentist/lab admin)'] || data.role,
+            role: data.role || data['role (dentist/lab admin)'],
             full_name: data.full_name,
             email: data.email,
             lab_id: data.lab_id,
@@ -78,14 +80,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         }
       } catch (err: any) {
         if (!mounted || controller.signal.aborted) return;
-        if (err.name === 'AbortError') return; // Silence abort errors
+        if (err.name === 'AbortError') return; 
         
         console.error('Unexpected error fetching profile:', err);
         setProfileError(err.message || 'Unexpected error');
       } finally {
         if (mounted && !controller.signal.aborted) {
           setLoading(false);
-          // Only clear ref if it's still this controller
           if (abortControllerRef.current === controller) {
             abortControllerRef.current = null;
           }
@@ -93,37 +94,56 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       }
     };
 
-    // Initialize auth listener - it will handle the INITIAL_SESSION event automatically
-    const initAuth = () => {
-      const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, newSession) => {
+    // Initialize auth state immediately
+    const initializeAuth = async () => {
+      try {
+        console.log('Initializing auth state via getSession...');
+        const { data: { session: initialSession } } = await supabase.auth.getSession();
+        
         if (!mounted) return;
 
-        console.log(`Auth event: ${event}`);
-
-        if (event === 'SIGNED_IN' || event === 'TOKEN_REFRESHED' || event === 'INITIAL_SESSION') {
-          setSession(newSession);
-          setUser(newSession?.user ?? null);
-          
-          if (newSession?.user) {
-            setLoading(true);
-            await safeFetchProfile(newSession.user.id, newSession);
-          } else {
-            setLoading(false);
-          }
-        } else if (event === 'SIGNED_OUT') {
-          if (abortControllerRef.current) abortControllerRef.current.abort();
-          setSession(null);
-          setUser(null);
-          setProfile(null);
-          setProfileError(null);
+        if (initialSession) {
+          console.log('Initial session found');
+          setSession(initialSession);
+          setUser(initialSession.user);
+          await safeFetchProfile(initialSession.user.id, initialSession);
+        } else {
+          console.log('No initial session');
           setLoading(false);
         }
-      });
-
-      return subscription;
+      } catch (err) {
+        console.error('Error during initial session check:', err);
+        if (mounted) setLoading(false);
+      }
     };
 
-    const subscription = initAuth();
+    initializeAuth();
+
+    // Listener for subsequent auth changes
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, newSession) => {
+      if (!mounted) return;
+
+      console.log(`Auth event: ${event}`);
+
+      if (event === 'SIGNED_IN' || event === 'TOKEN_REFRESHED') {
+        setSession(newSession);
+        setUser(newSession?.user ?? null);
+        
+        if (newSession?.user) {
+          setLoading(true);
+          await safeFetchProfile(newSession.user.id, newSession);
+        } else {
+          setLoading(false);
+        }
+      } else if (event === 'SIGNED_OUT') {
+        if (abortControllerRef.current) abortControllerRef.current.abort();
+        setSession(null);
+        setUser(null);
+        setProfile(null);
+        setProfileError(null);
+        setLoading(false);
+      }
+    });
 
     return () => {
       mounted = false;

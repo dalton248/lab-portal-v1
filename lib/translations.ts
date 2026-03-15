@@ -171,6 +171,9 @@ export const translations = {
       english: 'English',
       mandarin: '中文',
       na: 'N/A',
+      back: 'Back',
+      retry: 'Retry',
+      partialData: 'Partial data loaded from database. n8n sync failed.',
     }
   },
   zh: {
@@ -343,6 +346,9 @@ export const translations = {
       english: 'English',
       mandarin: '中文',
       na: '无',
+      back: '返回',
+      retry: '重试',
+      partialData: '从数据库加载了部分数据。n8n同步失败。',
     }
   }
 };
