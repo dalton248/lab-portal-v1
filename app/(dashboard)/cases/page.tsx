@@ -1,32 +1,73 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { Search } from 'lucide-react';
+import { Search, Loader2 } from 'lucide-react';
 import { Card, CardHeader, CardContent } from '@/components/ui/Card';
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from '@/components/ui/Table';
 import { StatusBadge } from '@/components/ui/StatusBadge';
 import { Select } from '@/components/ui/Select';
-import { getCasesForCurrentUser, searchCases } from '@/lib/mock-data';
+import { searchCases } from '@/lib/mock-data';
 import { useLanguage } from '@/components/providers/LanguageProvider';
 import { useAuth } from '@/components/providers/AuthProvider';
+import { supabase } from '@/lib/supabase';
+import { Case, CaseStatus } from '@/lib/types';
 
 export default function CasesPage() {
   const router = useRouter();
   const { profile } = useAuth();
+  const { t, language } = useLanguage();
   
-  // Create a compatible user object from the profile
-  const currentUser = profile ? {
-    id: profile.id,
-    email: profile.email,
-    role: profile.role === 'lab_admin' ? 'lab_admin' : 'dentist',
-    name: profile.full_name || profile.email.split('@')[0],
-    officeName: profile.office_name || 'N/A',
-  } : null;
-  const allCases = getCasesForCurrentUser();
+  const [allCases, setAllCases] = useState<Case[]>([]);
+  const [loading, setLoading] = useState(true);
   const [statusFilter, setStatusFilter] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState('');
-  const { t, language } = useLanguage();
+
+  useEffect(() => {
+    async function fetchCases() {
+      if (!profile?.id) return;
+      
+      setLoading(true);
+      try {
+        const query = supabase
+          .from('Cases')
+          .select('*');
+
+        if (profile.role === 'dentist') {
+          query.eq('dentist_id', profile.id);
+        } else {
+          query.eq('lab_id', profile.lab_id);
+        }
+
+        const { data, error } = await query;
+
+        if (error) throw error;
+
+        if (data) {
+          const mappedCases: Case[] = data.map((item: any) => ({
+            id: item.id,
+            caseId: item.Case_number || 'N/A',
+            patientName: item.FirstName_LastName || 'N/A',
+            caseType: item.Type || 'Crown',
+            status: (item.status?.toLowerCase() || 'submitted') as CaseStatus,
+            dueDate: item.due_date || item.created_at,
+            createdAt: item.created_at,
+            updatedAt: item.created_at,
+            dentistId: item.dentist_id || '',
+            dentistName: item.FirstName_LastName || 'N/A',
+            labId: item.lab_id || '',
+          }));
+          setAllCases(mappedCases);
+        }
+      } catch (err) {
+        console.error('Error fetching cases:', err);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchCases();
+  }, [profile]);
 
   const statusFiltered =
     statusFilter === 'all'
@@ -36,11 +77,15 @@ export default function CasesPage() {
   const filteredCases = searchCases(searchQuery, statusFiltered);
 
   const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString(language === 'en' ? 'en-US' : 'zh-CN', {
-      month: 'short',
-      day: 'numeric',
-      year: 'numeric',
-    });
+    try {
+      return new Date(dateString).toLocaleDateString(language === 'en' ? 'en-US' : 'zh-CN', {
+        month: 'short',
+        day: 'numeric',
+        year: 'numeric',
+      });
+    } catch (e) {
+      return dateString;
+    }
   };
 
   const filterOptions = [
@@ -51,6 +96,8 @@ export default function CasesPage() {
     { value: 'completed', label: t('status.completed') },
     { value: 'rejected', label: t('status.rejected') },
   ];
+
+  const currentUserRole = profile?.role || 'dentist';
 
   return (
     <div className="space-y-6">
@@ -67,7 +114,7 @@ export default function CasesPage() {
         <CardHeader>
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-lg font-semibold text-slate-900">{t('cases.allCases')}</h2>
-            {currentUser?.role === 'lab_admin' && (
+            {currentUserRole === 'lab_admin' && (
               <div className="w-48">
                 <Select
                   options={filterOptions}
@@ -89,45 +136,53 @@ export default function CasesPage() {
           </div>
         </CardHeader>
         <CardContent className="p-0">
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>{t('table.caseId')}</TableHead>
-                <TableHead>{t('table.patient')}</TableHead>
-                <TableHead>{t('table.type')}</TableHead>
-                <TableHead>{t('table.status')}</TableHead>
-                <TableHead>{t('table.dueDate')}</TableHead>
-                <TableHead>{t('table.lastUpdated')}</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {filteredCases.length === 0 ? (
+          {loading ? (
+            <div className="flex flex-col items-center justify-center py-12 text-slate-500">
+              <Loader2 className="h-8 w-8 animate-spin text-blue-500 mb-2" />
+              <p>{t('common.loading') || 'Loading cases...'}</p>
+            </div>
+          ) : (
+            <Table>
+              <TableHeader>
                 <TableRow>
-                  <TableCell colSpan={6} className="text-center py-8 text-slate-500">
-                    {searchQuery || statusFilter !== 'all' ? t('cases.noFilterMatches') : t('dashboard.noCasesFound')}
-                  </TableCell>
+                  <TableHead>{t('table.caseId')}</TableHead>
+                  <TableHead>{t('table.patient')}</TableHead>
+                  <TableHead>{t('table.type')}</TableHead>
+                  <TableHead>{t('table.status')}</TableHead>
+                  <TableHead>{t('table.dueDate')}</TableHead>
+                  <TableHead>{t('table.lastUpdated')}</TableHead>
                 </TableRow>
-              ) : (
-                filteredCases.map((caseItem) => (
-                  <TableRow
-                    key={caseItem.id}
-                    onClick={() => router.push(`/cases/${caseItem.id}`)}
-                  >
-                    <TableCell className="font-medium">{caseItem.caseId}</TableCell>
-                    <TableCell>{caseItem.patientName}</TableCell>
-                    <TableCell className="text-slate-500">{caseItem.caseType}</TableCell>
-                    <TableCell>
-                      <StatusBadge status={caseItem.status} />
-                    </TableCell>
-                    <TableCell>{formatDate(caseItem.dueDate)}</TableCell>
-                    <TableCell className="text-slate-500">
-                      {formatDate(caseItem.updatedAt)}
+              </TableHeader>
+              <TableBody>
+                {filteredCases.length === 0 ? (
+                  <TableRow>
+                    <TableCell colSpan={6} className="text-center py-8 text-slate-500">
+                      {searchQuery || statusFilter !== 'all' ? t('cases.noFilterMatches') : t('dashboard.noCasesFound')}
                     </TableCell>
                   </TableRow>
-                ))
-              )}
-            </TableBody>
-          </Table>
+                ) : (
+                  filteredCases.map((caseItem) => (
+                    <TableRow
+                      key={caseItem.id}
+                      onClick={() => router.push(`/cases/${caseItem.id}`)}
+                      className="cursor-pointer hover:bg-slate-50 transition-colors"
+                    >
+                      <TableCell className="font-medium">{caseItem.caseId}</TableCell>
+                      <TableCell>{caseItem.patientName}</TableCell>
+                      <TableCell className="text-slate-500">{caseItem.caseType}</TableCell>
+                      <TableCell>
+                        <StatusBadge status={caseItem.status} />
+                      </TableCell>
+                      <TableCell>{formatDate(caseItem.dueDate)}</TableCell>
+                      <TableCell className="text-slate-500">
+                        {formatDate(caseItem.updatedAt)}
+                      </TableCell>
+                    </TableRow>
+                  ))
+                )}
+              </TableBody>
+            </Table>
+          )}
         </CardContent>
       </Card>
     </div>

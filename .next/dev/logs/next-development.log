@@ -1,252 +1,484 @@
-[00:00:01.129] Server  LOG     ✓ Ready in 811ms
-[00:00:06.478] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:03:03.518] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./lab-portal-v1/lib/translations.ts changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
-[00:03:03.539] Server  LOG     ✓ Compiled in 201ms
-[00:03:04.101] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:03:09.751] Server  LOG     ✓ Compiled in 71ms
-[00:03:30.797] Server  LOG     ✓ Compiled in 103ms
-[00:03:57.648] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./lab-portal-v1/lib/translations.ts changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
-[00:03:57.683] Server  LOG     ✓ Compiled in 46ms
-[00:03:58.028] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:05:09.470] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./lab-portal-v1/lib/translations.ts changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
-[00:05:09.494] Server  LOG     ✓ Compiled in 40ms
-[00:05:09.872] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:05:20.020] Server  LOG     ✓ Compiled in 45ms
-[00:11:33.691] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:32:12.295] Server  LOG     ✓ Compiled in 155ms
-[00:32:12.700] Browser ERROR   uncaughtError: ReferenceError: Inbox is not defined
-[00:32:26.242] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[00:32:26.256] Server  LOG     ✓ Compiled in 116ms
-[00:32:26.287] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[00:32:27.063] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:32:27.413] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./lab-portal-v1/lib/translations.ts changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
-[00:32:27.553] Server  LOG     ✓ Compiled in 18ms
-[00:32:27.782] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:34:12.827] Server  LOG     ✓ Compiled in 176ms
-[00:43:47.976] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:51:32.123] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./lab-portal-v1/lib/translations.ts changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
-[00:51:32.123] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./lab-portal-v1/lib/translations.ts changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
-[00:51:32.124] Server  LOG     ✓ Compiled in 140ms
-[00:51:32.963] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:51:33.020] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:51:51.216] Server  LOG     ✓ Compiled in 136ms
-[00:52:25.469] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:54:21.777] Server  LOG     ✓ Compiled in 181ms
-[00:54:36.429] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:07:03.781] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:07:13.400] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:07:35.810] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:07:40.695] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:08:21.597] Server  LOG     ✓ Compiled in 155ms
-[01:08:23.321] Server  LOG     ✓ Compiled in 30ms
-[01:08:38.682] Server  LOG     ✓ Compiled in 128ms
-[01:08:40.310] Server  LOG     ✓ Compiled in 97ms
-[01:08:40.429] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'role')
-[01:08:40.431] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'role')
-[01:08:40.534] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[01:08:40.535] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[01:08:40.570] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[01:08:40.570] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'role')
-[01:08:40.589] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[01:08:40.590] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'role')
-[01:08:40.591] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'role')
-[01:08:40.593] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[01:08:40.595] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'role')
-[01:08:41.105] Server  LOG     ✓ Compiled in 218ms
-[01:08:41.249] Server  ERROR   ⨯ TypeError: Cannot read properties of undefined (reading 'role')
-[01:08:41.284] Server  ERROR   ⨯ TypeError: Cannot read properties of undefined (reading 'role')
-[01:08:41.302] Server  ERROR   ⨯ TypeError: Cannot read properties of undefined (reading 'role')
-[01:08:41.375] Server  ERROR   ⨯ TypeError: Cannot read properties of undefined (reading 'role')
-[01:08:41.468] Server  ERROR   ⨯ TypeError: Cannot read properties of undefined (reading 'role')
-[01:08:41.961] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:08:42.104] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:08:42.708] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'role')
-[01:08:42.711] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'role')
-[01:08:42.761] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:08:42.763] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:08:42.797] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:08:42.907] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'role')
-[01:08:42.964] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'role')
-[01:08:43.017] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'role')
-[01:08:55.296] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[01:08:55.318] Browser ERROR   unhandledRejection: Error: No link element found for chunk /_next/static/chunks/%5Broot-of-the-server%5D__1a981bfb._.css
-[01:08:55.318] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[01:08:55.327] Server  LOG     ✓ Compiled in 90ms
-[01:08:55.329] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[01:08:55.332] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[01:08:55.332] Browser ERROR   unhandledRejection: Error: No link element found for chunk /_next/static/chunks/%5Broot-of-the-server%5D__1a981bfb._.css
-[01:08:55.333] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[01:08:55.333] Browser ERROR   unhandledRejection: Error: No link element found for chunk /_next/static/chunks/%5Broot-of-the-server%5D__1a981bfb._.css
-[01:08:55.612] Server  ERROR   ⨯ TypeError: Cannot read properties of undefined (reading 'role')
-[01:08:55.846] Server  ERROR   ⨯ TypeError: Cannot read properties of undefined (reading 'role')
-[01:08:55.854] Browser ERROR   unhandledRejection: Error: No link element found for chunk /_next/static/chunks/%5Broot-of-the-server%5D__1a981bfb._.css
-[01:08:55.855] Browser ERROR   unhandledRejection: Error: No link element found for chunk /_next/static/chunks/%5Broot-of-the-server%5D__1a981bfb._.css
-[01:08:55.919] Server  ERROR   ⨯ TypeError: Cannot read properties of undefined (reading 'role')
-[01:08:55.958] Server  ERROR   ⨯ TypeError: Cannot read properties of undefined (reading 'role')
-[01:08:56.030] Server  ERROR   ⨯ TypeError: Cannot read properties of undefined (reading 'role')
-[01:08:56.729] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:08:56.786] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:08:56.846] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:08:56.889] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:08:57.101] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:08:57.112] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'role')
-[01:08:57.232] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'role')
-[01:08:57.288] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'role')
-[01:08:57.702] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'role')
-[01:08:57.702] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'role')
-[01:08:58.974] Server  LOG     ✓ Compiled in 35ms
-[01:08:58.974] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[01:08:58.975] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[01:08:58.975] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[01:08:58.983] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[01:08:58.983] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[01:08:59.249] Server  ERROR   ⨯ TypeError: Cannot read properties of undefined (reading 'role')
-[01:08:59.273] Server  ERROR   ⨯ TypeError: Cannot read properties of undefined (reading 'role')
-[01:08:59.310] Server  ERROR   ⨯ TypeError: Cannot read properties of undefined (reading 'role')
-[01:08:59.334] Server  ERROR   ⨯ TypeError: Cannot read properties of undefined (reading 'role')
-[01:08:59.396] Server  ERROR   ⨯ TypeError: Cannot read properties of undefined (reading 'role')
-[01:08:59.773] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:08:59.829] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:08:59.841] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:08:59.899] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:08:59.977] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:09:00.051] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'role')
-[01:09:00.112] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'role')
-[01:09:00.167] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'role')
-[01:09:00.706] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'role')
-[01:09:00.711] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'role')
-[01:09:17.238] Server  ERROR   ⨯ TypeError: Cannot read properties of undefined (reading 'role')
-[01:09:17.356] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:09:17.486] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'role')
-[01:09:28.267] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:10:00.447] Server  ERROR   ⨯ TypeError: Cannot read properties of undefined (reading 'role')
-[01:10:00.611] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:10:00.746] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'role')
-[01:10:11.961] Server  ERROR   ⨯ TypeError: Cannot read properties of undefined (reading 'role')
-[01:10:12.148] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:10:12.296] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'role')
-[01:10:22.454] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:11:54.249] Server  ERROR   ⨯ TypeError: Cannot read properties of undefined (reading 'role')
-[01:11:54.444] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:11:54.570] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'role')
-[01:12:17.948] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:13:30.880] Server  LOG     ✓ Compiled in 294ms
-[01:13:30.882] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[01:13:30.884] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[01:13:30.907] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[01:13:30.913] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[01:13:30.940] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[01:13:30.945] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[01:13:30.947] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[01:13:30.947] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[01:13:31.709] Server  ERROR   ⨯ TypeError: Cannot read properties of undefined (reading 'role')
-[01:13:31.732] Server  ERROR   ⨯ TypeError: Cannot read properties of undefined (reading 'role')
-[01:13:31.779] Server  ERROR   ⨯ TypeError: Cannot read properties of undefined (reading 'role')
-[01:13:31.893] Server  ERROR   ⨯ TypeError: Cannot read properties of undefined (reading 'role')
-[01:13:32.322] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:13:32.469] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:13:32.630] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'role')
-[01:13:32.724] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:13:32.730] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'role')
-[01:13:32.746] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:13:33.708] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'role')
-[01:13:33.708] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'role')
-[01:16:14.299] Server  LOG     ✓ Compiled in 303ms
-[01:16:14.335] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[01:16:14.348] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[01:16:14.350] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[01:16:14.350] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[01:16:14.630] Server  ERROR   ⨯ TypeError: Cannot read properties of undefined (reading 'role')
-[01:16:14.858] Server  ERROR   ⨯ TypeError: Cannot read properties of undefined (reading 'role')
-[01:16:14.946] Server  ERROR   ⨯ TypeError: Cannot read properties of undefined (reading 'role')
-[01:16:15.148] Server  ERROR   ⨯ TypeError: Cannot read properties of undefined (reading 'role')
-[01:16:15.708] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:16:15.777] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:16:15.779] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:16:15.808] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:16:16.006] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'role')
-[01:16:16.079] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'role')
-[01:16:16.702] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'role')
-[01:16:16.704] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'role')
-[01:18:13.587] Server  ERROR   ⨯ TypeError: Cannot read properties of undefined (reading 'role')
-[01:18:13.761] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:18:13.890] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'role')
-[01:18:19.007] Server  ERROR   ⨯ TypeError: Cannot read properties of undefined (reading 'role')
-[01:18:19.202] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:18:19.330] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'role')
-[01:18:34.314] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:23:47.750] Server  LOG     ✓ Compiled in 206ms
-[01:23:47.753] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[01:23:47.754] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[01:23:47.756] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[01:23:47.756] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[01:23:48.054] Server  LOG     ✓ Compiled in 7ms
-[01:23:48.139] Server  ERROR   ⨯ TypeError: Cannot read properties of undefined (reading 'name')
-[01:23:48.256] Server  ERROR   ⨯ TypeError: Cannot read properties of undefined (reading 'name')
-[01:23:48.664] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:23:48.684] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:23:49.702] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'name')
-[01:23:49.702] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'name')
-[01:23:50.063] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[01:23:50.063] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[01:23:50.156] Server  LOG     ✓ Compiled in 39ms
-[01:23:50.318] Server  ERROR   ⨯ TypeError: Cannot read properties of undefined (reading 'role')
-[01:23:50.699] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:23:50.740] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:23:51.706] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'role')
-[01:23:52.116] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[01:23:52.128] Server  LOG     ✓ Compiled in 51ms
-[01:23:52.301] Server  ERROR   ⨯ TypeError: Cannot read properties of undefined (reading 'role')
-[01:23:52.545] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:23:53.701] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'role')
-[01:24:00.908] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[01:24:00.937] Server  LOG     ✓ Compiled in 39ms
-[01:24:01.155] Server  ERROR   ⨯ TypeError: Cannot read properties of undefined (reading 'role')
-[01:24:01.406] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:24:01.701] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'role')
-[01:24:08.376] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[01:24:08.391] Server  LOG     ✓ Compiled in 37ms
-[01:24:08.586] Server  ERROR   ⨯ TypeError: Cannot read properties of undefined (reading 'role')
-[01:24:08.906] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:24:09.701] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'role')
-[01:25:51.254] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[01:25:51.256] Server  LOG     ✓ Compiled in 76ms
-[01:25:51.873] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[05:16:43.256] Server  LOG       Reload env: .env.local
-[05:26:13.228] Server  LOG       Reload env: .env.local
-[06:41:36.835] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[07:16:22.815] Browser ERROR   ./lab-portal-v1/app/layout.tsx:26:6
+[00:00:01.436] Server  LOG     ✓ Ready in 1061ms
+[00:00:02.706] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:03:22.602] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:03:24.600] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:03:35.414] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:04:09.958] Browser WARN    @supabase/gotrue-js: Lock "lock:sb-dpaxzacsydactdheawvd-auth-token" was not released within 5000ms. This may indicate an orphaned lock from a component unmount (e.g., React Strict Mode). Forcefully acquiring the lock to recover.
+[00:04:09.958] Browser WARN    @supabase/gotrue-js: Lock "lock:sb-dpaxzacsydactdheawvd-auth-token" was not released within 5000ms. This may indicate an orphaned lock from a component unmount (e.g., React Strict Mode). Forcefully acquiring the lock to recover.
+[00:06:53.032] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:07:01.660] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:23:47.183] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:27:40.086] Server  LOG     ✓ Compiled in 496ms
+[00:27:40.961] Browser ERROR   ./Downloads/lab-portal-v1-mainupdated/lab-portal-v1-github/app/(dashboard)/cases/page.tsx:60:3
 Parsing ecmascript source code failed
-  24 |         </AuthProvider>
-  25 |       </body>
-> 26 |     </html>
-     |      ^^^^^^
-  27 |   );
-  28 | }
-  29 |
+   58 |   ];
+   59 |
+>  60 |   return (
+      |   ^^^^^^^^
+>  61 |     <div className="space-y-6">
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  62 |       <div className="flex justify-between items-center">
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  63 |         <div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  64 |           <h1 className="text-2xl font-bold text-slate-900">{t('cases.title')}</h1>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  65 |           <p className="mt-1 text-sm text-slate-500">
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  66 |             {t('cases.subtitle')}
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  67 |           </p>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  68 |         </div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  69 |       </div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  70 |
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  71 |       <Card>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  72 |         <CardHeader>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  73 |           <div className="flex items-center justify-between mb-4">
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  74 |             <h2 className="text-lg font-semibold text-slate-900">{t('cases.allCases')}</h2>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  75 |             {currentUser?.role === 'lab_admin' && (
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  76 |               <div className="w-48">
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  77 |                 <Select
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  78 |                   options={filterOptions}
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  79 |                   value={statusFilter}
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  80 |                   onChange={(e) => setStatusFilter(e.target.value)}
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  81 |                 />
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  82 |               </div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  83 |             )}
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  84 |           </div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  85 |           <div className="relative">
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  86 |             <Search className="absolute left-3 top-3 h-5 w-5 text-slate-400" />
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  87 |             <input
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  88 |               type="text"
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  89 |               placeholder={t('dashboard.searchPlaceholder')}
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  90 |               value={searchQuery}
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  91 |               onChange={(e) => setSearchQuery(e.target.value)}
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  92 |               className="w-full pl-10 pr-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  93 |             />
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  94 |           </div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  95 |         </CardHeader>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  96 |         <CardContent className="p-0">
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  97 |           {loading ? (
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  98 |             <div className="flex flex-col items-center justify-center py-12 text-slate-500">
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  99 |               <Loader2 className="h-8 w-8 animate-spin text-blue-500 mb-2" />
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 100 |               <p>{t('common.loading') || 'Loading cases...'}</p>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 101 |             </div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 102 |           ) : (
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 103 |             <Table>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 104 |               <TableHeader>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 105 |                 <TableRow>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 106 |                   <TableHead>{t('table.caseId')}</TableHead>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 107 |                   <TableHead>{t('table.patient')}</TableHead>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 108 |                   <TableHead>{t('table.type')}</TableHead>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 109 |                   <TableHead>{t('table.status')}</TableHead>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 110 |                   <TableHead>{t('table.dueDate')}</TableHead>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 111 |                   <TableHead>{t('table.lastUpdated')}</TableHead>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 112 |                 </TableRow>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 113 |               </TableHeader>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 114 |               <TableBody>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 115 |                 {filteredCases.length === 0 ? (
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 116 |                   <TableRow>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 117 |                     <TableCell colSpan={6} className="text-center py-8 text-slate-500">
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 118 |                       {searchQuery || statusFilter !== 'all' ? t('cases.noFilterMatches') : t('dashboard.noCasesFound')}
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 119 |                     </TableCell>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 120 |                   </TableRow>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 121 |                 ) : (
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 122 |                   filteredCases.map((caseItem) => (
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 123 |                     <TableRow
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 124 |                       key={caseItem.id}
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 125 |                       onClick={() => router.push(`/cases/${caseItem.id}`)}
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 126 |                       className="cursor-pointer"
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 127 |                     >
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 128 |                       <TableCell className="font-medium">{caseItem.caseId}</TableCell>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 129 |                       <TableCell>{caseItem.patientName}</TableCell>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 130 |                       <TableCell className="text-slate-500">{caseItem.caseType}</TableCell>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 131 |                       <TableCell>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 132 |                         <StatusBadge status={caseItem.status} />
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 133 |                       </TableCell>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 134 |                       <TableCell>{formatDate(caseItem.dueDate)}</TableCell>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 135 |                       <TableCell className="text-slate-500">
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 136 |                         {formatDate(caseItem.updatedAt)}
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 137 |                       </TableCell>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 138 |                     </TableRow>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 139 |                   ))
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 140 |                 )}
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 141 |               </TableBody>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 142 |             </Table>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 143 |           )}
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 144 |         </CardContent>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 145 |       </Card>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 146 |     </div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 147 |   );
+      | ^^^^^
+  148 | }
+  149 |
 
-Unterminated regexp literal
-[07:16:36.274] Server  LOG     ✓ Compiled in 362ms
-[07:16:37.085] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[07:16:38.186] Browser ERROR   Error fetching profile: {"code":"PGRST116","details":"The result contains 0 rows","hint":null,"message":"Cannot coerce the result to a single JSON object"}
-[07:16:38.282] Browser ERROR   Error fetching profile: {"code":"PGRST116","details":"The result contains 0 rows","hint":null,"message":"Cannot coerce the result to a single JSON object"}
-[07:17:19.555] Server  LOG     ✓ Compiled in 109ms
-[07:17:19.693] Browser ERROR   uncaughtError: ReferenceError: useEffect is not defined
-[07:17:34.800] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[07:17:34.820] Server  LOG     ✓ Compiled in 58ms
-[07:17:35.418] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[07:17:35.713] Browser ERROR   Error fetching profile: {"code":"PGRST116","details":"The result contains 0 rows","hint":null,"message":"Cannot coerce the result to a single JSON object"}
-[07:17:35.840] Browser ERROR   Error fetching profile: {"code":"PGRST116","details":"The result contains 0 rows","hint":null,"message":"Cannot coerce the result to a single JSON object"}
-[07:28:29.732] Browser ERROR   Error fetching profile: {"code":"PGRST116","details":"The result contains 0 rows","hint":null,"message":"Cannot coerce the result to a single JSON object"}
-[07:30:04.788] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[07:30:24.082] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[07:31:02.300] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[07:37:07.108] Server  LOG     ✓ Compiled in 49ms
-[07:39:05.212] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[09:32:55.585] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[09:33:05.023] Browser ERROR   uncaughtError: Error: Rendered fewer hooks than expected. This may be caused by an accidental early return statement.
-[09:33:43.889] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[09:33:43.909] Server  LOG     ✓ Compiled in 166ms
-[09:33:44.371] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[09:34:35.976] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[09:34:41.323] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+Return statement is not allowed here
+
+Import traces:
+  Client Component Browser:
+    ./Downloads/lab-portal-v1-mainupdated/lab-portal-v1-github/app/(dashboard)/cases/page.tsx [Client Component Browser]
+    ./Downloads/lab-portal-v1-mainupdated/lab-portal-v1-github/app/(dashboard)/cases/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./Downloads/lab-portal-v1-mainupdated/lab-portal-v1-github/app/(dashboard)/cases/page.tsx [Client Component SSR]
+    ./Downloads/lab-portal-v1-mainupdated/lab-portal-v1-github/app/(dashboard)/cases/page.tsx [Server Component]
+[00:27:40.961] Browser ERROR   ./Downloads/lab-portal-v1-mainupdated/lab-portal-v1-github/app/(dashboard)/cases/page.tsx:60:3
+Parsing ecmascript source code failed
+   58 |   ];
+   59 |
+>  60 |   return (
+      |   ^^^^^^^^
+>  61 |     <div className="space-y-6">
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  62 |       <div className="flex justify-between items-center">
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  63 |         <div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  64 |           <h1 className="text-2xl font-bold text-slate-900">{t('cases.title')}</h1>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  65 |           <p className="mt-1 text-sm text-slate-500">
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  66 |             {t('cases.subtitle')}
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  67 |           </p>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  68 |         </div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  69 |       </div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  70 |
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  71 |       <Card>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  72 |         <CardHeader>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  73 |           <div className="flex items-center justify-between mb-4">
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  74 |             <h2 className="text-lg font-semibold text-slate-900">{t('cases.allCases')}</h2>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  75 |             {currentUser?.role === 'lab_admin' && (
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  76 |               <div className="w-48">
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  77 |                 <Select
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  78 |                   options={filterOptions}
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  79 |                   value={statusFilter}
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  80 |                   onChange={(e) => setStatusFilter(e.target.value)}
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  81 |                 />
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  82 |               </div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  83 |             )}
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  84 |           </div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  85 |           <div className="relative">
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  86 |             <Search className="absolute left-3 top-3 h-5 w-5 text-slate-400" />
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  87 |             <input
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  88 |               type="text"
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  89 |               placeholder={t('dashboard.searchPlaceholder')}
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  90 |               value={searchQuery}
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  91 |               onChange={(e) => setSearchQuery(e.target.value)}
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  92 |               className="w-full pl-10 pr-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  93 |             />
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  94 |           </div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  95 |         </CardHeader>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  96 |         <CardContent className="p-0">
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  97 |           {loading ? (
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  98 |             <div className="flex flex-col items-center justify-center py-12 text-slate-500">
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  99 |               <Loader2 className="h-8 w-8 animate-spin text-blue-500 mb-2" />
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 100 |               <p>{t('common.loading') || 'Loading cases...'}</p>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 101 |             </div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 102 |           ) : (
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 103 |             <Table>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 104 |               <TableHeader>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 105 |                 <TableRow>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 106 |                   <TableHead>{t('table.caseId')}</TableHead>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 107 |                   <TableHead>{t('table.patient')}</TableHead>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 108 |                   <TableHead>{t('table.type')}</TableHead>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 109 |                   <TableHead>{t('table.status')}</TableHead>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 110 |                   <TableHead>{t('table.dueDate')}</TableHead>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 111 |                   <TableHead>{t('table.lastUpdated')}</TableHead>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 112 |                 </TableRow>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 113 |               </TableHeader>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 114 |               <TableBody>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 115 |                 {filteredCases.length === 0 ? (
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 116 |                   <TableRow>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 117 |                     <TableCell colSpan={6} className="text-center py-8 text-slate-500">
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 118 |                       {searchQuery || statusFilter !== 'all' ? t('cases.noFilterMatches') : t('dashboard.noCasesFound')}
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 119 |                     </TableCell>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 120 |                   </TableRow>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 121 |                 ) : (
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 122 |                   filteredCases.map((caseItem) => (
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 123 |                     <TableRow
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 124 |                       key={caseItem.id}
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 125 |                       onClick={() => router.push(`/cases/${caseItem.id}`)}
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 126 |                       className="cursor-pointer"
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 127 |                     >
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 128 |                       <TableCell className="font-medium">{caseItem.caseId}</TableCell>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 129 |                       <TableCell>{caseItem.patientName}</TableCell>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 130 |                       <TableCell className="text-slate-500">{caseItem.caseType}</TableCell>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 131 |                       <TableCell>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 132 |                         <StatusBadge status={caseItem.status} />
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 133 |                       </TableCell>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 134 |                       <TableCell>{formatDate(caseItem.dueDate)}</TableCell>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 135 |                       <TableCell className="text-slate-500">
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 136 |                         {formatDate(caseItem.updatedAt)}
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 137 |                       </TableCell>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 138 |                     </TableRow>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 139 |                   ))
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 140 |                 )}
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 141 |               </TableBody>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 142 |             </Table>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 143 |           )}
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 144 |         </CardContent>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 145 |       </Card>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 146 |     </div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 147 |   );
+      | ^^^^^
+  148 | }
+  149 |
+
+Return statement is not allowed here
+
+Import traces:
+  Client Component Browser:
+    ./Downloads/lab-portal-v1-mainupdated/lab-portal-v1-github/app/(dashboard)/cases/page.tsx [Client Component Browser]
+    ./Downloads/lab-portal-v1-mainupdated/lab-portal-v1-github/app/(dashboard)/cases/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./Downloads/lab-portal-v1-mainupdated/lab-portal-v1-github/app/(dashboard)/cases/page.tsx [Client Component SSR]
+    ./Downloads/lab-portal-v1-mainupdated/lab-portal-v1-github/app/(dashboard)/cases/page.tsx [Server Component]
+[00:28:38.177] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:28:47.546] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:28:53.095] Browser WARN    @supabase/gotrue-js: Lock "lock:sb-dpaxzacsydactdheawvd-auth-token" was not released within 5000ms. This may indicate an orphaned lock from a component unmount (e.g., React Strict Mode). Forcefully acquiring the lock to recover.
+[00:28:53.095] Browser ERROR   Error fetching profile: {"code":"","details":"AbortError: Lock broken by another request with the 'steal' option.","hint":"Request was aborted (timeout or manual cancellation)","message":"AbortError: Lock broken by another request with the 'steal' option."}
+[00:28:53.095] Browser ERROR   Error fetching profile: {"code":"","details":"AbortError: Lock broken by another request with the 'steal' option.","hint":"Request was aborted (timeout or manual cancellation)","message":"AbortError: Lock broken by another request with the 'steal' option."}
+[00:28:53.095] Browser ERROR   unhandledRejection: AbortError: Lock broken by another request with the 'steal' option.
+[00:28:53.095] Browser ERROR   unhandledRejection: AbortError: Lock broken by another request with the 'steal' option.
+[00:28:53.095] Browser ERROR   unhandledRejection: AbortError: Lock broken by another request with the 'steal' option.
+[00:28:53.095] Browser ERROR   unhandledRejection: AbortError: Lock broken by another request with the 'steal' option.
+[00:28:53.095] Browser ERROR   unhandledRejection: AbortError: Lock broken by another request with the 'steal' option.
+[00:28:53.228] Browser ERROR   unhandledRejection: AbortError: Lock broken by another request with the 'steal' option.
+[00:28:53.228] Browser ERROR   unhandledRejection: AbortError: Lock broken by another request with the 'steal' option.
+[00:28:53.953] Browser WARN    @supabase/gotrue-js: Lock "lock:sb-dpaxzacsydactdheawvd-auth-token" was not released within 5000ms. This may indicate an orphaned lock from a component unmount (e.g., React Strict Mode). Forcefully acquiring the lock to recover.
+[00:28:53.953] Browser WARN    @supabase/gotrue-js: Lock "lock:sb-dpaxzacsydactdheawvd-auth-token" was not released within 5000ms. This may indicate an orphaned lock from a component unmount (e.g., React Strict Mode). Forcefully acquiring the lock to recover.
+[00:29:01.490] Browser ERROR   Error fetching profile: {"code":"","details":"AbortError: Lock broken by another request with the 'steal' option.","hint":"Request was aborted (timeout or manual cancellation)","message":"AbortError: Lock broken by another request with the 'steal' option."}
+[00:29:01.490] Browser ERROR   unhandledRejection: AbortError: Lock broken by another request with the 'steal' option.
+[00:29:01.490] Browser ERROR   unhandledRejection: AbortError: Lock broken by another request with the 'steal' option.
+[00:29:01.668] Browser ERROR   unhandledRejection: AbortError: Lock broken by another request with the 'steal' option.
+[00:29:01.668] Browser ERROR   unhandledRejection: AbortError: Lock broken by another request with the 'steal' option.
+[00:29:09.619] Browser ERROR   Error fetching profile: {"code":"","details":"AbortError: Lock broken by another request with the 'steal' option.","hint":"Request was aborted (timeout or manual cancellation)","message":"AbortError: Lock broken by another request with the 'steal' option."}
+[00:29:09.619] Browser ERROR   unhandledRejection: AbortError: Lock broken by another request with the 'steal' option.
+[00:29:09.619] Browser ERROR   unhandledRejection: AbortError: Lock broken by another request with the 'steal' option.
+[00:29:09.752] Browser ERROR   unhandledRejection: AbortError: Lock broken by another request with the 'steal' option.
+[00:29:09.752] Browser ERROR   unhandledRejection: AbortError: Lock broken by another request with the 'steal' option.
+[00:29:24.574] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:29:30.065] Browser WARN    @supabase/gotrue-js: Lock "lock:sb-dpaxzacsydactdheawvd-auth-token" was not released within 5000ms. This may indicate an orphaned lock from a component unmount (e.g., React Strict Mode). Forcefully acquiring the lock to recover.
+[00:29:30.952] Browser WARN    @supabase/gotrue-js: Lock "lock:sb-dpaxzacsydactdheawvd-auth-token" was not released within 5000ms. This may indicate an orphaned lock from a component unmount (e.g., React Strict Mode). Forcefully acquiring the lock to recover.
+[00:29:36.098] Browser ERROR   Error fetching profile: {"code":"","details":"AbortError: Lock broken by another request with the 'steal' option.","hint":"Request was aborted (timeout or manual cancellation)","message":"AbortError: Lock broken by another request with the 'steal' option."}
+[00:29:36.098] Browser ERROR   Error fetching profile: {"code":"","details":"AbortError: Lock broken by another request with the 'steal' option.","hint":"Request was aborted (timeout or manual cancellation)","message":"AbortError: Lock broken by another request with the 'steal' option."}
+[00:29:36.098] Browser ERROR   unhandledRejection: AbortError: Lock broken by another request with the 'steal' option.
+[00:29:36.098] Browser ERROR   unhandledRejection: AbortError: Lock broken by another request with the 'steal' option.
+[00:29:36.098] Browser ERROR   unhandledRejection: AbortError: Lock broken by another request with the 'steal' option.
+[00:29:36.098] Browser ERROR   unhandledRejection: AbortError: Lock broken by another request with the 'steal' option.
+[00:29:36.098] Browser ERROR   unhandledRejection: AbortError: Lock broken by another request with the 'steal' option.
+[00:29:36.203] Browser ERROR   unhandledRejection: AbortError: Lock broken by another request with the 'steal' option.
+[00:29:36.203] Browser ERROR   unhandledRejection: AbortError: Lock broken by another request with the 'steal' option.
+[00:29:36.956] Browser WARN    @supabase/gotrue-js: Lock "lock:sb-dpaxzacsydactdheawvd-auth-token" was not released within 5000ms. This may indicate an orphaned lock from a component unmount (e.g., React Strict Mode). Forcefully acquiring the lock to recover.
+[00:29:44.107] Browser ERROR   Error fetching profile: {"code":"","details":"AbortError: Lock broken by another request with the 'steal' option.","hint":"Request was aborted (timeout or manual cancellation)","message":"AbortError: Lock broken by another request with the 'steal' option."}
+[00:29:44.107] Browser ERROR   unhandledRejection: AbortError: Lock broken by another request with the 'steal' option.
+[00:29:44.107] Browser ERROR   unhandledRejection: AbortError: Lock broken by another request with the 'steal' option.
+[00:29:44.107] Browser ERROR   unhandledRejection: AbortError: Lock broken by another request with the 'steal' option.
+[00:29:44.107] Browser ERROR   unhandledRejection: AbortError: Lock broken by another request with the 'steal' option.
+[00:31:45.647] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./Downloads/lab-portal-v1-mainupdated/lab-portal-v1-github/components/providers/AuthProvider.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[00:31:45.650] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./Downloads/lab-portal-v1-mainupdated/lab-portal-v1-github/components/providers/AuthProvider.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[00:31:46.109] Server  LOG     ✓ Compiled in 43ms
+[00:31:46.612] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:31:46.672] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:32:20.236] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:32:22.782] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:32:28.069] Browser WARN    @supabase/gotrue-js: Lock "lock:sb-dpaxzacsydactdheawvd-auth-token" was not released within 5000ms. This may indicate an orphaned lock from a component unmount (e.g., React Strict Mode). Forcefully acquiring the lock to recover.
+[00:32:28.961] Browser WARN    @supabase/gotrue-js: Lock "lock:sb-dpaxzacsydactdheawvd-auth-token" was not released within 5000ms. This may indicate an orphaned lock from a component unmount (e.g., React Strict Mode). Forcefully acquiring the lock to recover.
+[00:32:30.002] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:35:36.284] Server  LOG     ✓ Compiled in 80ms
+[00:36:50.553] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:37:01.065] Browser WARN    @supabase/gotrue-js: Lock "lock:sb-dpaxzacsydactdheawvd-auth-token" was not released within 5000ms. This may indicate an orphaned lock from a component unmount (e.g., React Strict Mode). Forcefully acquiring the lock to recover.
+[00:37:01.952] Browser WARN    @supabase/gotrue-js: Lock "lock:sb-dpaxzacsydactdheawvd-auth-token" was not released within 5000ms. This may indicate an orphaned lock from a component unmount (e.g., React Strict Mode). Forcefully acquiring the lock to recover.
+[00:37:01.996] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:40:11.056] Browser WARN    @supabase/gotrue-js: Lock "lock:sb-dpaxzacsydactdheawvd-auth-token" was not released within 5000ms. This may indicate an orphaned lock from a component unmount (e.g., React Strict Mode). Forcefully acquiring the lock to recover.
+[00:40:11.962] Browser WARN    @supabase/gotrue-js: Lock "lock:sb-dpaxzacsydactdheawvd-auth-token" was not released within 5000ms. This may indicate an orphaned lock from a component unmount (e.g., React Strict Mode). Forcefully acquiring the lock to recover.
+[00:40:17.954] Browser WARN    @supabase/gotrue-js: Lock "lock:sb-dpaxzacsydactdheawvd-auth-token" was not released within 5000ms. This may indicate an orphaned lock from a component unmount (e.g., React Strict Mode). Forcefully acquiring the lock to recover.
+[00:40:17.954] Browser WARN    @supabase/gotrue-js: Lock "lock:sb-dpaxzacsydactdheawvd-auth-token" was not released within 5000ms. This may indicate an orphaned lock from a component unmount (e.g., React Strict Mode). Forcefully acquiring the lock to recover.
+[00:40:17.954] Browser WARN    @supabase/gotrue-js: Lock "lock:sb-dpaxzacsydactdheawvd-auth-token" was not released within 5000ms. This may indicate an orphaned lock from a component unmount (e.g., React Strict Mode). Forcefully acquiring the lock to recover.
+[00:40:39.300] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:46:05.918] Server  LOG     ✓ Compiled in 39ms
+[00:46:07.468] Server  LOG     ✓ Compiled in 66ms
+[00:46:22.887] Server  LOG     ✓ Compiled in 35ms
+[00:46:24.272] Server  LOG     ✓ Compiled in 41ms
+[00:46:33.013] Server  LOG     ✓ Compiled in 36ms
+[00:46:47.555] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:46:53.064] Browser WARN    @supabase/gotrue-js: Lock "lock:sb-dpaxzacsydactdheawvd-auth-token" was not released within 5000ms. This may indicate an orphaned lock from a component unmount (e.g., React Strict Mode). Forcefully acquiring the lock to recover.
+[00:46:53.957] Browser WARN    @supabase/gotrue-js: Lock "lock:sb-dpaxzacsydactdheawvd-auth-token" was not released within 5000ms. This may indicate an orphaned lock from a component unmount (e.g., React Strict Mode). Forcefully acquiring the lock to recover.
+[00:46:59.158] Browser ERROR   Error fetching profile: {"code":"","details":"AbortError: Lock broken by another request with the 'steal' option.","hint":"Request was aborted (timeout or manual cancellation)","message":"AbortError: Lock broken by another request with the 'steal' option."}
+[00:46:59.158] Browser ERROR   Error fetching profile: {"code":"","details":"AbortError: Lock broken by another request with the 'steal' option.","hint":"Request was aborted (timeout or manual cancellation)","message":"AbortError: Lock broken by another request with the 'steal' option."}
+[00:46:59.158] Browser ERROR   unhandledRejection: AbortError: Lock broken by another request with the 'steal' option.
+[00:46:59.158] Browser ERROR   unhandledRejection: AbortError: Lock broken by another request with the 'steal' option.
+[00:46:59.158] Browser ERROR   unhandledRejection: AbortError: Lock broken by another request with the 'steal' option.
+[00:46:59.158] Browser ERROR   unhandledRejection: AbortError: Lock broken by another request with the 'steal' option.
+[00:46:59.158] Browser ERROR   unhandledRejection: AbortError: Lock broken by another request with the 'steal' option.
+[00:46:59.956] Browser WARN    @supabase/gotrue-js: Lock "lock:sb-dpaxzacsydactdheawvd-auth-token" was not released within 5000ms. This may indicate an orphaned lock from a component unmount (e.g., React Strict Mode). Forcefully acquiring the lock to recover.
+[00:46:59.956] Browser WARN    @supabase/gotrue-js: Lock "lock:sb-dpaxzacsydactdheawvd-auth-token" was not released within 5000ms. This may indicate an orphaned lock from a component unmount (e.g., React Strict Mode). Forcefully acquiring the lock to recover.
+[00:46:59.956] Browser WARN    @supabase/gotrue-js: Lock "lock:sb-dpaxzacsydactdheawvd-auth-token" was not released within 5000ms. This may indicate an orphaned lock from a component unmount (e.g., React Strict Mode). Forcefully acquiring the lock to recover.
+[00:47:42.069] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:54:12.068] Browser WARN    @supabase/gotrue-js: Lock "lock:sb-dpaxzacsydactdheawvd-auth-token" was not released within 5000ms. This may indicate an orphaned lock from a component unmount (e.g., React Strict Mode). Forcefully acquiring the lock to recover.
+[00:54:12.955] Browser WARN    @supabase/gotrue-js: Lock "lock:sb-dpaxzacsydactdheawvd-auth-token" was not released within 5000ms. This may indicate an orphaned lock from a component unmount (e.g., React Strict Mode). Forcefully acquiring the lock to recover.
+[00:54:18.955] Browser WARN    @supabase/gotrue-js: Lock "lock:sb-dpaxzacsydactdheawvd-auth-token" was not released within 5000ms. This may indicate an orphaned lock from a component unmount (e.g., React Strict Mode). Forcefully acquiring the lock to recover.
+[00:54:18.955] Browser WARN    @supabase/gotrue-js: Lock "lock:sb-dpaxzacsydactdheawvd-auth-token" was not released within 5000ms. This may indicate an orphaned lock from a component unmount (e.g., React Strict Mode). Forcefully acquiring the lock to recover.
+[00:54:18.955] Browser WARN    @supabase/gotrue-js: Lock "lock:sb-dpaxzacsydactdheawvd-auth-token" was not released within 5000ms. This may indicate an orphaned lock from a component unmount (e.g., React Strict Mode). Forcefully acquiring the lock to recover.

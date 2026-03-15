@@ -35,14 +35,18 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
 
   useEffect(() => {
+    let mounted = true;
+
     // Initial session check
     const checkSession = async () => {
-      const { data: { session }, error } = await supabase.auth.getSession();
+      const { data: { session: initialSession }, error } = await supabase.auth.getSession();
       
-      if (session) {
-        setSession(session);
-        setUser(session.user);
-        await fetchProfile(session.user.id);
+      if (!mounted) return;
+
+      if (initialSession) {
+        setSession(initialSession);
+        setUser(initialSession.user);
+        await fetchProfile(initialSession.user.id);
       } else {
         setLoading(false);
       }
@@ -51,6 +55,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     checkSession();
 
     const { data: { subscription } } = supabase.auth.onAuthStateChange(async (_event, newSession) => {
+      if (!mounted) return;
+
       setSession(newSession);
       setUser(newSession?.user ?? null);
       
@@ -65,9 +71,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     });
 
     return () => {
+      mounted = false;
       subscription.unsubscribe();
     };
-  }, [pathname, router]);
+  }, []); // Run once on mount
 
   const fetchProfile = async (userId: string) => {
     try {

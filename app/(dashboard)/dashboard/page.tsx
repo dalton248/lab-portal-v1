@@ -1,48 +1,111 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { Plus, Search } from 'lucide-react';
+import { Plus, Search, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { Card, CardHeader, CardContent } from '@/components/ui/Card';
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from '@/components/ui/Table';
 import { StatusBadge } from '@/components/ui/StatusBadge';
-import { getCasesForCurrentUser, searchCases } from '@/lib/mock-data';
+import { searchCases } from '@/lib/mock-data';
 import { useLanguage } from '@/components/providers/LanguageProvider';
 import { useAuth } from '@/components/providers/AuthProvider';
+import { supabase } from '@/lib/supabase';
+import { Case, CaseStatus } from '@/lib/types';
+
+interface DashboardCase extends Case {
+  inboxMethod?: string;
+}
 
 export default function DashboardPage() {
   const router = useRouter();
   const { profile } = useAuth();
-  
-  // Create a compatible user object from the profile
-  const currentUser = profile ? {
-    id: profile.id,
-    email: profile.email,
-    role: profile.role === 'lab_admin' ? 'lab_admin' : 'dentist',
-    name: profile.full_name || profile.email.split('@')[0],
-    officeName: profile.office_name || 'N/A',
-  } : null;
-
-  const allCases = getCasesForCurrentUser();
-  const [searchQuery, setSearchQuery] = useState('');
-  const filteredCases = searchCases(searchQuery, allCases);
   const { t, language } = useLanguage();
+  
+  const [allCases, setAllCases] = useState<DashboardCase[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [searchQuery, setSearchQuery] = useState('');
+
+  useEffect(() => {
+    async function fetchDashboardData() {
+      if (!profile?.id) return;
+      
+      setLoading(true);
+      try {
+        const query = supabase
+          .from('Cases')
+          .select('*');
+
+        if (profile.role === 'dentist') {
+          query.eq('dentist_id', profile.id);
+        } else {
+          query.eq('lab_id', profile.lab_id);
+        }
+
+        const { data, error } = await query;
+
+        if (error) throw error;
+
+        if (data) {
+          const mappedCases: DashboardCase[] = data.map((item: any) => ({
+            id: item.id,
+            caseId: item.Case_number || 'N/A',
+            patientName: item.FirstName_LastName || 'N/A',
+            status: (item.status?.toLowerCase() || 'submitted') as CaseStatus,
+            dueDate: item.due_date || item.created_at,
+            createdAt: item.created_at,
+            updatedAt: item.created_at,
+            caseType: item.Type || 'Crown',
+            dentistId: item.dentist_id || '',
+            dentistName: item.FirstName_LastName || 'N/A',
+            labId: item.lab_id || '',
+            inboxMethod: item.Case_inbox_method?.toLowerCase() || 'other',
+          }));
+          setAllCases(mappedCases);
+        }
+      } catch (err) {
+        console.error('Error fetching dashboard data:', err);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchDashboardData();
+  }, [profile]);
+
+  const filteredCases = searchCases(searchQuery, allCases);
 
   const stats = {
     total: allCases.length,
-    inProgress: allCases.filter((c) => c.status === 'in_progress').length,
-    onHold: allCases.filter((c) => c.status === 'on_hold').length,
-    completed: allCases.filter((c) => c.status === 'completed').length,
+    inProgress: allCases.filter((c) => c.status.toLowerCase() === 'in_progress').length,
+    onHold: allCases.filter((c) => c.status.toLowerCase() === 'on_hold').length,
+    completed: allCases.filter((c) => c.status.toLowerCase() === 'completed').length,
+  };
+
+  const inboxStats = {
+    threeShape: allCases.filter(c => c.inboxMethod === '3shape').length,
+    itero: allCases.filter(c => c.inboxMethod === 'itero').length,
+    email: allCases.filter(c => c.inboxMethod === 'email').length,
   };
 
   const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString(language === 'en' ? 'en-US' : 'zh-CN', {
-      month: 'short',
-      day: 'numeric',
-      year: 'numeric',
-    });
+    try {
+      return new Date(dateString).toLocaleDateString(language === 'en' ? 'en-US' : 'zh-CN', {
+        month: 'short',
+        day: 'numeric',
+        year: 'numeric',
+      });
+    } catch (e) {
+      return dateString;
+    }
   };
+
+  const currentUser = profile ? {
+    id: profile.id,
+    email: profile.email,
+    role: profile.role,
+    name: profile.full_name || profile.email.split('@')[0],
+  } : null;
 
   return (
     <div className="space-y-6">
@@ -69,131 +132,141 @@ export default function DashboardPage() {
         )}
       </div>
 
-      {currentUser?.role === 'lab_admin' && (
-        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          <Card className="bg-slate-50/50 border-dashed">
-            <CardContent className="pt-5 pb-5">
-              <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">{t('dashboard.totalCases')}</p>
-              <p className="text-3xl font-bold text-slate-900">{stats.total}</p>
-            </CardContent>
-          </Card>
-          <Card className="bg-blue-50/50 border-blue-100">
-            <CardContent className="pt-5 pb-5">
-              <p className="text-xs font-bold text-blue-400 uppercase tracking-widest mb-1">{t('dashboard.inProgress')}</p>
-              <p className="text-3xl font-bold text-blue-600">{stats.inProgress}</p>
-            </CardContent>
-          </Card>
-          <Card className="bg-orange-50/50 border-orange-100">
-            <CardContent className="pt-5 pb-5">
-              <p className="text-xs font-bold text-orange-400 uppercase tracking-widest mb-1">{t('dashboard.onHold')}</p>
-              <p className="text-3xl font-bold text-orange-600">{stats.onHold}</p>
-            </CardContent>
-          </Card>
-          <Card className="bg-green-50/50 border-green-100">
-            <CardContent className="pt-5 pb-5">
-              <p className="text-xs font-bold text-green-400 uppercase tracking-widest mb-1">{t('dashboard.completed')}</p>
-              <p className="text-3xl font-bold text-green-600">{stats.completed}</p>
-            </CardContent>
-          </Card>
+      {loading ? (
+        <div className="flex flex-col items-center justify-center py-20 text-slate-500">
+          <Loader2 className="h-10 w-10 animate-spin text-blue-500 mb-4" />
+          <p className="text-lg font-medium">{t('common.loading') || 'Loading your dashboard...'}</p>
         </div>
-      )}
+      ) : (
+        <>
+          {currentUser?.role === 'lab_admin' && (
+            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+              <Card className="bg-slate-50/50 border-dashed">
+                <CardContent className="pt-5 pb-5">
+                  <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">{t('dashboard.totalCases')}</p>
+                  <p className="text-3xl font-bold text-slate-900">{stats.total}</p>
+                </CardContent>
+              </Card>
+              <Card className="bg-blue-50/50 border-blue-100">
+                <CardContent className="pt-5 pb-5">
+                  <p className="text-xs font-bold text-blue-400 uppercase tracking-widest mb-1">{t('dashboard.inProgress')}</p>
+                  <p className="text-3xl font-bold text-blue-600">{stats.inProgress}</p>
+                </CardContent>
+              </Card>
+              <Card className="bg-orange-50/50 border-orange-100">
+                <CardContent className="pt-5 pb-5">
+                  <p className="text-xs font-bold text-orange-400 uppercase tracking-widest mb-1">{t('dashboard.onHold')}</p>
+                  <p className="text-3xl font-bold text-orange-600">{stats.onHold}</p>
+                </CardContent>
+              </Card>
+              <Card className="bg-green-50/50 border-green-100">
+                <CardContent className="pt-5 pb-5">
+                  <p className="text-xs font-bold text-green-400 uppercase tracking-widest mb-1">{t('dashboard.completed')}</p>
+                  <p className="text-3xl font-bold text-green-600">{stats.completed}</p>
+                </CardContent>
+              </Card>
+            </div>
+          )}
 
-      {currentUser?.role === 'lab_admin' && (
-        <div className="space-y-4">
-          <div className="flex items-center justify-between">
-            <h2 className="text-lg font-semibold text-slate-900">{t('inbox.title')}</h2>
-            <Button variant="secondary" size="sm" onClick={() => router.push('/case-inbox')}>
-              {t('inbox.viewCases')}
-            </Button>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <Card className="hover:border-blue-200 transition-colors cursor-pointer" onClick={() => router.push('/case-inbox')}>
-              <CardContent className="pt-4 pb-4 flex items-center justify-between">
-                <div className="flex items-center space-x-3">
-                  <div className="w-8 h-8 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600 font-bold text-xs">3S</div>
-                  <span className="font-medium text-slate-700">3Shape</span>
-                </div>
-                <span className="text-lg font-bold text-slate-900">2</span>
-              </CardContent>
-            </Card>
-            <Card className="hover:border-blue-200 transition-colors cursor-pointer" onClick={() => router.push('/case-inbox')}>
-              <CardContent className="pt-4 pb-4 flex items-center justify-between">
-                <div className="flex items-center space-x-3">
-                  <div className="w-8 h-8 rounded-lg bg-cyan-100 flex items-center justify-center text-cyan-600 font-bold text-xs">iT</div>
-                  <span className="font-medium text-slate-700">iTero</span>
-                </div>
-                <span className="text-lg font-bold text-slate-900">1</span>
-              </CardContent>
-            </Card>
-            <Card className="hover:border-blue-200 transition-colors cursor-pointer" onClick={() => router.push('/case-inbox')}>
-              <CardContent className="pt-4 pb-4 flex items-center justify-between">
-                <div className="flex items-center space-x-3">
-                  <div className="w-8 h-8 rounded-lg bg-indigo-100 flex items-center justify-center text-indigo-600 font-bold text-xs">@</div>
-                  <span className="font-medium text-slate-700">{language === 'en' ? 'Email' : '邮件上传'}</span>
-                </div>
-                <span className="text-lg font-bold text-slate-900">1</span>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      )}
+          {currentUser?.role === 'lab_admin' && (
+            <div className="space-y-4">
+              <div className="flex items-center justify-between">
+                <h2 className="text-lg font-semibold text-slate-900">{t('inbox.title')}</h2>
+                <Button variant="secondary" size="sm" onClick={() => router.push('/case-inbox')}>
+                  {t('inbox.viewCases')}
+                </Button>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <Card className="hover:border-blue-200 transition-colors cursor-pointer" onClick={() => router.push('/case-inbox')}>
+                  <CardContent className="pt-4 pb-4 flex items-center justify-between">
+                    <div className="flex items-center space-x-3">
+                      <div className="w-8 h-8 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600 font-bold text-xs">3S</div>
+                      <span className="font-medium text-slate-700">3Shape</span>
+                    </div>
+                    <span className="text-lg font-bold text-slate-900">{inboxStats.threeShape}</span>
+                  </CardContent>
+                </Card>
+                <Card className="hover:border-blue-200 transition-colors cursor-pointer" onClick={() => router.push('/case-inbox')}>
+                  <CardContent className="pt-4 pb-4 flex items-center justify-between">
+                    <div className="flex items-center space-x-3">
+                      <div className="w-8 h-8 rounded-lg bg-cyan-100 flex items-center justify-center text-cyan-600 font-bold text-xs">iT</div>
+                      <span className="font-medium text-slate-700">iTero</span>
+                    </div>
+                    <span className="text-lg font-bold text-slate-900">{inboxStats.itero}</span>
+                  </CardContent>
+                </Card>
+                <Card className="hover:border-blue-200 transition-colors cursor-pointer" onClick={() => router.push('/case-inbox')}>
+                  <CardContent className="pt-4 pb-4 flex items-center justify-between">
+                    <div className="flex items-center space-x-3">
+                      <div className="w-8 h-8 rounded-lg bg-indigo-100 flex items-center justify-center text-indigo-600 font-bold text-xs">@</div>
+                      <span className="font-medium text-slate-700">{language === 'en' ? 'Email' : '邮件上传'}</span>
+                    </div>
+                    <span className="text-lg font-bold text-slate-900">{inboxStats.email}</span>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+          )}
 
-      <Card>
-        <CardHeader>
-          <div className="flex justify-between items-center">
-            <h2 className="text-lg font-semibold text-slate-900">{t('dashboard.recentCases')}</h2>
-          </div>
-          <div className="mt-4 relative">
-            <Search className="absolute left-3 top-3 h-5 w-5 text-slate-400" />
-            <input
-              type="text"
-              placeholder={t('dashboard.searchPlaceholder')}
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
-            />
-          </div>
-        </CardHeader>
-        <CardContent className="p-0">
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>{t('table.caseId')}</TableHead>
-                <TableHead>{t('table.patient')}</TableHead>
-                <TableHead>{t('table.status')}</TableHead>
-                <TableHead>{t('table.dueDate')}</TableHead>
-                <TableHead>{t('table.lastUpdated')}</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {filteredCases.length === 0 ? (
-                <TableRow>
-                  <TableCell colSpan={5} className="text-center py-8 text-slate-500">
-                    {searchQuery ? t('dashboard.noSearchMatches') : t('dashboard.noCasesFound')}
-                  </TableCell>
-                </TableRow>
-              ) : (
-              filteredCases.map((caseItem) => (
-                <TableRow
-                  key={caseItem.id}
-                  onClick={() => router.push(`/cases/${caseItem.id}`)}
-                >
-                  <TableCell className="font-medium">{caseItem.caseId}</TableCell>
-                  <TableCell>{caseItem.patientName}</TableCell>
-                  <TableCell>
-                    <StatusBadge status={caseItem.status} />
-                  </TableCell>
-                  <TableCell>{formatDate(caseItem.dueDate)}</TableCell>
-                  <TableCell className="text-slate-500">
-                    {formatDate(caseItem.updatedAt)}
-                  </TableCell>
-                </TableRow>
-              ))
-              )}
-            </TableBody>
-          </Table>
-        </CardContent>
-      </Card>
+          <Card>
+            <CardHeader>
+              <div className="flex justify-between items-center">
+                <h2 className="text-lg font-semibold text-slate-900">{t('dashboard.recentCases')}</h2>
+              </div>
+              <div className="mt-4 relative">
+                <Search className="absolute left-3 top-3 h-5 w-5 text-slate-400" />
+                <input
+                  type="text"
+                  placeholder={t('dashboard.searchPlaceholder')}
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-full pl-10 pr-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
+                />
+              </div>
+            </CardHeader>
+            <CardContent className="p-0">
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>{t('table.caseId')}</TableHead>
+                    <TableHead>{t('table.patient')}</TableHead>
+                    <TableHead>{t('table.status')}</TableHead>
+                    <TableHead>{t('table.dueDate')}</TableHead>
+                    <TableHead>{t('table.lastUpdated')}</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {filteredCases.length === 0 ? (
+                    <TableRow>
+                      <TableCell colSpan={5} className="text-center py-8 text-slate-500">
+                        {searchQuery ? t('dashboard.noSearchMatches') : t('dashboard.noCasesFound')}
+                      </TableCell>
+                    </TableRow>
+                  ) : (
+                    filteredCases.slice(0, 10).map((caseItem) => (
+                      <TableRow
+                        key={caseItem.id}
+                        onClick={() => router.push(`/cases/${caseItem.id}`)}
+                        className="cursor-pointer hover:bg-slate-50 transition-colors"
+                      >
+                        <TableCell className="font-medium">{caseItem.caseId}</TableCell>
+                        <TableCell>{caseItem.patientName}</TableCell>
+                        <TableCell>
+                          <StatusBadge status={caseItem.status} />
+                        </TableCell>
+                        <TableCell>{formatDate(caseItem.dueDate)}</TableCell>
+                        <TableCell className="text-slate-500">
+                          {formatDate(caseItem.updatedAt)}
+                        </TableCell>
+                      </TableRow>
+                    ))
+                  )}
+                </TableBody>
+              </Table>
+            </CardContent>
+          </Card>
+        </>
+      )}
     </div>
   );
 }
