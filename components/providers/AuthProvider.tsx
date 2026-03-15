@@ -38,9 +38,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     let mounted = true;
+    let authInitialized = false;
 
     // Helper to fetch profile with safety against outdated requests
-    const safeFetchProfile = async (userId: string, currentSession: Session | null) => {
+    const safeFetchProfile = async (userId: string) => {
       // Abort any existing request
       if (abortControllerRef.current) {
         abortControllerRef.current.abort();
@@ -52,7 +53,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       try {
         setProfileError(null);
         
-        console.log(`Fetching profile for ${userId}...`);
+        console.log(`[Auth] Fetching profile for ${userId}...`);
         const { data, error } = await supabase
           .from('Users')
           .select('*')
@@ -63,12 +64,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         if (!mounted || controller.signal.aborted) return;
 
         if (error) {
-          console.error('Error fetching profile:', error);
-          if (currentSession) {
-            setProfileError(error.message);
-          }
+          // Log structured error if possible
+          console.error('[Auth] Error fetching profile:', JSON.stringify(error, null, 2));
+          setProfileError(error.message || 'Failed to load user profile');
         } else if (data) {
-          console.log('Profile fetched successfully');
+          console.log('[Auth] Profile fetched successfully');
           setProfile({
             id: data.id,
             role: data.role || data['role (dentist/lab admin)'],
@@ -82,8 +82,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         if (!mounted || controller.signal.aborted) return;
         if (err.name === 'AbortError') return; 
         
-        console.error('Unexpected error fetching profile:', err);
-        setProfileError(err.message || 'Unexpected error');
+        console.error('[Auth] Unexpected error fetching profile:', err);
+        setProfileError(err.message || 'An unexpected error occurred while loading your profile');
       } finally {
         if (mounted && !controller.signal.aborted) {
           setLoading(false);
@@ -94,59 +94,44 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       }
     };
 
-    // Initialize auth state immediately
-    const initializeAuth = async () => {
-      try {
-        console.log('Initializing auth state via getSession...');
-        const { data: { session: initialSession } } = await supabase.auth.getSession();
-        
-        if (!mounted) return;
+    // Main sync function to handle session changes
+    const handleAuthChange = async (newSession: Session | null) => {
+      if (!mounted) return;
+      
+      authInitialized = true;
+      setSession(newSession);
+      setUser(newSession?.user ?? null);
 
-        if (initialSession) {
-          console.log('Initial session found');
-          setSession(initialSession);
-          setUser(initialSession.user);
-          await safeFetchProfile(initialSession.user.id, initialSession);
-        } else {
-          console.log('No initial session');
-          setLoading(false);
-        }
-      } catch (err) {
-        console.error('Error during initial session check:', err);
-        if (mounted) setLoading(false);
+      if (newSession?.user) {
+        setLoading(true);
+        await safeFetchProfile(newSession.user.id);
+      } else {
+        setProfile(null);
+        setLoading(false);
       }
     };
 
-    initializeAuth();
-
-    // Listener for subsequent auth changes
+    // 1. Set up the listener first
     const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, newSession) => {
-      if (!mounted) return;
-
-      console.log(`Auth event: ${event}`);
-
-      if (event === 'SIGNED_IN' || event === 'TOKEN_REFRESHED') {
-        setSession(newSession);
-        setUser(newSession?.user ?? null);
-        
-        if (newSession?.user) {
-          setLoading(true);
-          await safeFetchProfile(newSession.user.id, newSession);
-        } else {
-          setLoading(false);
-        }
-      } else if (event === 'SIGNED_OUT') {
-        if (abortControllerRef.current) abortControllerRef.current.abort();
-        setSession(null);
-        setUser(null);
-        setProfile(null);
-        setProfileError(null);
-        setLoading(false);
-      }
+      console.log(`[Auth] Event: ${event}`);
+      await handleAuthChange(newSession);
     });
+
+    // 2. Fallback: If onAuthStateChange doesn't fire immediately (can happen in some environments),
+    // trigger a manual check after a short delay to ensure the UI doesn't hang.
+    const fallbackTimer = setTimeout(async () => {
+      if (!authInitialized && mounted) {
+        console.log('[Auth] Fallback: manual session check');
+        const { data: { session: currentSession } } = await supabase.auth.getSession();
+        if (!authInitialized && mounted) {
+          await handleAuthChange(currentSession);
+        }
+      }
+    }, 500);
 
     return () => {
       mounted = false;
+      clearTimeout(fallbackTimer);
       if (abortControllerRef.current) {
         abortControllerRef.current.abort();
       }
