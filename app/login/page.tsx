@@ -27,13 +27,20 @@ export default function LoginPage() {
 
   // Redirect if already logged in and profile loaded, or show error if fetch fails
   useEffect(() => {
-    if (!authLoading) {
-      if (session && profile) {
-        router.push('/dashboard');
-      } else if (profileError) {
-        setError(`Failed to load profile: ${profileError}`);
-        setLoading(false);
-      }
+    if (authLoading) return;
+
+    if (session && profile) {
+      router.replace('/dashboard');
+    } else if (profileError) {
+      // Use a slightly longer timeout to allow for retries/recovery in AuthProvider
+      const timer = setTimeout(() => {
+        // Double check if error still persists and we haven't recovered session
+        if (profileError && !profile) {
+          setError(`Failed to load profile: ${profileError}`);
+          setLoading(false);
+        }
+      }, 2000);
+      return () => clearTimeout(timer);
     }
   }, [session, profile, authLoading, profileError, router]);
 

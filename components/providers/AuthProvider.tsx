@@ -1,9 +1,9 @@
 'use client';
 
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState, useRef } from 'react';
 import { User, Session } from '@supabase/supabase-js';
 import { supabase } from '@/lib/supabase';
-import { useRouter, usePathname } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 
 export interface UserProfile {
   id: string;
@@ -31,80 +31,108 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [profile, setProfile] = useState<UserProfile | null>(null);
   const [loading, setLoading] = useState(true);
   const [profileError, setProfileError] = useState<string | null>(null);
+  
+  // Use a ref to track the active AbortController to prevent race conditions
+  const abortControllerRef = useRef<AbortController | null>(null);
   const router = useRouter();
-  const pathname = usePathname();
 
   useEffect(() => {
     let mounted = true;
 
-    // Initial session check
-    const checkSession = async () => {
-      const { data: { session: initialSession }, error } = await supabase.auth.getSession();
+    // Helper to fetch profile with safety against outdated requests
+    const safeFetchProfile = async (userId: string, currentSession: Session | null) => {
+      // Abort any existing request
+      if (abortControllerRef.current) {
+        abortControllerRef.current.abort();
+      }
       
-      if (!mounted) return;
+      const controller = new AbortController();
+      abortControllerRef.current = controller;
 
-      if (initialSession) {
-        setSession(initialSession);
-        setUser(initialSession.user);
-        await fetchProfile(initialSession.user.id);
-      } else {
-        setLoading(false);
+      try {
+        setProfileError(null);
+        
+        const { data, error } = await supabase
+          .from('Users')
+          .select('*')
+          .eq('id', userId)
+          .single();
+
+        // If component unmounted or request was aborted, ignore this result
+        if (!mounted || controller.signal.aborted) return;
+
+        if (error) {
+          console.error('Error fetching profile:', error);
+          if (currentSession) {
+            setProfileError(error.message);
+          }
+        } else if (data) {
+          setProfile({
+            id: data.id,
+            role: data['role (dentist/lab admin)'] || data.role,
+            full_name: data.full_name,
+            email: data.email,
+            lab_id: data.lab_id,
+            office_name: data.office_name,
+          });
+        }
+      } catch (err: any) {
+        if (!mounted || controller.signal.aborted) return;
+        if (err.name === 'AbortError') return; // Silence abort errors
+        
+        console.error('Unexpected error fetching profile:', err);
+        setProfileError(err.message || 'Unexpected error');
+      } finally {
+        if (mounted && !controller.signal.aborted) {
+          setLoading(false);
+          // Only clear ref if it's still this controller
+          if (abortControllerRef.current === controller) {
+            abortControllerRef.current = null;
+          }
+        }
       }
     };
 
-    checkSession();
+    // Initialize auth listener - it will handle the INITIAL_SESSION event automatically
+    const initAuth = () => {
+      const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, newSession) => {
+        if (!mounted) return;
 
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (_event, newSession) => {
-      if (!mounted) return;
+        console.log(`Auth event: ${event}`);
 
-      setSession(newSession);
-      setUser(newSession?.user ?? null);
-      
-      if (newSession?.user) {
-        setLoading(true);
-        await fetchProfile(newSession.user.id);
-      } else {
-        setProfile(null);
-        setProfileError(null);
-        setLoading(false);
-      }
-    });
+        if (event === 'SIGNED_IN' || event === 'TOKEN_REFRESHED' || event === 'INITIAL_SESSION') {
+          setSession(newSession);
+          setUser(newSession?.user ?? null);
+          
+          if (newSession?.user) {
+            setLoading(true);
+            await safeFetchProfile(newSession.user.id, newSession);
+          } else {
+            setLoading(false);
+          }
+        } else if (event === 'SIGNED_OUT') {
+          if (abortControllerRef.current) abortControllerRef.current.abort();
+          setSession(null);
+          setUser(null);
+          setProfile(null);
+          setProfileError(null);
+          setLoading(false);
+        }
+      });
+
+      return subscription;
+    };
+
+    const subscription = initAuth();
 
     return () => {
       mounted = false;
-      subscription.unsubscribe();
-    };
-  }, []); // Run once on mount
-
-  const fetchProfile = async (userId: string) => {
-    try {
-      setProfileError(null);
-      const { data, error } = await supabase
-        .from('Users')
-        .select('*')
-        .eq('id', userId)
-        .single();
-
-      if (error) {
-        console.error('Error fetching profile:', error);
-        setProfileError(error.message);
-      } else if (data) {
-        setProfile({
-          id: data.id,
-          role: data['role (dentist/lab admin)'] || data.role, // Handle column name variations
-          full_name: data.full_name,
-          email: data.email,
-          lab_id: data.lab_id,
-          office_name: data.office_name,
-        });
+      if (abortControllerRef.current) {
+        abortControllerRef.current.abort();
       }
-    } catch (err: any) {
-      console.error('Unexpected error fetching profile:', err);
-      setProfileError(err.message || 'Unexpected error');
-    } finally {
-      setLoading(false);
-    }
-  };
+      subscription?.unsubscribe();
+    };
+  }, []);
 
   const signOut = async () => {
     await supabase.auth.signOut();
