@@ -122,9 +122,26 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const fallbackTimer = setTimeout(async () => {
       if (!authInitialized && mounted) {
         console.log('[Auth] Fallback: manual session check');
-        const { data: { session: currentSession } } = await supabase.auth.getSession();
-        if (!authInitialized && mounted) {
-          await handleAuthChange(currentSession);
+        try {
+          const { data: { session: currentSession }, error } = await supabase.auth.getSession();
+          
+          if (error?.message?.includes('Refresh Token Not Found')) {
+            console.warn('[Auth] Invalid refresh token, signing out...');
+            await supabase.auth.signOut();
+            if (mounted) {
+              await handleAuthChange(null);
+            }
+            return;
+          }
+
+          if (!authInitialized && mounted) {
+            await handleAuthChange(currentSession);
+          }
+        } catch (err) {
+          console.error('[Auth] Manual session check failed:', err);
+          if (!authInitialized && mounted) {
+            await handleAuthChange(null);
+          }
         }
       }
     }, 500);
