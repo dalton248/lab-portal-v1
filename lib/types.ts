@@ -2,6 +2,12 @@ export type UserRole = 'lab_admin' | 'dentist';
 
 export type CaseStatus = 'submitted' | 'in_progress' | 'on_hold' | 'completed' | 'rejected';
 
+export type PrepType = 'monolithic' | 'layered' | 'digital' | 'traditional';
+
+export type WhatNeeded = 'implant' | 'denture' | 'partial' | 'crown' | 'nightguard' | 'retainer' | 'custom';
+
+export type CaseInputMethod = 'upload' | 'pickup' | 'shipping';
+
 export interface User {
   id: string;
   name: string;
@@ -38,6 +44,11 @@ export interface Case {
   unn?: string;
   n8n_failed?: boolean;
   threeShapeId?: string;
+  prep_type?: PrepType;
+  what_needed?: WhatNeeded;
+  input_method?: CaseInputMethod;
+  recipient_id?: string;
+  recipient_email?: string;
 }
 
 export interface Message {
