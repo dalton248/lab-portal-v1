@@ -110,31 +110,41 @@ export default function NewCasePage() {
         updatedAt: new Date().toISOString(),
       };
 
-      // 2. Send Webhook Notification DIRECTLY (Bypassing Supabase insertion for now)
-      const webhookPayload = {
-        ...caseData,
-        files: files.map(f => ({ name: f.name, size: f.size, type: f.type })),
-      };
+      // 2. Build multipart/form-data and proxy through /api/cases/submit
+      //    This sends actual file binaries (not just metadata) to the n8n webhook
+      //    server-side to avoid CORS restrictions.
+      const formData = new FormData();
+
+      // Append all case fields as strings
+      Object.entries(caseData).forEach(([key, value]) => {
+        if (value !== null && value !== undefined) {
+          formData.append(key, Array.isArray(value) ? JSON.stringify(value) : String(value));
+        }
+      });
+
+      // Append actual file binaries
+      files.forEach((file) => {
+        formData.append('files', file, file.name);
+      });
 
       try {
-        console.log('[Submission] Sending direct webhook to n8n...');
-        const response = await fetch('https://n8n-3shape-connection.onrender.com/webhook/b3a50e39-3352-45aa-9ec7-bc544489700c', {
+        console.log('[Submission] Sending multipart payload to proxy route...');
+        const response = await fetch('/api/cases/submit', {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(webhookPayload),
+          body: formData,
+          // Do NOT set Content-Type — browser sets it automatically with the correct boundary
         });
-        
+
         if (!response.ok) {
-          throw new Error(`Webhook failed with status: ${response.status}`);
+          const errData = await response.json().catch(() => ({}));
+          throw new Error(errData.error || `Submission failed with status: ${response.status}`);
         }
-        
-        console.log('[Submission] Webhook sent successfully');
+
+        console.log('[Submission] Case submitted successfully with files');
         router.push('/dashboard');
       } catch (webhookErr: any) {
-        console.error('[Submission] Failed to send webhook:', webhookErr);
-        setError(`Webhook submission failed: ${webhookErr.message}`);
+        console.error('[Submission] Failed to submit case:', webhookErr);
+        setError(`Submission failed: ${webhookErr.message}`);
       }
     } catch (err: any) {
       console.error('Error in submission flow:', err);

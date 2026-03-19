@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useRef } from 'react';
 import { Upload, Truck, Package, X } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { useLanguage } from '@/components/providers/LanguageProvider';
@@ -18,11 +18,15 @@ export const CaseInputMethod: React.FC<CaseInputMethodProps> = ({
   files,
   onFilesChange,
 }) => {
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const folderInputRef = useRef<HTMLInputElement>(null);
   const { t } = useLanguage();
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       onFilesChange([...files, ...Array.from(e.target.files)]);
+      // Reset input so same file can be re-selected if removed
+      e.target.value = '';
     }
   };
 
@@ -77,21 +81,52 @@ export const CaseInputMethod: React.FC<CaseInputMethodProps> = ({
 
       {method === 'upload' && (
         <div className="mt-4 p-6 border-2 border-dashed border-slate-300 rounded-lg bg-slate-50 transition-all hover:bg-white hover:border-blue-400">
+          {/* Hidden file input — individual files */}
           <input
+            ref={fileInputRef}
             type="file"
             multiple
+            accept=".stl,.ply,.obj,.jpg,.jpeg,.dcm,.pdf,.zip,.html"
             onChange={handleFileChange}
             className="hidden"
             id="multi-file-upload"
           />
+          {/* Hidden folder input */}
+          <input
+            ref={folderInputRef}
+            type="file"
+            // @ts-ignore — webkitdirectory is not in React's types but works in all modern browsers
+            webkitdirectory=""
+            multiple
+            onChange={handleFileChange}
+            className="hidden"
+            id="folder-upload"
+          />
+
+          {/* Drag-target area (label still works for background click) */}
           <label htmlFor="multi-file-upload" className="cursor-pointer flex flex-col items-center">
             <Upload className="h-10 w-10 text-slate-400 mb-2" />
             <p className="text-sm font-medium text-slate-900">{t('cases.dropFiles')}</p>
-            <p className="text-xs text-slate-500 mt-1">{t('cases.supports')}</p>
-            <Button type="button" variant="secondary" className="mt-4">
+            <p className="text-xs text-slate-500 mt-1">STL · PLY · OBJ · JPG · DICOM · PDF · ZIP · HTML</p>
+          </label>
+
+          {/* Action buttons — use refs to open pickers directly */}
+          <div className="flex items-center justify-center gap-3 mt-4">
+            <Button
+              type="button"
+              variant="secondary"
+              onClick={() => fileInputRef.current?.click()}
+            >
               {t('cases.selectFiles')}
             </Button>
-          </label>
+            <Button
+              type="button"
+              variant="secondary"
+              onClick={() => folderInputRef.current?.click()}
+            >
+              Select Folder
+            </Button>
+          </div>
 
           {files.length > 0 && (
             <div className="mt-6 space-y-2">
