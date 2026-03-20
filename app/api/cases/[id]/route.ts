@@ -99,3 +99,52 @@ export async function GET(
     );
   }
 }
+
+export async function PATCH(
+  request: Request,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  const { id } = await params;
+  const { status } = await request.json();
+
+  if (!status) {
+    return NextResponse.json({ error: 'Status is required' }, { status: 400 });
+  }
+
+  // Extract token from Authorization header or cookies
+  const authHeader = request.headers.get('Authorization');
+  const token = authHeader?.startsWith('Bearer ') ? authHeader.substring(7) : null;
+
+  // Create a customized supabase client for this request
+  const supabaseClient = createClient(supabaseUrl, supabaseAnonKey, {
+    global: {
+      headers: token ? { Authorization: `Bearer ${token}` } : {},
+    },
+  });
+
+  try {
+    const { data, error } = await supabaseClient
+      .from('Cases')
+      .update({ 
+        status: status,
+        // We'll let Supabase handle updated_at if it's set to auto-update, 
+        // but we can also set it explicitly if needed.
+      })
+      .eq('id', id)
+      .select()
+      .single();
+
+    if (error) {
+      console.error('Supabase update error:', error);
+      return NextResponse.json({ error: error.message }, { status: 400 });
+    }
+
+    return NextResponse.json({ success: true, data });
+  } catch (error) {
+    console.error('API Route PATCH Error:', error);
+    return NextResponse.json(
+      { error: 'Internal Server Error' },
+      { status: 500 }
+    );
+  }
+}

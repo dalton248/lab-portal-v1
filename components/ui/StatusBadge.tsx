@@ -6,9 +6,10 @@ import { useLanguage } from '@/components/providers/LanguageProvider';
 
 interface StatusBadgeProps {
   status: CaseStatus;
+  size?: 'sm' | 'md';
 }
 
-export function StatusBadge({ status }: StatusBadgeProps) {
+export function StatusBadge({ status, size = 'md' }: StatusBadgeProps) {
   const { t } = useLanguage();
 
   const styles = {
@@ -19,9 +20,14 @@ export function StatusBadge({ status }: StatusBadgeProps) {
     rejected: 'bg-red-100 text-red-800 border-red-200',
   };
 
+  const sizeStyles = {
+    sm: 'px-1.5 py-0.5 text-[10px]',
+    md: 'px-2.5 py-0.5 text-xs',
+  };
+
   return (
     <span
-      className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border ${styles[status]}`}
+      className={`inline-flex items-center rounded-full font-medium border ${styles[status]} ${sizeStyles[size]}`}
     >
       {t(`status.${status}`)}
     </span>

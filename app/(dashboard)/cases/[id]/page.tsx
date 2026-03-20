@@ -25,6 +25,7 @@ export default function CaseDetailPage({ params: paramsPromise }: { params: Prom
   const [error, setError] = useState<string | null>(null);
   const [newMessage, setNewMessage] = useState('');
   const [caseStatus, setCaseStatus] = useState<CaseStatus>('submitted');
+  const [updatingStatus, setUpdatingStatus] = useState(false);
   const { t, language } = useLanguage();
 
   const fetchCaseDetails = async (withScans = false) => {
@@ -124,13 +125,33 @@ export default function CaseDetailPage({ params: paramsPromise }: { params: Prom
     });
   };
 
-  const statusOptions = [
-    { value: 'submitted', label: t('status.submitted') },
-    { value: 'in_progress', label: t('status.in_progress') },
-    { value: 'on_hold', label: t('status.on_hold') },
-    { value: 'completed', label: t('status.completed') },
-    { value: 'rejected', label: t('status.rejected') },
-  ];
+  const handleStatusUpdate = async (newStatus: CaseStatus) => {
+    if (!params.id) return;
+    
+    setUpdatingStatus(true);
+    try {
+      const { data: { session } } = await supabase.auth.getSession();
+      const token = session?.access_token;
+
+      const response = await fetch(`/api/cases/${params.id}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          ...(token ? { 'Authorization': `Bearer ${token}` } : {}),
+        },
+        body: JSON.stringify({ status: newStatus }),
+      });
+
+      if (!response.ok) throw new Error('Failed to update status');
+      
+      setCaseStatus(newStatus);
+    } catch (err) {
+      console.error('Error updating status:', err);
+      alert('Failed to update status. Please try again.');
+    } finally {
+      setUpdatingStatus(false);
+    }
+  };
 
   const handleSendMessage = (e: React.FormEvent) => {
     e.preventDefault();
@@ -218,12 +239,28 @@ export default function CaseDetailPage({ params: paramsPromise }: { params: Prom
 
               {currentUser?.role === 'lab_admin' && (
                 <div className="pt-4 border-t border-slate-200">
-                  <Select
-                    label={t('cases.updateStatusLabel')}
-                    options={statusOptions}
-                    value={caseStatus}
-                    onChange={(e) => setCaseStatus(e.target.value as CaseStatus)}
-                  />
+                  <div className="flex items-center space-x-3">
+                    <div className="flex-1">
+                      <Select
+                        label={t('cases.updateStatusLabel')}
+                        options={[
+                          { value: 'submitted', label: t('status.submitted') },
+                          { value: 'in_progress', label: t('status.in_progress') },
+                          { value: 'on_hold', label: t('status.on_hold') },
+                          { value: 'completed', label: t('status.completed') },
+                          { value: 'rejected', label: t('status.rejected') },
+                        ]}
+                        value={caseStatus}
+                        onChange={(e) => handleStatusUpdate(e.target.value as CaseStatus)}
+                        disabled={updatingStatus}
+                      />
+                    </div>
+                    {updatingStatus && (
+                      <div className="pt-6">
+                        <Loader2 className="h-5 w-5 animate-spin text-blue-500" />
+                      </div>
+                    )}
+                  </div>
                 </div>
               )}
             </CardContent>
