@@ -12,7 +12,8 @@ import {
   CheckCircle2,
   Users2,
   BarChart3,
-  Search
+  Search,
+  PhoneCall
 } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 
@@ -76,6 +77,12 @@ export default function Home() {
               <Link href="/pricing">
                 <Button variant="outline" size="lg" className="px-8 py-6 text-lg rounded-xl border-slate-300 hover:bg-slate-50 transition-all text-slate-700">
                   See the Founder's Deal
+                </Button>
+              </Link>
+              <Link href="/schedule">
+                <Button variant="ghost" size="lg" className="px-8 py-6 text-lg rounded-xl text-blue-600 hover:bg-blue-50 transition-all flex items-center gap-2 font-semibold">
+                  <PhoneCall className="h-5 w-5" />
+                  Book a 15-min Call
                 </Button>
               </Link>
               <div className="text-sm font-medium text-slate-500 flex flex-col items-start sm:items-center">
@@ -208,6 +215,7 @@ export default function Home() {
             <div className="flex gap-8 text-sm text-slate-500 font-medium">
               <a href="#" className="hover:text-slate-900 transition-colors">Privacy Policy</a>
               <a href="#" className="hover:text-slate-900 transition-colors">Terms of Service</a>
+              <Link href="/schedule" className="text-blue-600 hover:text-blue-700 font-semibold transition-colors">Book a Call</Link>
               <a href="#" className="hover:text-slate-900 transition-colors">Contact Support</a>
             </div>
             <p className="text-sm text-slate-400">
