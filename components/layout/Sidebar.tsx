@@ -20,7 +20,7 @@ export function Sidebar({ currentUser, labName }: SidebarProps) {
     { name: t('nav.dashboard'), href: '/dashboard', icon: LayoutDashboard, show: true },
     { name: t('nav.cases'), href: '/cases', icon: FileText, show: true },
     { name: t('nav.caseInbox'), href: '/case-inbox', icon: Inbox, show: currentUser?.role === 'lab_admin' },
-    { name: t('nav.team'), href: '/team', icon: Users, show: currentUser?.role === 'lab_admin' },
+    { name: t('nav.team'), href: '/team', icon: Users, show: true },
     { name: t('nav.settings'), href: '/settings', icon: Settings, show: true },
   ];
 

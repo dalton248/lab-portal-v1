@@ -50,3 +50,58 @@
 [00:58:30.619] Browser LOG     [Auth] Profile fetched successfully
 [00:58:30.619] Browser LOG     Login successful, pushing to dashboard
 [00:58:30.802] Browser LOG     [Auth] Profile fetched successfully
+[01:06:24.111] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./lab-portal-v1/lib/translations.ts changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[01:06:24.125] Server  LOG     ✓ Compiled in 124ms
+[01:06:24.621] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:06:24.741] Browser LOG     [Auth] Event: INITIAL_SESSION
+[01:06:24.741] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
+[01:06:25.709] Browser LOG     [Auth] Profile fetched successfully
+[01:06:46.327] Server  LOG     ✓ Compiled in 174ms
+[01:16:26.142] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:16:26.265] Browser LOG     [Auth] Event: INITIAL_SESSION
+[01:16:26.265] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
+[01:16:26.941] Browser LOG     [Auth] Profile fetched successfully
+[01:20:03.135] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:20:03.248] Browser LOG     [Auth] Event: INITIAL_SESSION
+[01:20:03.248] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
+[01:20:04.145] Browser ERROR   [Auth] Error fetching profile: {
+  "code": "42P17",
+  "details": null,
+  "hint": null,
+  "message": "infinite recursion detected in policy for relation \"Users\""
+}
+[01:20:14.678] Browser LOG     [Auth] Event: SIGNED_IN
+[01:20:14.678] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
+[01:20:14.985] Browser ERROR   [Auth] Error fetching profile: {
+  "code": "42P17",
+  "details": null,
+  "hint": null,
+  "message": "infinite recursion detected in policy for relation \"Users\""
+}
+[01:20:14.985] Browser LOG     Login successful, pushing to dashboard
+[01:21:16.975] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:21:17.107] Browser LOG     [Auth] Event: INITIAL_SESSION
+[01:21:17.107] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
+[01:21:17.516] Browser LOG     [Auth] Profile fetched successfully
+[01:21:38.982] Browser LOG     [Auth] Event: SIGNED_OUT
+[01:21:46.553] Browser LOG     [Auth] Event: SIGNED_IN
+[01:21:46.553] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
+[01:21:46.712] Browser LOG     [Auth] Profile fetched successfully
+[01:21:46.712] Browser LOG     Login successful, pushing to dashboard
+[01:21:49.111] Browser LOG     [Auth] Event: SIGNED_OUT
+[01:21:55.340] Browser LOG     [Auth] Event: SIGNED_IN
+[01:21:55.340] Browser LOG     [Auth] Fetching profile for dca69d69-6e8d-4cd0-96f5-94767f05fffd...
+[01:21:55.506] Browser LOG     [Auth] Profile fetched successfully
+[01:21:55.506] Browser LOG     Login successful, pushing to dashboard
+[01:22:56.060] Server  LOG     ✓ Compiled in 122ms
+[01:23:04.242] Server  LOG     ✓ Compiled in 23ms
+[01:23:16.161] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./lab-portal-v1/lib/translations.ts changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[01:23:16.187] Server  LOG     ✓ Compiled in 26ms
+[01:23:16.558] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:23:16.681] Browser LOG     [Auth] Event: INITIAL_SESSION
+[01:23:16.681] Browser LOG     [Auth] Fetching profile for dca69d69-6e8d-4cd0-96f5-94767f05fffd...
+[01:23:17.162] Browser LOG     [Auth] Profile fetched successfully
+[01:24:10.916] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:24:11.029] Browser LOG     [Auth] Event: INITIAL_SESSION
+[01:24:11.029] Browser LOG     [Auth] Fetching profile for dca69d69-6e8d-4cd0-96f5-94767f05fffd...
+[01:24:11.590] Browser LOG     [Auth] Profile fetched successfully

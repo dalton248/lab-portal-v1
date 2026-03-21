@@ -21,6 +21,7 @@ export interface Lab {
   id: string;
   name: string;
   logo?: string;
+  address?: string;
 }
 
 export interface Case {
@@ -67,4 +68,16 @@ export interface TeamMember {
   email: string;
   status: 'active' | 'pending';
   joinedAt: string;
+}
+
+export interface Partnership {
+  id: string;
+  labId: string;
+  userId: string;
+  status: string;
+  agreementAccepted: boolean;
+  dentistName?: string;
+  dentistEmail?: string;
+  officeName?: string;
+  createdAt?: string;
 }
