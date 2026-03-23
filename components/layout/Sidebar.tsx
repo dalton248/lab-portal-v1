@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { LayoutDashboard, FileText, Users, Settings, Building2, Inbox } from 'lucide-react';
+import { LayoutDashboard, FileText, Users, Settings, Building2, Inbox, CreditCard } from 'lucide-react';
 import { User } from '@/lib/types';
 import { useLanguage } from '@/components/providers/LanguageProvider';
 
@@ -21,6 +21,7 @@ export function Sidebar({ currentUser, labName }: SidebarProps) {
     { name: t('nav.cases'), href: '/cases', icon: FileText, show: true },
     { name: t('nav.caseInbox'), href: '/case-inbox', icon: Inbox, show: currentUser?.role === 'lab_admin' },
     { name: t('nav.team'), href: '/team', icon: Users, show: true },
+    { name: t('nav.billing'), href: '/billing', icon: CreditCard, show: currentUser?.role === 'lab_admin' },
     { name: t('nav.settings'), href: '/settings', icon: Settings, show: true },
   ];
 
