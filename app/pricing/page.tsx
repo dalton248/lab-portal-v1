@@ -104,7 +104,7 @@ export default function PricingPage() {
                     {isLoading ? 'Processing...' : 'Claim Your Founder Seat'}
                   </Button>
 
-                  <Link href="/demo" className="text-slate-500 hover:text-blue-600 transition-colors text-sm font-semibold border-b border-transparent hover:border-blue-200 pb-0.5">
+                  <Link href="/schedule" className="text-slate-500 hover:text-blue-600 transition-colors text-sm font-semibold border-b border-transparent hover:border-blue-200 pb-0.5">
                     Not ready? Schedule a 15-minute demo with our founder.
                   </Link>
                 </div>

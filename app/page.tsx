@@ -53,11 +53,6 @@ export default function Home() {
           </div>
 
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 text-blue-700 text-xs font-semibold mb-6 animate-in fade-in slide-in-from-bottom-4 duration-1000">
-              <Zap className="h-3 w-3 fill-blue-700" />
-              <span>Founding Member Access Open</span>
-            </div>
-            
             <h1 className="text-4xl sm:text-5xl lg:text-7xl font-extrabold text-slate-900 tracking-tight leading-[1.1] mb-8 animate-in fade-in slide-in-from-bottom-8 duration-1000">
               Break Through the <br className="hidden lg:block" /> 
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Scaling Ceiling.</span>
@@ -69,14 +64,8 @@ export default function Home() {
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-in fade-in slide-in-from-bottom-16 duration-1000">
               <Link href="/pricing">
-                <Button variant="primary" size="lg" className="px-8 py-6 text-lg rounded-xl shadow-xl shadow-blue-500/20 hover:shadow-blue-500/30 transition-all">
+                <Button variant="primary" size="lg" className="px-8 py-6 text-lg rounded-xl shadow-xl shadow-blue-500/20 hover:shadow-blue-500/30 transition-all font-bold">
                   Get Early Access
-                  <ChevronRight className="ml-2 h-5 w-5" />
-                </Button>
-              </Link>
-              <Link href="/pricing">
-                <Button variant="outline" size="lg" className="px-8 py-6 text-lg rounded-xl border-slate-300 hover:bg-slate-50 transition-all text-slate-700">
-                  See the Founder's Deal
                 </Button>
               </Link>
               <Link href="/schedule">
@@ -137,58 +126,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Founding Member Perk Section */}
-        <section className="py-24 relative overflow-hidden">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="bg-gradient-to-br from-slate-900 to-slate-800 rounded-[2.5rem] p-8 sm:p-16 relative overflow-hidden">
-              {/* Decorative elements */}
-              <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/10 blur-[80px] rounded-full"></div>
-              <div className="absolute bottom-0 left-0 w-64 h-64 bg-indigo-500/10 blur-[80px] rounded-full"></div>
-
-              <div className="relative z-10 flex flex-col lg:flex-row items-center gap-12">
-                <div className="lg:flex-1 text-center lg:text-left">
-                  <span className="text-blue-400 font-bold tracking-wider uppercase text-sm mb-4 block">Limited Offer</span>
-                  <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
-                    Founding Member <br /> Integration Bonus
-                  </h2>
-                  <p className="text-slate-300 text-lg sm:text-xl leading-relaxed mb-8">
-                    Early access for founding members includes a customized workflow audit by our integration specialists. We'll map your existing operations and design your automated future.
-                  </p>
-                  <Link href="/pricing">
-                    <Button variant="primary" size="lg" className="px-8 py-6 rounded-xl font-bold shadow-xl shadow-blue-500/20 hover:shadow-blue-500/30 transition-all">
-                      Claim Your Audit
-                    </Button>
-                  </Link>
-                </div>
-                <div className="lg:flex-1 grid grid-cols-2 gap-4">
-                  <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 p-6 rounded-2xl">
-                    <div className="text-3xl font-bold text-white mb-1">0</div>
-                    <div className="text-sm text-slate-400">Long-term contracts</div>
-                  </div>
-                  <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 p-6 rounded-2xl">
-                    <div className="text-3xl font-bold text-white mb-1">100%</div>
-                    <div className="text-sm text-slate-400">Fixed Transparent Pricing</div>
-                  </div>
-                  <div className="col-span-2 bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 p-6 rounded-2xl">
-                    <div className="flex items-center gap-4">
-                      <div className="flex -space-x-3">
-                        {[1, 2, 3, 4].map((i) => (
-                          <div key={i} className="w-10 h-10 rounded-full border-2 border-slate-900 bg-slate-700 flex items-center justify-center text-[10px] font-bold text-white">
-                            {i === 4 ? '+1k' : <Users2 className="h-4 w-4" />}
-                          </div>
-                        ))}
-                      </div>
-                      <div className="text-sm">
-                        <span className="font-bold text-white block">Used by 1,000+ dentists</span>
-                        <span className="text-slate-400">Processing 1M+ cases annually</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
 
         {/* Social Proof Section */}
         <section id="trust" className="py-24 border-t border-slate-100">

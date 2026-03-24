@@ -115,12 +115,11 @@ export function SchedulerForm({ onComplete }: SchedulerFormProps) {
 
           <Button 
             variant="primary" 
-            className="w-full py-6 text-lg rounded-xl shadow-lg mt-4"
+            className="w-full py-6 text-lg rounded-xl shadow-lg mt-4 font-bold"
             disabled={!isStep1Valid}
             onClick={nextStep}
           >
             Next: Contact Details
-            <ChevronRight className="ml-2 h-5 w-5" />
           </Button>
         </div>
       ) : (
@@ -176,12 +175,11 @@ export function SchedulerForm({ onComplete }: SchedulerFormProps) {
 
           <Button 
             variant="primary" 
-            className="w-full py-6 text-lg rounded-xl shadow-lg mt-4"
+            className="w-full py-6 text-lg rounded-xl shadow-lg mt-4 font-bold"
             disabled={!isStep2Valid}
             onClick={nextStep}
           >
             Show Scheduling Options
-            <CheckCircle2 className="ml-2 h-5 w-5" />
           </Button>
 
           <Button 

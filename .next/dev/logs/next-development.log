@@ -1,107 +1,179 @@
-[00:00:01.062] Server  LOG     ✓ Ready in 811ms
-[00:00:11.701] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:00:12.319] Browser LOG     [Auth] Fallback: manual session check
-[00:00:12.652] Browser LOG     [Auth] Event: SIGNED_OUT
-[00:00:12.652] Browser ERROR   {"__isAuthError":true,"code":"refresh_token_not_found","name":"AuthApiError","status":400}
-[00:00:12.652] Browser LOG     [Auth] Event: SIGNED_OUT
-[00:00:12.652] Browser LOG     [Auth] Event: INITIAL_SESSION
-[00:00:16.103] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:00:16.238] Browser LOG     [Auth] Event: INITIAL_SESSION
-[00:00:56.875] Browser LOG     [Auth] Event: SIGNED_IN
-[00:00:56.876] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
-[00:00:57.388] Browser LOG     [Auth] Profile fetched successfully
-[00:00:57.388] Browser LOG     Login successful, pushing to dashboard
-[00:41:08.248] Server  LOG     ✓ Compiled in 126ms
-[00:41:21.711] Server  LOG     ✓ Compiled in 142ms
-[00:41:37.145] Server  LOG     ✓ Compiled in 207ms
-[00:41:49.007] Server  LOG     ✓ Compiled in 71ms
-[00:41:54.393] Server  LOG     ✓ Compiled in 57ms
-[00:42:16.667] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:42:16.766] Browser LOG     [Auth] Event: SIGNED_IN
-[00:42:16.766] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
-[00:42:16.791] Browser LOG     [Auth] Event: INITIAL_SESSION
-[00:42:16.791] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
-[00:42:17.090] Browser LOG     [Auth] Profile fetched successfully
-[00:42:17.253] Browser LOG     [Auth] Profile fetched successfully
-[00:42:51.801] Server  ERROR   Supabase update error: {}
-[00:42:51.914] Browser ERROR   Error updating status: {}
-[00:43:12.244] Server  ERROR   Supabase update error: {}
-[00:43:12.347] Browser ERROR   Error updating status: {}
-[00:43:23.706] Server  ERROR   Supabase update error: {}
-[00:43:23.809] Browser ERROR   Error updating status: {}
-[00:43:37.273] Server  ERROR   Supabase update error: {}
-[00:43:37.376] Browser ERROR   Error updating status: {}
-[00:45:49.398] Browser ERROR   Error updating status: {}
-[00:50:51.373] Browser LOG     [Auth] Event: SIGNED_OUT
-[00:50:51.374] Browser LOG     [Auth] Event: SIGNED_OUT
-[00:50:57.619] Browser LOG     [Auth] Event: SIGNED_IN
-[00:50:57.619] Browser LOG     [Auth] Fetching profile for dca69d69-6e8d-4cd0-96f5-94767f05fffd...
-[00:50:57.621] Browser LOG     [Auth] Event: SIGNED_IN
-[00:50:57.621] Browser LOG     [Auth] Fetching profile for dca69d69-6e8d-4cd0-96f5-94767f05fffd...
-[00:50:57.836] Browser LOG     [Auth] Profile fetched successfully
-[00:50:57.836] Browser LOG     Login successful, pushing to dashboard
-[00:50:57.984] Browser LOG     [Auth] Profile fetched successfully
-[00:58:24.415] Browser LOG     [Auth] Event: SIGNED_OUT
-[00:58:24.415] Browser LOG     [Auth] Event: SIGNED_OUT
-[00:58:30.336] Browser LOG     [Auth] Event: SIGNED_IN
-[00:58:30.336] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
-[00:58:30.337] Browser LOG     [Auth] Event: SIGNED_IN
-[00:58:30.337] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
-[00:58:30.619] Browser LOG     [Auth] Profile fetched successfully
-[00:58:30.619] Browser LOG     Login successful, pushing to dashboard
-[00:58:30.802] Browser LOG     [Auth] Profile fetched successfully
-[01:06:24.111] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./lab-portal-v1/lib/translations.ts changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
-[01:06:24.125] Server  LOG     ✓ Compiled in 124ms
-[01:06:24.621] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:06:24.741] Browser LOG     [Auth] Event: INITIAL_SESSION
-[01:06:24.741] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
-[01:06:25.709] Browser LOG     [Auth] Profile fetched successfully
-[01:06:46.327] Server  LOG     ✓ Compiled in 174ms
-[01:16:26.142] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:16:26.265] Browser LOG     [Auth] Event: INITIAL_SESSION
-[01:16:26.265] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
-[01:16:26.941] Browser LOG     [Auth] Profile fetched successfully
-[01:20:03.135] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:20:03.248] Browser LOG     [Auth] Event: INITIAL_SESSION
-[01:20:03.248] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
-[01:20:04.145] Browser ERROR   [Auth] Error fetching profile: {
-  "code": "42P17",
-  "details": null,
-  "hint": null,
-  "message": "infinite recursion detected in policy for relation \"Users\""
-}
-[01:20:14.678] Browser LOG     [Auth] Event: SIGNED_IN
-[01:20:14.678] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
-[01:20:14.985] Browser ERROR   [Auth] Error fetching profile: {
-  "code": "42P17",
-  "details": null,
-  "hint": null,
-  "message": "infinite recursion detected in policy for relation \"Users\""
-}
-[01:20:14.985] Browser LOG     Login successful, pushing to dashboard
-[01:21:16.975] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:21:17.107] Browser LOG     [Auth] Event: INITIAL_SESSION
-[01:21:17.107] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
-[01:21:17.516] Browser LOG     [Auth] Profile fetched successfully
-[01:21:38.982] Browser LOG     [Auth] Event: SIGNED_OUT
-[01:21:46.553] Browser LOG     [Auth] Event: SIGNED_IN
-[01:21:46.553] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
-[01:21:46.712] Browser LOG     [Auth] Profile fetched successfully
-[01:21:46.712] Browser LOG     Login successful, pushing to dashboard
-[01:21:49.111] Browser LOG     [Auth] Event: SIGNED_OUT
-[01:21:55.340] Browser LOG     [Auth] Event: SIGNED_IN
-[01:21:55.340] Browser LOG     [Auth] Fetching profile for dca69d69-6e8d-4cd0-96f5-94767f05fffd...
-[01:21:55.506] Browser LOG     [Auth] Profile fetched successfully
-[01:21:55.506] Browser LOG     Login successful, pushing to dashboard
-[01:22:56.060] Server  LOG     ✓ Compiled in 122ms
-[01:23:04.242] Server  LOG     ✓ Compiled in 23ms
-[01:23:16.161] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./lab-portal-v1/lib/translations.ts changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
-[01:23:16.187] Server  LOG     ✓ Compiled in 26ms
-[01:23:16.558] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:23:16.681] Browser LOG     [Auth] Event: INITIAL_SESSION
-[01:23:16.681] Browser LOG     [Auth] Fetching profile for dca69d69-6e8d-4cd0-96f5-94767f05fffd...
-[01:23:17.162] Browser LOG     [Auth] Profile fetched successfully
-[01:24:10.916] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:24:11.029] Browser LOG     [Auth] Event: INITIAL_SESSION
-[01:24:11.029] Browser LOG     [Auth] Fetching profile for dca69d69-6e8d-4cd0-96f5-94767f05fffd...
-[01:24:11.590] Browser LOG     [Auth] Profile fetched successfully
+[00:00:00.931] Server  LOG     ✓ Ready in 709ms
+[00:00:01.564] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:01.670] Browser LOG     [Auth] Event: INITIAL_SESSION
+[00:00:01.670] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
+[00:00:02.092] Browser LOG     [Auth] Profile fetched successfully
+[00:02:04.685] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:02:04.788] Browser LOG     [Auth] Event: INITIAL_SESSION
+[00:02:04.788] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
+[00:02:05.415] Browser LOG     [Auth] Profile fetched successfully
+[00:02:14.096] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:02:14.208] Browser LOG     [Auth] Event: INITIAL_SESSION
+[00:02:14.208] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
+[00:02:14.261] Browser LOG     [Auth] Event: SIGNED_IN
+[00:02:14.261] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
+[00:02:14.579] Browser LOG     [Auth] Profile fetched successfully
+[00:02:14.579] Browser LOG     [billing] Pinging check-status webhook for lab: 069b3f7e-6fd8-45f9-bf29-2d7ef511c3b1
+[00:02:14.579] Browser LOG     [billing] Pinging check-status webhook for lab: 069b3f7e-6fd8-45f9-bf29-2d7ef511c3b1
+[00:02:14.811] Server  ERROR   n8n check-status webhook error: "{\"code\":404,\"message\":\"The requested webhook \\\"8a0891ae-c176-447c-87e4-8949f0e4bec9\\\" is not registered.\",\"hint\":\"Click the 'Execute workflow' button on the canvas, then try again. (In test mode, the webhook only works for one call after you click this button)\"}"
+[00:02:14.835] Server  ERROR   n8n check-status webhook error: "{\"code\":404,\"message\":\"The requested webhook \\\"8a0891ae-c176-447c-87e4-8949f0e4bec9\\\" is not registered.\",\"hint\":\"Click the 'Execute workflow' button on the canvas, then try again. (In test mode, the webhook only works for one call after you click this button)\"}"
+[00:02:15.262] Browser LOG     [Auth] Profile fetched successfully
+[00:02:16.660] Server  ERROR   n8n check-status webhook error: "{\"code\":404,\"message\":\"The requested webhook \\\"8a0891ae-c176-447c-87e4-8949f0e4bec9\\\" is not registered.\",\"hint\":\"Click the 'Execute workflow' button on the canvas, then try again. (In test mode, the webhook only works for one call after you click this button)\"}"
+[00:02:18.033] Server  ERROR   n8n check-status webhook error: "{\"code\":404,\"message\":\"The requested webhook \\\"8a0891ae-c176-447c-87e4-8949f0e4bec9\\\" is not registered.\",\"hint\":\"Click the 'Execute workflow' button on the canvas, then try again. (In test mode, the webhook only works for one call after you click this button)\"}"
+[00:02:18.623] Server  ERROR   n8n check-status webhook error: "{\"code\":404,\"message\":\"The requested webhook \\\"8a0891ae-c176-447c-87e4-8949f0e4bec9\\\" is not registered.\",\"hint\":\"Click the 'Execute workflow' button on the canvas, then try again. (In test mode, the webhook only works for one call after you click this button)\"}"
+[00:02:22.016] Browser LOG     [Auth] Event: SIGNED_IN
+[00:02:22.016] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
+[00:02:22.261] Browser LOG     [Auth] Event: SIGNED_IN
+[00:02:22.261] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
+[00:02:22.619] Server  ERROR   n8n check-status webhook error: "{\"code\":404,\"message\":\"The requested webhook \\\"8a0891ae-c176-447c-87e4-8949f0e4bec9\\\" is not registered.\",\"hint\":\"Click the 'Execute workflow' button on the canvas, then try again. (In test mode, the webhook only works for one call after you click this button)\"}"
+[00:02:23.262] Browser LOG     [Auth] Profile fetched successfully
+[00:02:23.262] Browser LOG     [billing] Pinging check-status webhook for lab: 069b3f7e-6fd8-45f9-bf29-2d7ef511c3b1
+[00:02:23.262] Browser LOG     [billing] Pinging check-status webhook for lab: 069b3f7e-6fd8-45f9-bf29-2d7ef511c3b1
+[00:02:29.955] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:02:30.074] Browser LOG     [Auth] Event: INITIAL_SESSION
+[00:02:30.074] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
+[00:02:30.356] Server  ERROR   n8n check-status webhook error: "{\"code\":404,\"message\":\"The requested webhook \\\"8a0891ae-c176-447c-87e4-8949f0e4bec9\\\" is not registered.\",\"hint\":\"Click the 'Execute workflow' button on the canvas, then try again. (In test mode, the webhook only works for one call after you click this button)\"}"
+[00:02:30.400] Server  ERROR   n8n check-status webhook error: "{\"code\":404,\"message\":\"The requested webhook \\\"8a0891ae-c176-447c-87e4-8949f0e4bec9\\\" is not registered.\",\"hint\":\"Click the 'Execute workflow' button on the canvas, then try again. (In test mode, the webhook only works for one call after you click this button)\"}"
+[00:02:30.425] Browser LOG     [Auth] Profile fetched successfully
+[00:02:31.262] Browser LOG     [Auth] Event: SIGNED_IN
+[00:02:31.262] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
+[00:02:31.262] Browser LOG     [Auth] Profile fetched successfully
+[00:02:31.262] Browser LOG     [billing] Pinging check-status webhook for lab: 069b3f7e-6fd8-45f9-bf29-2d7ef511c3b1
+[00:02:31.262] Browser LOG     [billing] Pinging check-status webhook for lab: 069b3f7e-6fd8-45f9-bf29-2d7ef511c3b1
+[01:05:32.264] Browser LOG     [Auth] Event: TOKEN_REFRESHED
+[01:05:32.266] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
+[01:05:32.267] Browser LOG     [Auth] Event: TOKEN_REFRESHED
+[01:05:32.267] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
+[01:05:32.860] Server  ERROR   n8n check-status webhook error: "{\"code\":404,\"message\":\"The requested webhook \\\"8a0891ae-c176-447c-87e4-8949f0e4bec9\\\" is not registered.\",\"hint\":\"Click the 'Execute workflow' button on the canvas, then try again. (In test mode, the webhook only works for one call after you click this button)\"}"
+[01:05:32.875] Server  ERROR   n8n check-status webhook error: "{\"code\":404,\"message\":\"The requested webhook \\\"8a0891ae-c176-447c-87e4-8949f0e4bec9\\\" is not registered.\",\"hint\":\"Click the 'Execute workflow' button on the canvas, then try again. (In test mode, the webhook only works for one call after you click this button)\"}"
+[01:05:33.261] Browser LOG     [Auth] Profile fetched successfully
+[01:05:33.261] Browser LOG     [billing] Pinging check-status webhook for lab: 069b3f7e-6fd8-45f9-bf29-2d7ef511c3b1
+[01:05:33.261] Browser LOG     [billing] Pinging check-status webhook for lab: 069b3f7e-6fd8-45f9-bf29-2d7ef511c3b1
+[01:05:33.649] Browser LOG     [Auth] Event: SIGNED_IN
+[01:05:33.649] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
+[01:05:34.262] Browser LOG     [Auth] Event: SIGNED_IN
+[01:05:34.262] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
+[01:05:35.887] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:05:35.996] Browser LOG     [Auth] Event: INITIAL_SESSION
+[01:05:35.996] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
+[01:05:36.134] Server  ERROR   n8n check-status webhook error: "{\"code\":404,\"message\":\"The requested webhook \\\"8a0891ae-c176-447c-87e4-8949f0e4bec9\\\" is not registered.\",\"hint\":\"Click the 'Execute workflow' button on the canvas, then try again. (In test mode, the webhook only works for one call after you click this button)\"}"
+[01:05:36.145] Server  ERROR   n8n check-status webhook error: "{\"code\":404,\"message\":\"The requested webhook \\\"8a0891ae-c176-447c-87e4-8949f0e4bec9\\\" is not registered.\",\"hint\":\"Click the 'Execute workflow' button on the canvas, then try again. (In test mode, the webhook only works for one call after you click this button)\"}"
+[01:05:36.152] Browser LOG     [Auth] Profile fetched successfully
+[01:05:36.152] Browser LOG     [billing] Pinging check-status webhook for lab: 069b3f7e-6fd8-45f9-bf29-2d7ef511c3b1
+[01:05:36.152] Browser LOG     [billing] Pinging check-status webhook for lab: 069b3f7e-6fd8-45f9-bf29-2d7ef511c3b1
+[01:05:36.261] Browser LOG     [Auth] Event: SIGNED_IN
+[01:05:36.261] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
+[01:05:40.333] Browser LOG     [Auth] Event: SIGNED_IN
+[01:05:40.333] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
+[01:05:41.262] Browser LOG     [Auth] Event: SIGNED_IN
+[01:05:41.262] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
+[01:05:43.021] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:05:43.128] Browser LOG     [Auth] Event: INITIAL_SESSION
+[01:05:43.128] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
+[01:05:43.261] Browser LOG     [Auth] Event: SIGNED_IN
+[01:05:43.261] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
+[01:05:43.300] Browser LOG     [Auth] Profile fetched successfully
+[01:05:43.300] Browser LOG     [billing] Pinging check-status webhook for lab: 069b3f7e-6fd8-45f9-bf29-2d7ef511c3b1
+[01:05:43.300] Browser LOG     [billing] Pinging check-status webhook for lab: 069b3f7e-6fd8-45f9-bf29-2d7ef511c3b1
+[01:05:43.455] Server  ERROR   n8n check-status webhook error: "{\"code\":404,\"message\":\"The requested webhook \\\"8a0891ae-c176-447c-87e4-8949f0e4bec9\\\" is not registered.\",\"hint\":\"Click the 'Execute workflow' button on the canvas, then try again. (In test mode, the webhook only works for one call after you click this button)\"}"
+[01:05:45.195] Server  ERROR   n8n check-status webhook error: "{\"code\":404,\"message\":\"The requested webhook \\\"8a0891ae-c176-447c-87e4-8949f0e4bec9\\\" is not registered.\",\"hint\":\"Click the 'Execute workflow' button on the canvas, then try again. (In test mode, the webhook only works for one call after you click this button)\"}"
+[01:05:47.957] Browser LOG     [Auth] Event: SIGNED_IN
+[01:05:47.957] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
+[01:05:48.261] Browser LOG     [Auth] Event: SIGNED_IN
+[01:05:48.261] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
+[01:06:45.661] Server  LOG     ✓ Compiled in 799ms
+[01:07:47.809] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:07:47.911] Browser LOG     [Auth] Event: INITIAL_SESSION
+[01:07:47.911] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
+[01:07:48.264] Browser LOG     [Auth] Event: SIGNED_IN
+[01:07:48.264] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
+[01:07:48.653] Browser LOG     [Auth] Profile fetched successfully
+[01:07:48.653] Browser LOG     [billing] Pinging check-status webhook for lab: 069b3f7e-6fd8-45f9-bf29-2d7ef511c3b1
+[01:07:48.653] Browser LOG     [billing] Pinging check-status webhook for lab: 069b3f7e-6fd8-45f9-bf29-2d7ef511c3b1
+[01:07:48.773] Server  ERROR   n8n check-status webhook error: "{\"code\":404,\"message\":\"The requested webhook \\\"8a0891ae-c176-447c-87e4-8949f0e4bec9\\\" is not registered.\",\"hint\":\"Click the 'Execute workflow' button on the canvas, then try again. (In test mode, the webhook only works for one call after you click this button)\"}"
+[01:07:48.782] Server  ERROR   n8n check-status webhook error: "{\"code\":404,\"message\":\"The requested webhook \\\"8a0891ae-c176-447c-87e4-8949f0e4bec9\\\" is not registered.\",\"hint\":\"Click the 'Execute workflow' button on the canvas, then try again. (In test mode, the webhook only works for one call after you click this button)\"}"
+[01:07:50.658] Server  ERROR   n8n check-status webhook error: "{\"code\":404,\"message\":\"The requested webhook \\\"8a0891ae-c176-447c-87e4-8949f0e4bec9\\\" is not registered.\",\"hint\":\"Click the 'Execute workflow' button on the canvas, then try again. (In test mode, the webhook only works for one call after you click this button)\"}"
+[01:07:54.936] Browser LOG     [Auth] Event: SIGNED_IN
+[01:07:54.937] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
+[01:07:55.261] Browser LOG     [Auth] Event: SIGNED_IN
+[01:07:55.262] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
+[01:07:58.601] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:07:58.717] Browser LOG     [Auth] Event: INITIAL_SESSION
+[01:07:58.717] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
+[01:07:58.896] Browser LOG     [Auth] Profile fetched successfully
+[01:07:58.896] Browser LOG     [billing] Pinging check-status webhook for lab: 069b3f7e-6fd8-45f9-bf29-2d7ef511c3b1
+[01:07:58.896] Browser LOG     [billing] Pinging check-status webhook for lab: 069b3f7e-6fd8-45f9-bf29-2d7ef511c3b1
+[01:07:59.014] Server  ERROR   n8n check-status webhook error: "{\"code\":404,\"message\":\"The requested webhook \\\"8a0891ae-c176-447c-87e4-8949f0e4bec9\\\" is not registered.\",\"hint\":\"Click the 'Execute workflow' button on the canvas, then try again. (In test mode, the webhook only works for one call after you click this button)\"}"
+[01:07:59.019] Server  ERROR   n8n check-status webhook error: "{\"code\":404,\"message\":\"The requested webhook \\\"8a0891ae-c176-447c-87e4-8949f0e4bec9\\\" is not registered.\",\"hint\":\"Click the 'Execute workflow' button on the canvas, then try again. (In test mode, the webhook only works for one call after you click this button)\"}"
+[01:07:59.261] Browser LOG     [Auth] Event: SIGNED_IN
+[01:07:59.261] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
+[01:08:00.178] Server  ERROR   n8n check-status webhook error: "{\"code\":404,\"message\":\"The requested webhook \\\"8a0891ae-c176-447c-87e4-8949f0e4bec9\\\" is not registered.\",\"hint\":\"Click the 'Execute workflow' button on the canvas, then try again. (In test mode, the webhook only works for one call after you click this button)\"}"
+[01:08:10.727] Server  LOG       Reload env: .env.local
+[01:08:12.867] Browser LOG     [Auth] Event: SIGNED_IN
+[01:08:12.868] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
+[01:08:13.262] Browser LOG     [Auth] Event: SIGNED_IN
+[01:08:13.262] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
+[01:08:14.405] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:08:14.511] Browser LOG     [Auth] Event: INITIAL_SESSION
+[01:08:14.511] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
+[01:08:14.678] Browser LOG     [Auth] Profile fetched successfully
+[01:08:14.678] Browser LOG     [billing] Pinging check-status webhook for lab: 069b3f7e-6fd8-45f9-bf29-2d7ef511c3b1
+[01:08:14.678] Browser LOG     [billing] Pinging check-status webhook for lab: 069b3f7e-6fd8-45f9-bf29-2d7ef511c3b1
+[01:08:14.844] Server  ERROR   n8n check-status webhook error: "{\"code\":404,\"message\":\"The requested webhook \\\"57306eb1-7001-48c3-9e8d-395f9f7f1c66\\\" is not registered.\",\"hint\":\"Click the 'Execute workflow' button on the canvas, then try again. (In test mode, the webhook only works for one call after you click this button)\"}"
+[01:08:15.261] Browser LOG     [Auth] Event: SIGNED_IN
+[01:08:15.261] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
+[01:25:45.689] Browser LOG     [Auth] Event: SIGNED_IN
+[01:25:45.692] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
+[01:25:46.215] Browser LOG     [Auth] Event: SIGNED_IN
+[01:25:46.215] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
+[01:25:48.198] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:25:48.311] Browser LOG     [Auth] Event: INITIAL_SESSION
+[01:25:48.311] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
+[01:25:49.127] Browser LOG     [Auth] Profile fetched successfully
+[01:25:49.127] Browser LOG     [billing] Pinging check-status webhook for lab: 069b3f7e-6fd8-45f9-bf29-2d7ef511c3b1
+[01:25:49.127] Browser LOG     [billing] Pinging check-status webhook for lab: 069b3f7e-6fd8-45f9-bf29-2d7ef511c3b1
+[01:25:49.330] Server  ERROR   n8n check-status webhook error: "{\"code\":0,\"message\":\"Unused Respond to Webhook node found in the workflow\"}"
+[01:25:49.336] Server  ERROR   n8n check-status webhook error: "{\"code\":0,\"message\":\"Unused Respond to Webhook node found in the workflow\"}"
+[01:25:52.809] Server  ERROR   n8n check-status webhook error: "{\"code\":404,\"message\":\"The requested webhook \\\"57306eb1-7001-48c3-9e8d-395f9f7f1c66\\\" is not registered.\",\"hint\":\"Click the 'Execute workflow' button on the canvas, then try again. (In test mode, the webhook only works for one call after you click this button)\"}"
+[01:26:07.949] Browser LOG     [Auth] Event: SIGNED_IN
+[01:26:07.950] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
+[01:26:10.000] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:26:10.108] Browser LOG     [Auth] Event: INITIAL_SESSION
+[01:26:10.108] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
+[01:26:10.514] Browser LOG     [Auth] Profile fetched successfully
+[01:26:10.514] Browser LOG     [billing] Pinging check-status webhook for lab: 069b3f7e-6fd8-45f9-bf29-2d7ef511c3b1
+[01:26:10.514] Browser LOG     [billing] Pinging check-status webhook for lab: 069b3f7e-6fd8-45f9-bf29-2d7ef511c3b1
+[01:26:10.689] Server  ERROR   n8n check-status webhook error: "{\"code\":404,\"message\":\"The requested webhook \\\"57306eb1-7001-48c3-9e8d-395f9f7f1c66\\\" is not registered.\",\"hint\":\"Click the 'Execute workflow' button on the canvas, then try again. (In test mode, the webhook only works for one call after you click this button)\"}"
+[01:26:11.692] Server  ERROR   Billing Check Status Error: SyntaxError: Unexpected end of JSON input
+[01:26:12.106] Server  ERROR   n8n check-status webhook error: "{\"code\":404,\"message\":\"The requested webhook \\\"57306eb1-7001-48c3-9e8d-395f9f7f1c66\\\" is not registered.\",\"hint\":\"Click the 'Execute workflow' button on the canvas, then try again. (In test mode, the webhook only works for one call after you click this button)\"}"
+[01:26:46.906] Server  LOG       Reload env: .env.local
+[01:27:16.014] Browser LOG     [Auth] Event: SIGNED_IN
+[01:27:16.014] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
+[01:27:23.217] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:27:23.373] Browser LOG     [Auth] Event: INITIAL_SESSION
+[01:27:23.373] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
+[01:27:24.028] Browser LOG     [Auth] Profile fetched successfully
+[01:27:24.028] Browser LOG     [billing] Pinging check-status webhook for lab: 069b3f7e-6fd8-45f9-bf29-2d7ef511c3b1
+[01:27:24.028] Browser LOG     [billing] Pinging check-status webhook for lab: 069b3f7e-6fd8-45f9-bf29-2d7ef511c3b1
+[01:27:25.462] Server  ERROR   Billing Check Status Error: SyntaxError: Unexpected end of JSON input
+[01:27:25.505] Server  ERROR   Billing Check Status Error: SyntaxError: Unexpected end of JSON input
+[01:27:36.467] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:27:36.590] Browser LOG     [Auth] Event: INITIAL_SESSION
+[01:27:36.590] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
+[01:27:36.940] Browser LOG     [Auth] Profile fetched successfully
+[01:27:36.940] Browser LOG     [billing] Pinging check-status webhook for lab: 069b3f7e-6fd8-45f9-bf29-2d7ef511c3b1
+[01:27:36.940] Browser LOG     [billing] Pinging check-status webhook for lab: 069b3f7e-6fd8-45f9-bf29-2d7ef511c3b1
+[01:27:38.098] Server  ERROR   Billing Check Status Error: SyntaxError: Unexpected end of JSON input
+[01:27:38.150] Server  ERROR   Billing Check Status Error: SyntaxError: Unexpected end of JSON input
+[01:27:40.899] Server  ERROR   Billing Check Status Error: SyntaxError: Unexpected end of JSON input
+[01:29:15.754] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:29:15.860] Browser LOG     [Auth] Event: INITIAL_SESSION
+[01:29:15.860] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
+[01:29:16.021] Browser LOG     [Auth] Profile fetched successfully
+[01:33:01.499] Browser LOG     [Auth] Event: SIGNED_IN
+[01:33:01.499] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
+[01:34:52.939] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:34:52.939] Browser LOG     [Auth] Event: INITIAL_SESSION
+[01:34:52.939] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
+[01:34:53.598] Browser LOG     [Auth] Profile fetched successfully
+[01:34:59.433] Browser LOG     [Auth] Event: SIGNED_OUT

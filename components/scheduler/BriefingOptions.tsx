@@ -45,11 +45,10 @@ export function BriefingOptions() {
           </ul>
           <Button 
             variant="outline" 
-            className="w-full py-6 text-lg rounded-xl border-slate-200 group-hover:bg-blue-600 group-hover:text-white group-hover:border-blue-600 transition-all"
+            className="w-full py-6 text-lg rounded-xl border-slate-200 group-hover:bg-blue-600 group-hover:text-white group-hover:border-blue-600 transition-all font-bold"
             onClick={() => window.open('https://calendly.com/daltonshepler/30min', '_blank')}
           >
             Open Scheduler
-            <ArrowRight className="ml-2 h-4 w-4" />
           </Button>
         </Card>
 
@@ -99,7 +98,6 @@ export function BriefingOptions() {
               onClick={() => setShowPhone(true)}
             >
               Start Instant Call
-              <PhoneCall className="ml-2 h-4 w-4 group-hover:rotate-12 transition-transform" />
             </Button>
           )}
         </Card>
