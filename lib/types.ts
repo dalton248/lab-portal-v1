@@ -50,6 +50,7 @@ export interface Case {
   input_method?: CaseInputMethod;
   recipient_id?: string;
   recipient_email?: string;
+  price?: number;
 }
 
 export interface Message {
@@ -80,4 +81,14 @@ export interface Partnership {
   dentistEmail?: string;
   officeName?: string;
   createdAt?: string;
+}
+
+export interface Service {
+  id: string;
+  lab_id: string;
+  name: string;
+  description?: string;
+  base_price: number;
+  category: string;
+  created_at?: string;
 }

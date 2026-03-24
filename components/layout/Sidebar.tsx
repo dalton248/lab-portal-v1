@@ -22,6 +22,8 @@ export function Sidebar({ currentUser, labName }: SidebarProps) {
     { name: t('nav.caseInbox'), href: '/case-inbox', icon: Inbox, show: currentUser?.role === 'lab_admin' },
     { name: t('nav.team'), href: '/team', icon: Users, show: true },
     { name: t('nav.billing'), href: '/billing', icon: CreditCard, show: currentUser?.role === 'lab_admin' },
+    { name: t('services.title'), href: '/billing/services', icon: Building2, show: currentUser?.role === 'lab_admin' },
+    { name: t('billing.invoiceGenerator'), href: '/billing/invoices/new', icon: FileText, show: currentUser?.role === 'lab_admin' },
     { name: t('nav.settings'), href: '/settings', icon: Settings, show: true },
   ];
 

@@ -45,3 +45,7 @@ export function CardTitle({ children, className = '' }: { children: React.ReactN
 export function CardDescription({ children, className = '' }: { children: React.ReactNode; className?: string }) {
   return <p className={`text-sm text-slate-500 ${className}`}>{children}</p>;
 }
+
+export function CardFooter({ children, className = '' }: { children: React.ReactNode; className?: string }) {
+  return <div className={`px-6 py-4 border-t border-slate-100 ${className}`}>{children}</div>;
+}

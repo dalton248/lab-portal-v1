@@ -10,10 +10,10 @@ import { Textarea } from '@/components/ui/Textarea';
 import { Button } from '@/components/ui/Button';
 import { useLanguage } from '@/components/providers/LanguageProvider';
 import { ToothChart } from '@/components/ui/ToothChart';
-import { CaseInputMethod } from '@/components/cases/CaseInputMethod';
 import { RecipientSelector } from '@/components/cases/RecipientSelector';
-import { supabase } from '@/lib/supabase';
 import { useAuth } from '@/components/providers/AuthProvider';
+import { supabase } from '@/lib/supabase';
+import { getLabServices } from '@/lib/services';
 import { PrepType, WhatNeeded, CaseInputMethod as InputMethodType } from '@/lib/types';
 
 export default function NewCasePage() {
@@ -21,15 +21,19 @@ export default function NewCasePage() {
   const { profile } = useAuth();
   const { t } = useLanguage();
 
+  // Services State
+  const [services, setServices] = useState<any[]>([]);
+  const [isLoadingServices, setIsLoading] = useState(false);
+
   // Form State
   const [patientName, setPatientName] = useState('');
   const [shade, setShade] = useState('');
   const [prepType, setPrepType] = useState<PrepType | ''>('');
-  const [whatNeeded, setWhatNeeded] = useState<WhatNeeded>('crown');
+  const [whatNeeded, setWhatNeeded] = useState<WhatNeeded | string>('crown');
+  const [price, setPrice] = useState<string>('');
   const [dueDate, setDueDate] = useState('');
   const [notes, setNotes] = useState('');
   const [selectedTeeth, setSelectedTeeth] = useState<string[]>([]);
-  const [inputMethod, setInputMethod] = useState<InputMethodType>('upload');
   const [files, setFiles] = useState<File[]>([]);
   const [recipientId, setRecipientId] = useState('');
   const [externalEmail, setExternalEmail] = useState('');
@@ -38,6 +42,24 @@ export default function NewCasePage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  // Fetch lab services on mount
+  React.useEffect(() => {
+    async function loadServices() {
+      if (profile?.lab_id) {
+        setIsLoading(true);
+        try {
+          const data = await getLabServices(profile.lab_id);
+          setServices(data || []);
+        } catch (err) {
+          console.error('Error loading services:', err);
+        } finally {
+          setIsLoading(false);
+        }
+      }
+    }
+    loadServices();
+  }, [profile?.lab_id]);
+
   const prepTypeOptions = [
     { value: 'monolithic', label: 'Monolithic' },
     { value: 'layered', label: 'Layered' },
@@ -45,7 +67,7 @@ export default function NewCasePage() {
     { value: 'traditional', label: 'Traditional' },
   ];
 
-  const whatNeededOptions = [
+  const defaultWhatNeededOptions = [
     { value: 'crown', label: 'Crown' },
     { value: 'implant', label: 'Implant' },
     { value: 'denture', label: 'Denture' },
@@ -54,6 +76,21 @@ export default function NewCasePage() {
     { value: 'retainer', label: 'Retainer' },
     { value: 'custom', label: 'Custom' },
   ];
+
+  // Dynamic whatNeeded options
+  const whatNeededOptions = services.length > 0 
+    ? services.map(s => ({ value: s.id, label: s.name }))
+    : defaultWhatNeededOptions;
+
+  const handleWhatNeededChange = (value: string) => {
+    setWhatNeeded(value);
+    
+    // Auto-price logic
+    const selectedService = services.find(s => s.id === value);
+    if (selectedService) {
+      setPrice(selectedService.base_price.toString());
+    }
+  };
 
   const handleToggleTooth = (tooth: string) => {
     setSelectedTeeth(prev => 
@@ -80,7 +117,7 @@ export default function NewCasePage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!isFormValid()) {
-      setError('Please fill in all mandatory fields (Shade and Prep Type are required)');
+      setError('Please fill in all mandatory fields (Patient Name is required)');
       return;
     }
 
@@ -92,8 +129,9 @@ export default function NewCasePage() {
       const caseData = {
         patientName,
         caseId: `CS-${Math.floor(1000 + Math.random() * 9000)}`,
-        caseType: whatNeeded,
+        caseType: services.find(s => s.id === whatNeeded)?.name || whatNeeded,
         shade,
+        price: parseFloat(price) || null,
         prep_type: prepType,
         what_needed: whatNeeded,
         status: 'submitted',
@@ -103,7 +141,7 @@ export default function NewCasePage() {
         labId: profile?.lab_id,
         notes,
         teeth_numbers: selectedTeeth,
-        input_method: inputMethod,
+        // input_method: inputMethod, // removed
         recipient_id: recipientId || null,
         recipient_email: externalEmail || null,
         createdAt: new Date().toISOString(),
@@ -194,29 +232,38 @@ export default function NewCasePage() {
               />
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <Input
-                label={t('cases.shadeLabelRequired')}
-                required
-                value={shade}
-                onChange={(e) => setShade(e.target.value)}
-                placeholder={t('cases.shadePlaceholder')}
-                className="border-blue-100 focus:border-blue-500"
-              />
-              <Select
-                label={t('cases.prepTypeLabelRequired')}
-                options={prepTypeOptions}
-                value={prepType}
-                onChange={(e) => setPrepType(e.target.value as PrepType)}
-                className="border-blue-100"
-              />
-              <Select
-                label={t('cases.whatNeededLabel')}
-                options={whatNeededOptions}
-                value={whatNeeded}
-                onChange={(e) => setWhatNeeded(e.target.value as WhatNeeded)}
-              />
-            </div>
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <Input
+                  label={t('cases.shadeLabelRequired')}
+                  required
+                  value={shade}
+                  onChange={(e) => setShade(e.target.value)}
+                  placeholder={t('cases.shadePlaceholder')}
+                  className="border-blue-100 focus:border-blue-500"
+                />
+                <Select
+                  label={t('cases.prepTypeLabelRequired')}
+                  options={prepTypeOptions}
+                  value={prepType}
+                  onChange={(e) => setPrepType(e.target.value as PrepType)}
+                  className="border-blue-100"
+                />
+                <Select
+                  label={t('cases.whatNeededLabel')}
+                  options={whatNeededOptions}
+                  value={whatNeeded}
+                  onChange={(e) => handleWhatNeededChange(e.target.value)}
+                />
+                <Input
+                  label={t('cases.priceLabel')}
+                  type="number"
+                  step="0.01"
+                  value={price}
+                  onChange={(e) => setPrice(e.target.value)}
+                  placeholder="0.00"
+                  className="border-blue-50"
+                />
+              </div>
             
             <Textarea
               label={t('cases.instructionsLabel')}
@@ -235,18 +282,6 @@ export default function NewCasePage() {
               selectedTeeth={selectedTeeth} 
               onToggleTooth={handleToggleTooth} 
               onSelectArch={handleSelectArch} 
-            />
-          </CardContent>
-        </Card>
-
-        {/* Section 3: Logistic / Input Method */}
-        <Card className="border-slate-200 shadow-sm">
-          <CardContent className="p-6">
-            <CaseInputMethod 
-              method={inputMethod} 
-              setMethod={setInputMethod} 
-              files={files} 
-              onFilesChange={setFiles} 
             />
           </CardContent>
         </Card>
