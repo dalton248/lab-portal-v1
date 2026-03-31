@@ -1,910 +1,145 @@
-[00:00:00.931] Server  LOG     ✓ Ready in 709ms
-[00:00:01.564] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:00:01.670] Browser LOG     [Auth] Event: INITIAL_SESSION
-[00:00:01.670] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
-[00:00:02.092] Browser LOG     [Auth] Profile fetched successfully
-[00:02:04.685] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:02:04.788] Browser LOG     [Auth] Event: INITIAL_SESSION
-[00:02:04.788] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
-[00:02:05.415] Browser LOG     [Auth] Profile fetched successfully
-[00:02:14.096] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:02:14.208] Browser LOG     [Auth] Event: INITIAL_SESSION
-[00:02:14.208] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
-[00:02:14.261] Browser LOG     [Auth] Event: SIGNED_IN
-[00:02:14.261] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
-[00:02:14.579] Browser LOG     [Auth] Profile fetched successfully
-[00:02:14.579] Browser LOG     [billing] Pinging check-status webhook for lab: 069b3f7e-6fd8-45f9-bf29-2d7ef511c3b1
-[00:02:14.579] Browser LOG     [billing] Pinging check-status webhook for lab: 069b3f7e-6fd8-45f9-bf29-2d7ef511c3b1
-[00:02:14.811] Server  ERROR   n8n check-status webhook error: "{\"code\":404,\"message\":\"The requested webhook \\\"8a0891ae-c176-447c-87e4-8949f0e4bec9\\\" is not registered.\",\"hint\":\"Click the 'Execute workflow' button on the canvas, then try again. (In test mode, the webhook only works for one call after you click this button)\"}"
-[00:02:14.835] Server  ERROR   n8n check-status webhook error: "{\"code\":404,\"message\":\"The requested webhook \\\"8a0891ae-c176-447c-87e4-8949f0e4bec9\\\" is not registered.\",\"hint\":\"Click the 'Execute workflow' button on the canvas, then try again. (In test mode, the webhook only works for one call after you click this button)\"}"
-[00:02:15.262] Browser LOG     [Auth] Profile fetched successfully
-[00:02:16.660] Server  ERROR   n8n check-status webhook error: "{\"code\":404,\"message\":\"The requested webhook \\\"8a0891ae-c176-447c-87e4-8949f0e4bec9\\\" is not registered.\",\"hint\":\"Click the 'Execute workflow' button on the canvas, then try again. (In test mode, the webhook only works for one call after you click this button)\"}"
-[00:02:18.033] Server  ERROR   n8n check-status webhook error: "{\"code\":404,\"message\":\"The requested webhook \\\"8a0891ae-c176-447c-87e4-8949f0e4bec9\\\" is not registered.\",\"hint\":\"Click the 'Execute workflow' button on the canvas, then try again. (In test mode, the webhook only works for one call after you click this button)\"}"
-[00:02:18.623] Server  ERROR   n8n check-status webhook error: "{\"code\":404,\"message\":\"The requested webhook \\\"8a0891ae-c176-447c-87e4-8949f0e4bec9\\\" is not registered.\",\"hint\":\"Click the 'Execute workflow' button on the canvas, then try again. (In test mode, the webhook only works for one call after you click this button)\"}"
-[00:02:22.016] Browser LOG     [Auth] Event: SIGNED_IN
-[00:02:22.016] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
-[00:02:22.261] Browser LOG     [Auth] Event: SIGNED_IN
-[00:02:22.261] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
-[00:02:22.619] Server  ERROR   n8n check-status webhook error: "{\"code\":404,\"message\":\"The requested webhook \\\"8a0891ae-c176-447c-87e4-8949f0e4bec9\\\" is not registered.\",\"hint\":\"Click the 'Execute workflow' button on the canvas, then try again. (In test mode, the webhook only works for one call after you click this button)\"}"
-[00:02:23.262] Browser LOG     [Auth] Profile fetched successfully
-[00:02:23.262] Browser LOG     [billing] Pinging check-status webhook for lab: 069b3f7e-6fd8-45f9-bf29-2d7ef511c3b1
-[00:02:23.262] Browser LOG     [billing] Pinging check-status webhook for lab: 069b3f7e-6fd8-45f9-bf29-2d7ef511c3b1
-[00:02:29.955] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:02:30.074] Browser LOG     [Auth] Event: INITIAL_SESSION
-[00:02:30.074] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
-[00:02:30.356] Server  ERROR   n8n check-status webhook error: "{\"code\":404,\"message\":\"The requested webhook \\\"8a0891ae-c176-447c-87e4-8949f0e4bec9\\\" is not registered.\",\"hint\":\"Click the 'Execute workflow' button on the canvas, then try again. (In test mode, the webhook only works for one call after you click this button)\"}"
-[00:02:30.400] Server  ERROR   n8n check-status webhook error: "{\"code\":404,\"message\":\"The requested webhook \\\"8a0891ae-c176-447c-87e4-8949f0e4bec9\\\" is not registered.\",\"hint\":\"Click the 'Execute workflow' button on the canvas, then try again. (In test mode, the webhook only works for one call after you click this button)\"}"
-[00:02:30.425] Browser LOG     [Auth] Profile fetched successfully
-[00:02:31.262] Browser LOG     [Auth] Event: SIGNED_IN
-[00:02:31.262] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
-[00:02:31.262] Browser LOG     [Auth] Profile fetched successfully
-[00:02:31.262] Browser LOG     [billing] Pinging check-status webhook for lab: 069b3f7e-6fd8-45f9-bf29-2d7ef511c3b1
-[00:02:31.262] Browser LOG     [billing] Pinging check-status webhook for lab: 069b3f7e-6fd8-45f9-bf29-2d7ef511c3b1
-[01:05:32.264] Browser LOG     [Auth] Event: TOKEN_REFRESHED
-[01:05:32.266] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
-[01:05:32.267] Browser LOG     [Auth] Event: TOKEN_REFRESHED
-[01:05:32.267] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
-[01:05:32.860] Server  ERROR   n8n check-status webhook error: "{\"code\":404,\"message\":\"The requested webhook \\\"8a0891ae-c176-447c-87e4-8949f0e4bec9\\\" is not registered.\",\"hint\":\"Click the 'Execute workflow' button on the canvas, then try again. (In test mode, the webhook only works for one call after you click this button)\"}"
-[01:05:32.875] Server  ERROR   n8n check-status webhook error: "{\"code\":404,\"message\":\"The requested webhook \\\"8a0891ae-c176-447c-87e4-8949f0e4bec9\\\" is not registered.\",\"hint\":\"Click the 'Execute workflow' button on the canvas, then try again. (In test mode, the webhook only works for one call after you click this button)\"}"
-[01:05:33.261] Browser LOG     [Auth] Profile fetched successfully
-[01:05:33.261] Browser LOG     [billing] Pinging check-status webhook for lab: 069b3f7e-6fd8-45f9-bf29-2d7ef511c3b1
-[01:05:33.261] Browser LOG     [billing] Pinging check-status webhook for lab: 069b3f7e-6fd8-45f9-bf29-2d7ef511c3b1
-[01:05:33.649] Browser LOG     [Auth] Event: SIGNED_IN
-[01:05:33.649] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
-[01:05:34.262] Browser LOG     [Auth] Event: SIGNED_IN
-[01:05:34.262] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
-[01:05:35.887] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:05:35.996] Browser LOG     [Auth] Event: INITIAL_SESSION
-[01:05:35.996] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
-[01:05:36.134] Server  ERROR   n8n check-status webhook error: "{\"code\":404,\"message\":\"The requested webhook \\\"8a0891ae-c176-447c-87e4-8949f0e4bec9\\\" is not registered.\",\"hint\":\"Click the 'Execute workflow' button on the canvas, then try again. (In test mode, the webhook only works for one call after you click this button)\"}"
-[01:05:36.145] Server  ERROR   n8n check-status webhook error: "{\"code\":404,\"message\":\"The requested webhook \\\"8a0891ae-c176-447c-87e4-8949f0e4bec9\\\" is not registered.\",\"hint\":\"Click the 'Execute workflow' button on the canvas, then try again. (In test mode, the webhook only works for one call after you click this button)\"}"
-[01:05:36.152] Browser LOG     [Auth] Profile fetched successfully
-[01:05:36.152] Browser LOG     [billing] Pinging check-status webhook for lab: 069b3f7e-6fd8-45f9-bf29-2d7ef511c3b1
-[01:05:36.152] Browser LOG     [billing] Pinging check-status webhook for lab: 069b3f7e-6fd8-45f9-bf29-2d7ef511c3b1
-[01:05:36.261] Browser LOG     [Auth] Event: SIGNED_IN
-[01:05:36.261] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
-[01:05:40.333] Browser LOG     [Auth] Event: SIGNED_IN
-[01:05:40.333] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
-[01:05:41.262] Browser LOG     [Auth] Event: SIGNED_IN
-[01:05:41.262] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
-[01:05:43.021] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:05:43.128] Browser LOG     [Auth] Event: INITIAL_SESSION
-[01:05:43.128] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
-[01:05:43.261] Browser LOG     [Auth] Event: SIGNED_IN
-[01:05:43.261] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
-[01:05:43.300] Browser LOG     [Auth] Profile fetched successfully
-[01:05:43.300] Browser LOG     [billing] Pinging check-status webhook for lab: 069b3f7e-6fd8-45f9-bf29-2d7ef511c3b1
-[01:05:43.300] Browser LOG     [billing] Pinging check-status webhook for lab: 069b3f7e-6fd8-45f9-bf29-2d7ef511c3b1
-[01:05:43.455] Server  ERROR   n8n check-status webhook error: "{\"code\":404,\"message\":\"The requested webhook \\\"8a0891ae-c176-447c-87e4-8949f0e4bec9\\\" is not registered.\",\"hint\":\"Click the 'Execute workflow' button on the canvas, then try again. (In test mode, the webhook only works for one call after you click this button)\"}"
-[01:05:45.195] Server  ERROR   n8n check-status webhook error: "{\"code\":404,\"message\":\"The requested webhook \\\"8a0891ae-c176-447c-87e4-8949f0e4bec9\\\" is not registered.\",\"hint\":\"Click the 'Execute workflow' button on the canvas, then try again. (In test mode, the webhook only works for one call after you click this button)\"}"
-[01:05:47.957] Browser LOG     [Auth] Event: SIGNED_IN
-[01:05:47.957] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
-[01:05:48.261] Browser LOG     [Auth] Event: SIGNED_IN
-[01:05:48.261] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
-[01:06:45.661] Server  LOG     ✓ Compiled in 799ms
-[01:07:47.809] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:07:47.911] Browser LOG     [Auth] Event: INITIAL_SESSION
-[01:07:47.911] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
-[01:07:48.264] Browser LOG     [Auth] Event: SIGNED_IN
-[01:07:48.264] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
-[01:07:48.653] Browser LOG     [Auth] Profile fetched successfully
-[01:07:48.653] Browser LOG     [billing] Pinging check-status webhook for lab: 069b3f7e-6fd8-45f9-bf29-2d7ef511c3b1
-[01:07:48.653] Browser LOG     [billing] Pinging check-status webhook for lab: 069b3f7e-6fd8-45f9-bf29-2d7ef511c3b1
-[01:07:48.773] Server  ERROR   n8n check-status webhook error: "{\"code\":404,\"message\":\"The requested webhook \\\"8a0891ae-c176-447c-87e4-8949f0e4bec9\\\" is not registered.\",\"hint\":\"Click the 'Execute workflow' button on the canvas, then try again. (In test mode, the webhook only works for one call after you click this button)\"}"
-[01:07:48.782] Server  ERROR   n8n check-status webhook error: "{\"code\":404,\"message\":\"The requested webhook \\\"8a0891ae-c176-447c-87e4-8949f0e4bec9\\\" is not registered.\",\"hint\":\"Click the 'Execute workflow' button on the canvas, then try again. (In test mode, the webhook only works for one call after you click this button)\"}"
-[01:07:50.658] Server  ERROR   n8n check-status webhook error: "{\"code\":404,\"message\":\"The requested webhook \\\"8a0891ae-c176-447c-87e4-8949f0e4bec9\\\" is not registered.\",\"hint\":\"Click the 'Execute workflow' button on the canvas, then try again. (In test mode, the webhook only works for one call after you click this button)\"}"
-[01:07:54.936] Browser LOG     [Auth] Event: SIGNED_IN
-[01:07:54.937] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
-[01:07:55.261] Browser LOG     [Auth] Event: SIGNED_IN
-[01:07:55.262] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
-[01:07:58.601] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:07:58.717] Browser LOG     [Auth] Event: INITIAL_SESSION
-[01:07:58.717] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
-[01:07:58.896] Browser LOG     [Auth] Profile fetched successfully
-[01:07:58.896] Browser LOG     [billing] Pinging check-status webhook for lab: 069b3f7e-6fd8-45f9-bf29-2d7ef511c3b1
-[01:07:58.896] Browser LOG     [billing] Pinging check-status webhook for lab: 069b3f7e-6fd8-45f9-bf29-2d7ef511c3b1
-[01:07:59.014] Server  ERROR   n8n check-status webhook error: "{\"code\":404,\"message\":\"The requested webhook \\\"8a0891ae-c176-447c-87e4-8949f0e4bec9\\\" is not registered.\",\"hint\":\"Click the 'Execute workflow' button on the canvas, then try again. (In test mode, the webhook only works for one call after you click this button)\"}"
-[01:07:59.019] Server  ERROR   n8n check-status webhook error: "{\"code\":404,\"message\":\"The requested webhook \\\"8a0891ae-c176-447c-87e4-8949f0e4bec9\\\" is not registered.\",\"hint\":\"Click the 'Execute workflow' button on the canvas, then try again. (In test mode, the webhook only works for one call after you click this button)\"}"
-[01:07:59.261] Browser LOG     [Auth] Event: SIGNED_IN
-[01:07:59.261] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
-[01:08:00.178] Server  ERROR   n8n check-status webhook error: "{\"code\":404,\"message\":\"The requested webhook \\\"8a0891ae-c176-447c-87e4-8949f0e4bec9\\\" is not registered.\",\"hint\":\"Click the 'Execute workflow' button on the canvas, then try again. (In test mode, the webhook only works for one call after you click this button)\"}"
-[01:08:10.727] Server  LOG       Reload env: .env.local
-[01:08:12.867] Browser LOG     [Auth] Event: SIGNED_IN
-[01:08:12.868] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
-[01:08:13.262] Browser LOG     [Auth] Event: SIGNED_IN
-[01:08:13.262] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
-[01:08:14.405] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:08:14.511] Browser LOG     [Auth] Event: INITIAL_SESSION
-[01:08:14.511] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
-[01:08:14.678] Browser LOG     [Auth] Profile fetched successfully
-[01:08:14.678] Browser LOG     [billing] Pinging check-status webhook for lab: 069b3f7e-6fd8-45f9-bf29-2d7ef511c3b1
-[01:08:14.678] Browser LOG     [billing] Pinging check-status webhook for lab: 069b3f7e-6fd8-45f9-bf29-2d7ef511c3b1
-[01:08:14.844] Server  ERROR   n8n check-status webhook error: "{\"code\":404,\"message\":\"The requested webhook \\\"57306eb1-7001-48c3-9e8d-395f9f7f1c66\\\" is not registered.\",\"hint\":\"Click the 'Execute workflow' button on the canvas, then try again. (In test mode, the webhook only works for one call after you click this button)\"}"
-[01:08:15.261] Browser LOG     [Auth] Event: SIGNED_IN
-[01:08:15.261] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
-[01:25:45.689] Browser LOG     [Auth] Event: SIGNED_IN
-[01:25:45.692] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
-[01:25:46.215] Browser LOG     [Auth] Event: SIGNED_IN
-[01:25:46.215] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
-[01:25:48.198] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:25:48.311] Browser LOG     [Auth] Event: INITIAL_SESSION
-[01:25:48.311] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
-[01:25:49.127] Browser LOG     [Auth] Profile fetched successfully
-[01:25:49.127] Browser LOG     [billing] Pinging check-status webhook for lab: 069b3f7e-6fd8-45f9-bf29-2d7ef511c3b1
-[01:25:49.127] Browser LOG     [billing] Pinging check-status webhook for lab: 069b3f7e-6fd8-45f9-bf29-2d7ef511c3b1
-[01:25:49.330] Server  ERROR   n8n check-status webhook error: "{\"code\":0,\"message\":\"Unused Respond to Webhook node found in the workflow\"}"
-[01:25:49.336] Server  ERROR   n8n check-status webhook error: "{\"code\":0,\"message\":\"Unused Respond to Webhook node found in the workflow\"}"
-[01:25:52.809] Server  ERROR   n8n check-status webhook error: "{\"code\":404,\"message\":\"The requested webhook \\\"57306eb1-7001-48c3-9e8d-395f9f7f1c66\\\" is not registered.\",\"hint\":\"Click the 'Execute workflow' button on the canvas, then try again. (In test mode, the webhook only works for one call after you click this button)\"}"
-[01:26:07.949] Browser LOG     [Auth] Event: SIGNED_IN
-[01:26:07.950] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
-[01:26:10.000] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:26:10.108] Browser LOG     [Auth] Event: INITIAL_SESSION
-[01:26:10.108] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
-[01:26:10.514] Browser LOG     [Auth] Profile fetched successfully
-[01:26:10.514] Browser LOG     [billing] Pinging check-status webhook for lab: 069b3f7e-6fd8-45f9-bf29-2d7ef511c3b1
-[01:26:10.514] Browser LOG     [billing] Pinging check-status webhook for lab: 069b3f7e-6fd8-45f9-bf29-2d7ef511c3b1
-[01:26:10.689] Server  ERROR   n8n check-status webhook error: "{\"code\":404,\"message\":\"The requested webhook \\\"57306eb1-7001-48c3-9e8d-395f9f7f1c66\\\" is not registered.\",\"hint\":\"Click the 'Execute workflow' button on the canvas, then try again. (In test mode, the webhook only works for one call after you click this button)\"}"
-[01:26:11.692] Server  ERROR   Billing Check Status Error: SyntaxError: Unexpected end of JSON input
-[01:26:12.106] Server  ERROR   n8n check-status webhook error: "{\"code\":404,\"message\":\"The requested webhook \\\"57306eb1-7001-48c3-9e8d-395f9f7f1c66\\\" is not registered.\",\"hint\":\"Click the 'Execute workflow' button on the canvas, then try again. (In test mode, the webhook only works for one call after you click this button)\"}"
-[01:26:46.906] Server  LOG       Reload env: .env.local
-[01:27:16.014] Browser LOG     [Auth] Event: SIGNED_IN
-[01:27:16.014] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
-[01:27:23.217] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:27:23.373] Browser LOG     [Auth] Event: INITIAL_SESSION
-[01:27:23.373] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
-[01:27:24.028] Browser LOG     [Auth] Profile fetched successfully
-[01:27:24.028] Browser LOG     [billing] Pinging check-status webhook for lab: 069b3f7e-6fd8-45f9-bf29-2d7ef511c3b1
-[01:27:24.028] Browser LOG     [billing] Pinging check-status webhook for lab: 069b3f7e-6fd8-45f9-bf29-2d7ef511c3b1
-[01:27:25.462] Server  ERROR   Billing Check Status Error: SyntaxError: Unexpected end of JSON input
-[01:27:25.505] Server  ERROR   Billing Check Status Error: SyntaxError: Unexpected end of JSON input
-[01:27:36.467] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:27:36.590] Browser LOG     [Auth] Event: INITIAL_SESSION
-[01:27:36.590] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
-[01:27:36.940] Browser LOG     [Auth] Profile fetched successfully
-[01:27:36.940] Browser LOG     [billing] Pinging check-status webhook for lab: 069b3f7e-6fd8-45f9-bf29-2d7ef511c3b1
-[01:27:36.940] Browser LOG     [billing] Pinging check-status webhook for lab: 069b3f7e-6fd8-45f9-bf29-2d7ef511c3b1
-[01:27:38.098] Server  ERROR   Billing Check Status Error: SyntaxError: Unexpected end of JSON input
-[01:27:38.150] Server  ERROR   Billing Check Status Error: SyntaxError: Unexpected end of JSON input
-[01:27:40.899] Server  ERROR   Billing Check Status Error: SyntaxError: Unexpected end of JSON input
-[01:29:15.754] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:29:15.860] Browser LOG     [Auth] Event: INITIAL_SESSION
-[01:29:15.860] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
-[01:29:16.021] Browser LOG     [Auth] Profile fetched successfully
-[01:33:01.499] Browser LOG     [Auth] Event: SIGNED_IN
-[01:33:01.499] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
-[01:34:52.939] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:34:52.939] Browser LOG     [Auth] Event: INITIAL_SESSION
-[01:34:52.939] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
-[01:34:53.598] Browser LOG     [Auth] Profile fetched successfully
-[01:34:59.433] Browser LOG     [Auth] Event: SIGNED_OUT
-[02:22:53.572] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./lab-portal-v1/lib/translations.ts changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
-[02:22:53.580] Server  LOG     ✓ Compiled in 408ms
-[02:22:54.503] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[02:22:55.270] Browser LOG     [Auth] Event: INITIAL_SESSION
-[02:23:26.261] Browser ERROR   ./lab-portal-v1/components/layout/Sidebar.tsx:19:37
-Parsing ecmascript source code failed
-  17 |   const { t } = useLanguage();
-  18 |
-> 19 |     { name: t('nav.dashboard'), href: '/dashboard', icon: LayoutDashboard, show: true },
-     |                                     ^
-  20 |     { name: t('nav.cases'), href: '/cases', icon: FileText, show: true },
-  21 |     { name: t('nav.caseInbox'), href: '/case-inbox', icon: Inbox, show: currentUser?.role === 'lab_admin' },
-  22 |     { name: t('nav.team'), href: '/team', icon: Users, show: true },
-
-Expected ';', '}' or <eof>
-
-Import traces:
-  Client Component Browser:
-    ./lab-portal-v1/components/layout/Sidebar.tsx [Client Component Browser]
-    ./lab-portal-v1/app/(dashboard)/layout.tsx [Client Component Browser]
-    ./lab-portal-v1/app/(dashboard)/layout.tsx [Server Component]
-
-  Client Component SSR:
-    ./lab-portal-v1/components/layout/Sidebar.tsx [Client Component SSR]
-    ./lab-portal-v1/app/(dashboard)/layout.tsx [Client Component SSR]
-    ./lab-portal-v1/app/(dashboard)/layout.tsx [Server Component]
-[02:23:32.442] Server  LOG     ✓ Compiled in 74ms
-[02:24:10.843] Server  LOG     ✓ Compiled in 0ms
-[02:24:23.823] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./lab-portal-v1/lib/translations.ts changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
-[02:24:23.841] Server  LOG     ✓ Compiled in 40ms
-[02:24:24.550] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[02:24:25.262] Browser LOG     [Auth] Event: INITIAL_SESSION
-[02:24:53.640] Server  LOG     ✓ Compiled in 56ms
-[02:30:07.896] Browser LOG     [Auth] Event: SIGNED_IN
-[02:30:07.896] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
-[02:30:08.178] Browser LOG     [Auth] Profile fetched successfully
-[02:30:08.178] Browser LOG     Login successful, pushing to dashboard
-[02:30:14.962] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[02:30:15.069] Browser LOG     [Auth] Event: INITIAL_SESSION
-[02:30:15.069] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
-[02:30:15.221] Browser LOG     [Auth] Profile fetched successfully
-[02:31:06.160] Browser ERROR   Error creating service: {"code":"42501","details":null,"hint":null,"message":"new row violates row-level security policy for table \"Services\""}
-[02:31:07.859] Browser ERROR   Error creating service: {"code":"42501","details":null,"hint":null,"message":"new row violates row-level security policy for table \"Services\""}
-[02:31:18.446] Browser ERROR   Error creating service: {"code":"42501","details":null,"hint":null,"message":"new row violates row-level security policy for table \"Services\""}
-[02:31:19.024] Browser ERROR   Error creating service: {"code":"42501","details":null,"hint":null,"message":"new row violates row-level security policy for table \"Services\""}
-[02:31:19.151] Browser ERROR   Error creating service: {"code":"42501","details":null,"hint":null,"message":"new row violates row-level security policy for table \"Services\""}
-[02:31:19.265] Browser ERROR   Error creating service: {"code":"42501","details":null,"hint":null,"message":"new row violates row-level security policy for table \"Services\""}
-[02:31:19.490] Browser ERROR   Error creating service: {"code":"42501","details":null,"hint":null,"message":"new row violates row-level security policy for table \"Services\""}
-[02:31:19.632] Browser ERROR   Error creating service: {"code":"42501","details":null,"hint":null,"message":"new row violates row-level security policy for table \"Services\""}
-[02:32:21.104] Browser ERROR   Error creating service: {"code":"42501","details":null,"hint":null,"message":"new row violates row-level security policy for table \"Services\""}
-[02:32:21.224] Browser ERROR   Error creating service: {"code":"42501","details":null,"hint":null,"message":"new row violates row-level security policy for table \"Services\""}
-[02:37:02.332] Server  LOG     ✓ Compiled in 191ms
-[02:37:11.010] Server  LOG     ✓ Compiled in 40ms
-[02:38:13.310] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[02:38:13.419] Browser LOG     [Auth] Event: INITIAL_SESSION
-[02:38:13.419] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
-[02:38:13.576] Browser LOG     [Auth] Profile fetched successfully
-[02:38:27.522] Browser LOG     [Auth] Event: SIGNED_OUT
-[02:38:33.260] Browser LOG     [Auth] Event: SIGNED_IN
-[02:38:33.260] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
-[02:38:33.435] Browser LOG     [Auth] Profile fetched successfully
-[02:38:33.435] Browser LOG     Login successful, pushing to dashboard
-[02:39:08.427] Browser LOG     [Auth] Event: SIGNED_IN
-[02:39:08.427] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
-[02:40:53.943] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[02:40:54.046] Browser LOG     [Auth] Event: INITIAL_SESSION
-[02:40:54.046] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
-[02:40:54.445] Browser LOG     [Auth] Profile fetched successfully
-[02:45:14.290] Server  LOG     ✓ Compiled in 310ms
-[02:45:14.292] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./lab-portal-v1/lib/translations.ts changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
-[02:45:15.008] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[02:45:15.117] Browser LOG     [Auth] Event: INITIAL_SESSION
-[02:45:15.117] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
-[02:45:15.274] Browser LOG     [Auth] Profile fetched successfully
-[02:45:36.681] Server  LOG     ✓ Compiled in 164ms
-[02:45:45.985] Server  LOG     ✓ Compiled in 52ms
-[02:47:21.902] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[02:47:22.005] Browser LOG     [Auth] Event: INITIAL_SESSION
-[02:47:22.005] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
-[02:47:22.139] Browser LOG     [Auth] Profile fetched successfully
-[02:50:19.755] Browser LOG     [Auth] Event: SIGNED_IN
-[02:50:19.755] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
-[02:50:27.648] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[02:50:27.753] Browser LOG     [Auth] Event: INITIAL_SESSION
-[02:50:27.753] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
-[02:50:27.906] Browser LOG     [Auth] Profile fetched successfully
-[02:51:55.989] Browser LOG     [Auth] Event: SIGNED_IN
-[02:51:55.989] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
-[02:52:10.606] Server  LOG     ✓ Compiled in 148ms
-[02:52:15.539] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[02:52:15.642] Browser LOG     [Auth] Event: INITIAL_SESSION
-[02:52:15.642] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
-[02:52:16.035] Browser LOG     [Auth] Profile fetched successfully
-[02:52:31.354] Server  LOG     ✓ Compiled in 84ms
-[02:52:31.463] Browser ERROR   ./lab-portal-v1/app/(dashboard)/billing/page.tsx:199:5
-Parsing ecmascript source code failed
-  197 |   );
-  198 | }
-> 199 |     </div>
-      |     ^
-  200 |   );
-  201 | }
-  202 |
-
-Expression expected
-
-Import traces:
-  Client Component Browser:
-    ./lab-portal-v1/app/(dashboard)/billing/page.tsx [Client Component Browser]
-    ./lab-portal-v1/app/(dashboard)/billing/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./lab-portal-v1/app/(dashboard)/billing/page.tsx [Client Component SSR]
-    ./lab-portal-v1/app/(dashboard)/billing/page.tsx [Server Component]
-[02:52:31.463] Browser ERROR   ./lab-portal-v1/app/(dashboard)/billing/page.tsx:199:6
-Parsing ecmascript source code failed
-  197 |   );
-  198 | }
-> 199 |     </div>
-      |      ^^^^^
-  200 |   );
-  201 | }
-  202 |
-
-Unterminated regexp literal
-
-Import traces:
-  Client Component Browser:
-    ./lab-portal-v1/app/(dashboard)/billing/page.tsx [Client Component Browser]
-    ./lab-portal-v1/app/(dashboard)/billing/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./lab-portal-v1/app/(dashboard)/billing/page.tsx [Client Component SSR]
-    ./lab-portal-v1/app/(dashboard)/billing/page.tsx [Server Component]
-[02:52:36.852] Server  LOG     ✓ Compiled in 102ms
-[02:59:12.212] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./lab-portal-v1/lib/translations.ts changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
-[02:59:12.233] Server  LOG     ✓ Compiled in 100ms
-[02:59:13.032] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[02:59:13.142] Browser LOG     [Auth] Event: INITIAL_SESSION
-[02:59:13.142] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
-[02:59:13.550] Browser LOG     [Auth] Profile fetched successfully
-[02:59:14.266] Server  LOG     ✓ Compiled in 93ms
-[02:59:24.522] Server  LOG     ✓ Compiled in 152ms
-[02:59:33.105] Server  LOG     ✓ Compiled in 67ms
-[03:02:03.755] Server  LOG     ✓ Compiled in 129ms
-[03:02:03.877] Browser ERROR   ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx:281:25
-Parsing ecmascript source code failed
-  279 |         </Card>
-  280 |
-> 281 |           </CardContent>
-      |                         ^
-> 282 |         </Card>
-      | ^^^^^^^^^
-  283 |
-  284 |         <Card className="border-slate-200 shadow-sm">
-  285 |           <CardContent className="p-6">
-
-Expected '</', got 'jsx text'
-
-Import traces:
-  Client Component Browser:
-    ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx [Client Component Browser]
-    ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx [Client Component SSR]
-    ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx [Server Component]
-[03:02:12.741] Server  ERROR   ⨯ ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx:281:25
-Parsing ecmascript source code failed
-  279 |         </Card>
-  280 |
-> 281 |           </CardContent>
-      |                         ^
-> 282 |         </Card>
-      | ^^^^^^^^^
-  283 |
-  284 |         <Card className="border-slate-200 shadow-sm">
-  285 |           <CardContent className="p-6">
-
-Expected '</', got 'jsx text'
-
-Import traces:
-  Client Component Browser:
-    ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx [Client Component Browser]
-    ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx [Client Component SSR]
-    ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx [Server Component]
-
-
-[03:02:12.853] Browser ERROR   ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx:281:25
-Parsing ecmascript source code failed
-  279 |         </Card>
-  280 |
-> 281 |           </CardContent>
-      |                         ^
-> 282 |         </Card>
-      | ^^^^^^^^^
-  283 |
-  284 |         <Card className="border-slate-200 shadow-sm">
-  285 |           <CardContent className="p-6">
-
-Expected '</', got 'jsx text'
-
-Import traces:
-  Client Component Browser:
-    ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx [Client Component Browser]
-    ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx [Client Component SSR]
-    ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx [Server Component]
-[03:02:13.603] Browser ERROR   ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx:281:25
-Parsing ecmascript source code failed
-  279 |         </Card>
-  280 |
-> 281 |           </CardContent>
-      |                         ^
-> 282 |         </Card>
-      | ^^^^^^^^^
-  283 |
-  284 |         <Card className="border-slate-200 shadow-sm">
-  285 |           <CardContent className="p-6">
-
-Expected '</', got 'jsx text'
-
-Import traces:
-  Client Component Browser:
-    ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx [Client Component Browser]
-    ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx [Client Component SSR]
-    ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx [Server Component]
-[03:02:13.936] Browser ERROR   ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx:281:25
-Parsing ecmascript source code failed
-  279 |         </Card>
-  280 |
-> 281 |           </CardContent>
-      |                         ^
-> 282 |         </Card>
-      | ^^^^^^^^^
-  283 |
-  284 |         <Card className="border-slate-200 shadow-sm">
-  285 |           <CardContent className="p-6">
-
-Expected '</', got 'jsx text'
-
-Import traces:
-  Client Component Browser:
-    ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx [Client Component Browser]
-    ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx [Client Component SSR]
-    ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx [Server Component]
-[03:02:14.274] Browser ERROR   ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx:281:25
-Parsing ecmascript source code failed
-  279 |         </Card>
-  280 |
-> 281 |           </CardContent>
-      |                         ^
-> 282 |         </Card>
-      | ^^^^^^^^^
-  283 |
-  284 |         <Card className="border-slate-200 shadow-sm">
-  285 |           <CardContent className="p-6">
-
-Expected '</', got 'jsx text'
-
-Import traces:
-  Client Component Browser:
-    ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx [Client Component Browser]
-    ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx [Client Component SSR]
-    ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx [Server Component]
-[03:02:14.628] Browser ERROR   uncaughtError: Error: ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx:281:25
-Parsing ecmascript source code failed
-  279 |         </Card>
-  280 |
-> 281 |           </CardContent>
-      |                         ^
-> 282 |         </Card>
-      | ^^^^^^^^^
-  283 |
-  284 |         <Card className="border-slate-200 shadow-sm">
-  285 |           <CardContent className="p-6">
-
-Expected '</', got 'jsx text'
-
-Import traces:
-  Client Component Browser:
-    ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx [Client Component Browser]
-    ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx [Client Component SSR]
-    ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx [Server Component]
-
-
-[03:02:14.797] Browser ERROR   ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx:281:25
-Parsing ecmascript source code failed
-  279 |         </Card>
-  280 |
-> 281 |           </CardContent>
-      |                         ^
-> 282 |         </Card>
-      | ^^^^^^^^^
-  283 |
-  284 |         <Card className="border-slate-200 shadow-sm">
-  285 |           <CardContent className="p-6">
-
-Expected '</', got 'jsx text'
-
-Import traces:
-  Client Component Browser:
-    ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx [Client Component Browser]
-    ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx [Client Component SSR]
-    ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx [Server Component]
-[03:02:14.797] Browser ERROR   ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx:281:25
-Parsing ecmascript source code failed
-  279 |         </Card>
-  280 |
-> 281 |           </CardContent>
-      |                         ^
-> 282 |         </Card>
-      | ^^^^^^^^^
-  283 |
-  284 |         <Card className="border-slate-200 shadow-sm">
-  285 |           <CardContent className="p-6">
-
-Expected '</', got 'jsx text'
-
-Import traces:
-  Client Component Browser:
-    ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx [Client Component Browser]
-    ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx [Client Component SSR]
-    ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx [Server Component]
-[03:02:16.217] Browser ERROR   ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx:281:25
-Parsing ecmascript source code failed
-  279 |         </Card>
-  280 |
-> 281 |           </CardContent>
-      |                         ^
-> 282 |         </Card>
-      | ^^^^^^^^^
-  283 |
-  284 |         <Card className="border-slate-200 shadow-sm">
-  285 |           <CardContent className="p-6">
-
-Expected '</', got 'jsx text'
-
-Import traces:
-  Client Component Browser:
-    ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx [Client Component Browser]
-    ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx [Client Component SSR]
-    ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx [Server Component]
-[03:02:21.329] Browser ERROR   uncaughtError: Error: ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx:281:25
-Parsing ecmascript source code failed
-  279 |         </Card>
-  280 |
-> 281 |           </CardContent>
-      |                         ^
-> 282 |         </Card>
-      | ^^^^^^^^^
-  283 |
-  284 |         <Card className="border-slate-200 shadow-sm">
-  285 |           <CardContent className="p-6">
-
-Expected '</', got 'jsx text'
-
-Import traces:
-  Client Component Browser:
-    ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx [Client Component Browser]
-    ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx [Client Component SSR]
-    ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx [Server Component]
-
-
-[03:02:21.471] Browser ERROR   ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx:281:25
-Parsing ecmascript source code failed
-  279 |         </Card>
-  280 |
-> 281 |           </CardContent>
-      |                         ^
-> 282 |         </Card>
-      | ^^^^^^^^^
-  283 |
-  284 |         <Card className="border-slate-200 shadow-sm">
-  285 |           <CardContent className="p-6">
-
-Expected '</', got 'jsx text'
-
-Import traces:
-  Client Component Browser:
-    ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx [Client Component Browser]
-    ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx [Client Component SSR]
-    ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx [Server Component]
-[03:02:21.471] Browser ERROR   ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx:281:25
-Parsing ecmascript source code failed
-  279 |         </Card>
-  280 |
-> 281 |           </CardContent>
-      |                         ^
-> 282 |         </Card>
-      | ^^^^^^^^^
-  283 |
-  284 |         <Card className="border-slate-200 shadow-sm">
-  285 |           <CardContent className="p-6">
-
-Expected '</', got 'jsx text'
-
-Import traces:
-  Client Component Browser:
-    ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx [Client Component Browser]
-    ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx [Client Component SSR]
-    ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx [Server Component]
-[03:02:30.236] Browser ERROR   ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx:278:25
-Parsing ecmascript source code failed
-  276 |           </CardContent>
-  277 |         </Card>
-> 278 |           </CardContent>
-      |                         ^
-> 279 |         </Card>
-      | ^^^^^^^^^
-  280 |
-  281 |         <Card className="border-slate-200 shadow-sm">
-  282 |           <CardContent className="p-6">
-
-Expected '</', got 'jsx text'
-
-Import traces:
-  Client Component Browser:
-    ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx [Client Component Browser]
-    ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx [Client Component SSR]
-    ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx [Server Component]
-[03:02:31.469] Browser ERROR   ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx:278:25
-Parsing ecmascript source code failed
-  276 |           </CardContent>
-  277 |         </Card>
-> 278 |           </CardContent>
-      |                         ^
-> 279 |         </Card>
-      | ^^^^^^^^^
-  280 |
-  281 |         <Card className="border-slate-200 shadow-sm">
-  282 |           <CardContent className="p-6">
-
-Expected '</', got 'jsx text'
-
-Import traces:
-  Client Component Browser:
-    ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx [Client Component Browser]
-    ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx [Client Component SSR]
-    ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx [Server Component]
-[03:02:41.193] Server  LOG     ✓ Compiled in 86ms
-[03:02:41.713] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[03:02:41.830] Browser LOG     [Auth] Event: INITIAL_SESSION
-[03:02:41.830] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
-[03:02:42.238] Browser LOG     [Auth] Profile fetched successfully
-[03:10:40.425] Server  LOG     ✓ Compiled in 237ms
-[03:11:11.501] Server  LOG     ✓ Compiled in 124ms
-[03:11:11.609] Browser ERROR   ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx:435:1
-Parsing ecmascript source code failed
-  433 |   );
-  434 | }
-> 435 | }
-      | ^
-  436 |
-
-Expression expected
-
-Import traces:
-  Client Component Browser:
-    ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx [Client Component Browser]
-    ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx [Client Component SSR]
-    ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx [Server Component]
-[03:11:17.430] Server  LOG     ✓ Compiled in 136ms
-[03:11:17.502] Browser ERROR   ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx:435:1
-Parsing ecmascript source code failed
-  433 |   );
-  434 | }
-> 435 | }
-      | ^
-  436 |
-
-Expression expected
-
-Import traces:
-  Client Component Browser:
-    ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx [Client Component Browser]
-    ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx [Client Component SSR]
-    ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx [Server Component]
-[03:11:27.506] Server  LOG     ✓ Compiled in 420ms
-[03:11:29.096] Server  LOG     ✓ Compiled in 366ms
-[03:11:36.995] Server  LOG     ✓ Compiled in 65ms
-[03:14:05.943] Server  LOG     ✓ Compiled in 114ms
-[03:14:20.606] Server  LOG     ✓ Compiled in 349ms
-[03:14:20.745] Browser ERROR   ./lab-portal-v1/components/cases/PatientSearch.tsx:56:6
-Parsing ecmascript source code failed
-  54 |     document.addEventListener('mousedown', handleClickOutside);
-  55 |     return () => document.removeEventListener('mousedown', handleClickOutside);
-> 56 |   }, []);
-     |      ^^
-  57 |
-  58 |   useEffect(() => {
-  59 |     if (value.length < 2) {
-
-'const' declarations must be initialized
-
-Import traces:
-  Client Component Browser:
-    ./lab-portal-v1/components/cases/PatientSearch.tsx [Client Component Browser]
-    ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx [Client Component Browser]
-    ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./lab-portal-v1/components/cases/PatientSearch.tsx [Client Component SSR]
-    ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx [Client Component SSR]
-    ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx [Server Component]
-[03:14:20.745] Browser ERROR   ./lab-portal-v1/components/cases/PatientSearch.tsx:56:8
-Parsing ecmascript source code failed
-  54 |     document.addEventListener('mousedown', handleClickOutside);
-  55 |     return () => document.removeEventListener('mousedown', handleClickOutside);
-> 56 |   }, []);
-     |        ^
-  57 |
-  58 |   useEffect(() => {
-  59 |     if (value.length < 2) {
-
-Expected a semicolon
-
-Import traces:
-  Client Component Browser:
-    ./lab-portal-v1/components/cases/PatientSearch.tsx [Client Component Browser]
-    ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx [Client Component Browser]
-    ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./lab-portal-v1/components/cases/PatientSearch.tsx [Client Component SSR]
-    ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx [Client Component SSR]
-    ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx [Server Component]
-[03:14:20.745] Browser ERROR   ./lab-portal-v1/components/cases/PatientSearch.tsx:97:3
-Parsing ecmascript source code failed
-   95 |   }, [value]);
-   96 |
->  97 |   return (
-      |   ^^^^^^^^
->  98 |     <div className="relative" ref={containerRef}>
-      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
->  99 |       <Input
-      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-> 100 |         label="Client / Patient Name"
-      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-> 101 |         required={required}
-      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-> 102 |         value={value}
-      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-> 103 |         onChange={(e) => {
-      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-> 104 |           onChange(e.target.value);
-      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-> 105 |           if (e.target.value.length >= 2) setIsOpen(true);
-      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-> 106 |         }}
-      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-> 107 |         onFocus={() => setIsOpen(true)}
-      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-> 108 |         placeholder="Search existing patients..."
-      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-> 109 |         icon={<Search className="h-4 w-4 text-slate-400" />}
-      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-> 110 |         className="text-lg py-6"
-      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-> 111 |       />
-      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-> 112 |
-      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-> 113 |       {value.length === 0 && recentPatients.length > 0 && (
-      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-> 114 |         <div className="mt-3">
-      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-> 115 |           <p className="text-[10px] uppercase tracking-wider font-bold text-slate-400 mb-2 flex items-center">
-      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-> 116 |             <Clock className="h-3 w-3 mr-1" />
-      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-> 117 |             Recently Billed Patients
-      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-> 118 |           </p>
-      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-> 119 |           <div className="flex flex-wrap gap-2">
-      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-> 120 |             {recentPatients.map((name) => (
-      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-> 121 |               <button
-      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-> 122 |                 key={name}
-      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-> 123 |                 type="button"
-      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-> 124 |                 onClick={() => onChange(name)}
-      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-> 125 |                 className="px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-full text-xs font-medium text-slate-600 hover:bg-white hover:border-blue-400 hover:text-blue-600 transition-all flex items-center shadow-sm"
-      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-> 126 |               >
-      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-> 127 |                 <User className="h-3 w-3 mr-1.5 opacity-50" />
-      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-> 128 |                 {name}
-      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-> 129 |               </button>
-      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-> 130 |             ))}
-      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-> 131 |           </div>
-      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-> 132 |         </div>
-      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-> 133 |       )}
-      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-> 134 |
-      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-> 135 |       {isLoading && (
-      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-> 136 |         <div className="absolute right-3 top-9">
-      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-> 137 |           <Loader2 className="h-4 w-4 animate-spin text-blue-500" />
-      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-> 138 |         </div>
-      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-> 139 |       )}
-      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-> 140 |
-      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-> 141 |       {isOpen && suggestions.length > 0 && (
-      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-> 142 |         <div className="absolute z-50 w-full mt-1 bg-white border border-slate-200 rounded-lg shadow-lg max-h-60 overflow-auto">
-      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-> 143 |           {suggestions.map((name, index) => (
-      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-> 144 |             <button
-      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-> 145 |               key={index}
-      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-> 146 |               type="button"
-      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-> 147 |               onClick={() => {
-      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-> 148 |                 onChange(name);
-      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-> 149 |                 setIsOpen(false);
-      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-> 150 |               }}
-      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-> 151 |               className="w-full flex items-center px-4 py-2 text-sm text-left hover:bg-slate-50 transition-colors border-b border-slate-50 last:border-0"
-      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-> 152 |             >
-      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-> 153 |               <User className="h-4 w-4 mr-2 text-slate-400" />
-      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-> 154 |               <span className="font-medium text-slate-700">{name}</span>
-      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-> 155 |             </button>
-      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-> 156 |           ))}
-      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-> 157 |         </div>
-      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-> 158 |       )}
-      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-> 159 |     </div>
-      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-> 160 |   );
-      | ^^^^^
-  161 | };
-  162 |
-
-Return statement is not allowed here
-
-Import traces:
-  Client Component Browser:
-    ./lab-portal-v1/components/cases/PatientSearch.tsx [Client Component Browser]
-    ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx [Client Component Browser]
-    ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./lab-portal-v1/components/cases/PatientSearch.tsx [Client Component SSR]
-    ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx [Client Component SSR]
-    ./lab-portal-v1/app/(dashboard)/billing/invoices/new/page.tsx [Server Component]
-[03:14:28.646] Server  LOG     ✓ Compiled in 87ms
-[03:14:40.281] Server  LOG     ✓ Compiled in 54ms
-[03:14:42.274] Server  LOG     ✓ Compiled in 27ms
-[03:14:56.183] Browser LOG     [Auth] Event: SIGNED_IN
-[03:14:56.183] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
-[03:15:02.584] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[03:15:02.687] Browser LOG     [Auth] Event: INITIAL_SESSION
-[03:15:02.687] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
-[03:15:02.829] Browser LOG     [Auth] Profile fetched successfully
-[03:16:56.885] Server  LOG     ✓ Compiled in 134ms
+[00:00:02.111] Server  LOG     ✓ Ready in 1818ms
+[00:00:11.734] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:12.363] Browser LOG     [Auth] Fallback: manual session check
+[00:00:12.979] Browser LOG     [Auth] Event: TOKEN_REFRESHED
+[00:00:12.979] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
+[00:13:46.622] Server  WARN    ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+[00:13:46.899] Server  LOG     ✓ Compiled in 235ms
+[00:20:54.549] Browser ERROR   uncaughtError: Error: Cannot find the middleware module
+[00:35:51.739] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:35:51.869] Browser LOG     [Auth] Event: INITIAL_SESSION
+[00:36:01.906] Browser LOG     [Auth] Event: SIGNED_IN
+[00:36:01.906] Browser LOG     [Auth] Fetching profile for dca69d69-6e8d-4cd0-96f5-94767f05fffd...
+[00:36:02.428] Browser LOG     [Auth] Profile fetched successfully
+[00:39:03.375] Server  LOG     ✓ Compiled in 224ms
+[00:39:50.664] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:39:50.783] Browser LOG     [Auth] Event: INITIAL_SESSION
+[00:39:50.783] Browser LOG     [Auth] Fetching profile for dca69d69-6e8d-4cd0-96f5-94767f05fffd...
+[00:39:51.043] Browser LOG     [Auth] Profile fetched successfully
+[00:40:04.403] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:40:04.522] Browser LOG     [Auth] Event: INITIAL_SESSION
+[00:40:53.573] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:40:53.691] Browser LOG     [Auth] Event: INITIAL_SESSION
+[00:50:32.777] Server  LOG     ✓ Compiled in 486ms
+[00:54:37.863] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:54:37.995] Browser LOG     [Auth] Event: INITIAL_SESSION
+[00:54:37.995] Browser LOG     [Auth] Fetching profile for dca69d69-6e8d-4cd0-96f5-94767f05fffd...
+[00:54:38.822] Browser LOG     [Auth] Profile fetched successfully
+[00:54:43.900] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:54:44.016] Browser LOG     [Auth] Event: INITIAL_SESSION
+[00:54:44.016] Browser LOG     [Auth] Fetching profile for dca69d69-6e8d-4cd0-96f5-94767f05fffd...
+[00:54:44.215] Browser LOG     [Auth] Profile fetched successfully
+[00:54:48.891] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:54:49.018] Browser LOG     [Auth] Event: INITIAL_SESSION
+[00:54:49.018] Browser LOG     [Auth] Fetching profile for dca69d69-6e8d-4cd0-96f5-94767f05fffd...
+[00:54:49.222] Browser LOG     [Auth] Profile fetched successfully
+[00:54:50.261] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:54:50.376] Browser LOG     [Auth] Event: INITIAL_SESSION
+[00:54:50.376] Browser LOG     [Auth] Fetching profile for dca69d69-6e8d-4cd0-96f5-94767f05fffd...
+[00:54:50.545] Browser LOG     [Auth] Profile fetched successfully
+[00:54:52.145] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:54:52.267] Browser LOG     [Auth] Event: INITIAL_SESSION
+[00:54:52.267] Browser LOG     [Auth] Fetching profile for dca69d69-6e8d-4cd0-96f5-94767f05fffd...
+[00:54:52.267] Browser LOG     [Auth] Profile fetched successfully
+[00:54:54.050] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:54:54.174] Browser LOG     [Auth] Event: INITIAL_SESSION
+[00:54:54.174] Browser LOG     [Auth] Fetching profile for dca69d69-6e8d-4cd0-96f5-94767f05fffd...
+[00:54:54.357] Browser LOG     [Auth] Profile fetched successfully
+[00:54:57.129] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:54:57.252] Browser LOG     [Auth] Event: INITIAL_SESSION
+[00:54:57.252] Browser LOG     [Auth] Fetching profile for dca69d69-6e8d-4cd0-96f5-94767f05fffd...
+[00:54:57.426] Browser LOG     [Auth] Profile fetched successfully
+[01:34:28.406] Browser LOG     [Auth] Event: TOKEN_REFRESHED
+[01:34:28.410] Browser LOG     [Auth] Fetching profile for dca69d69-6e8d-4cd0-96f5-94767f05fffd...
+[03:08:12.801] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[03:08:13.424] Browser LOG     [Auth] Fallback: manual session check
+[03:08:13.992] Browser LOG     [Auth] Event: TOKEN_REFRESHED
+[03:08:13.992] Browser LOG     [Auth] Fetching profile for dca69d69-6e8d-4cd0-96f5-94767f05fffd...
+[03:08:17.820] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[03:08:17.956] Browser LOG     [Auth] Event: INITIAL_SESSION
+[03:08:17.956] Browser LOG     [Auth] Fetching profile for dca69d69-6e8d-4cd0-96f5-94767f05fffd...
+[03:08:18.415] Browser LOG     [Auth] Profile fetched successfully
+[03:08:48.356] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[03:08:48.475] Browser LOG     [Auth] Event: INITIAL_SESSION
+[03:08:48.475] Browser LOG     [Auth] Fetching profile for dca69d69-6e8d-4cd0-96f5-94767f05fffd...
+[03:08:48.931] Browser LOG     [Auth] Profile fetched successfully
+[03:08:50.202] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[03:08:50.324] Browser LOG     [Auth] Event: INITIAL_SESSION
+[03:08:50.324] Browser LOG     [Auth] Fetching profile for dca69d69-6e8d-4cd0-96f5-94767f05fffd...
+[03:08:50.471] Browser LOG     [Auth] Profile fetched successfully
+[03:15:36.907] Server  LOG     ✓ Compiled in 617ms
+[03:17:20.651] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[03:17:20.790] Browser LOG     [Auth] Event: INITIAL_SESSION
+[03:17:20.790] Browser LOG     [Auth] Fetching profile for dca69d69-6e8d-4cd0-96f5-94767f05fffd...
+[03:17:23.451] Browser LOG     [Auth] Profile fetched successfully
+[03:25:37.521] Server  LOG     ✓ Compiled in 0ms
+[03:26:37.401] Browser LOG     [Auth] Event: SIGNED_IN
+[03:26:37.401] Browser LOG     [Auth] Fetching profile for dca69d69-6e8d-4cd0-96f5-94767f05fffd...
+[03:26:38.775] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[03:26:38.924] Browser LOG     [Auth] Event: INITIAL_SESSION
+[03:26:38.924] Browser LOG     [Auth] Fetching profile for dca69d69-6e8d-4cd0-96f5-94767f05fffd...
+[03:26:39.527] Browser LOG     [Auth] Profile fetched successfully
+[03:26:53.871] Server  ERROR   Supabase Insert Error: {}
+[03:26:53.874] Server  ERROR   Onboarding API Error: {}
+[03:26:56.596] Browser ERROR   {}
+[03:27:07.777] Browser LOG     [Auth] Event: SIGNED_IN
+[03:27:07.777] Browser LOG     [Auth] Fetching profile for dca69d69-6e8d-4cd0-96f5-94767f05fffd...
+[03:27:11.205] Server  ERROR   Supabase Insert Error: {}
+[03:27:11.206] Server  ERROR   Onboarding API Error: {}
+[03:27:14.096] Browser ERROR   {}
+[03:27:56.455] Server  ERROR   Supabase Insert Error: {}
+[03:27:56.456] Server  ERROR   Onboarding API Error: {}
+[03:27:57.681] Browser ERROR   {}
+[03:28:04.121] Server  ERROR   Supabase Insert Error: {}
+[03:28:04.123] Server  ERROR   Onboarding API Error: {}
+[03:28:11.166] Browser ERROR   {}
+[03:30:34.079] Server  LOG     ✓ Compiled in 224ms
+[03:57:50.513] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[03:57:50.652] Browser LOG     [Auth] Event: INITIAL_SESSION
+[03:57:50.652] Browser LOG     [Auth] Fetching profile for dca69d69-6e8d-4cd0-96f5-94767f05fffd...
+[03:57:51.295] Browser LOG     [Auth] Profile fetched successfully
+[03:57:52.412] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[03:57:52.530] Browser LOG     [Auth] Event: INITIAL_SESSION
+[03:57:52.530] Browser LOG     [Auth] Fetching profile for dca69d69-6e8d-4cd0-96f5-94767f05fffd...
+[03:57:52.672] Browser LOG     [Auth] Profile fetched successfully
+[03:57:53.536] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[03:57:53.656] Browser LOG     [Auth] Event: INITIAL_SESSION
+[03:57:53.656] Browser LOG     [Auth] Fetching profile for dca69d69-6e8d-4cd0-96f5-94767f05fffd...
+[03:57:53.837] Browser LOG     [Auth] Profile fetched successfully
+[03:57:55.800] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[03:57:55.925] Browser LOG     [Auth] Event: INITIAL_SESSION
+[03:57:55.925] Browser LOG     [Auth] Fetching profile for dca69d69-6e8d-4cd0-96f5-94767f05fffd...
+[03:57:56.103] Browser LOG     [Auth] Profile fetched successfully
+[03:58:09.641] Browser LOG     [Auth] Event: SIGNED_IN
+[03:58:09.641] Browser LOG     [Auth] Fetching profile for dca69d69-6e8d-4cd0-96f5-94767f05fffd...
+[04:05:34.145] Server  LOG     ✓ Compiled in 578ms
+[04:07:10.316] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[04:07:10.971] Browser LOG     [Auth] Fallback: manual session check
+[04:07:11.184] Browser LOG     [Auth] Event: TOKEN_REFRESHED
+[04:07:11.184] Browser LOG     [Auth] Fetching profile for dca69d69-6e8d-4cd0-96f5-94767f05fffd...
+[04:17:48.466] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[04:17:48.594] Browser LOG     [Auth] Event: INITIAL_SESSION
+[04:17:48.594] Browser LOG     [Auth] Fetching profile for dca69d69-6e8d-4cd0-96f5-94767f05fffd...
+[04:17:49.610] Browser LOG     [Auth] Profile fetched successfully
+[04:19:10.131] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[04:19:10.280] Browser LOG     [Auth] Event: INITIAL_SESSION
+[04:19:10.280] Browser LOG     [Auth] Fetching profile for dca69d69-6e8d-4cd0-96f5-94767f05fffd...
+[04:19:10.684] Browser LOG     [Auth] Profile fetched successfully
+[04:20:51.106] Browser LOG     [Auth] Event: SIGNED_IN
+[04:20:51.106] Browser LOG     [Auth] Fetching profile for dca69d69-6e8d-4cd0-96f5-94767f05fffd...
+[04:21:37.704] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[04:21:38.311] Browser LOG     [Auth] Fallback: manual session check
+[04:21:38.756] Browser LOG     [Auth] Event: TOKEN_REFRESHED
+[04:21:38.756] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
+[04:21:43.965] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[04:21:44.083] Browser LOG     [Auth] Event: INITIAL_SESSION
+[04:21:44.083] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
+[04:21:44.350] Browser LOG     [Auth] Profile fetched successfully
+[04:22:56.094] Server  LOG     ✓ Compiled in 224ms
+[04:24:07.110] Browser LOG     [Auth] Event: SIGNED_IN
+[04:24:07.111] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
+[04:24:09.569] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[04:24:09.691] Browser LOG     [Auth] Event: INITIAL_SESSION
+[04:24:09.691] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
+[04:24:10.214] Browser LOG     [Auth] Profile fetched successfully
+[04:26:30.133] Server  LOG     ✓ Compiled in 240ms

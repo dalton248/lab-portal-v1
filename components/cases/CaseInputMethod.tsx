@@ -20,13 +20,35 @@ export const CaseInputMethod: React.FC<CaseInputMethodProps> = ({
 }) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const folderInputRef = useRef<HTMLInputElement>(null);
+  const [isDragging, setIsDragging] = React.useState(false);
   const { t } = useLanguage();
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       onFilesChange([...files, ...Array.from(e.target.files)]);
-      // Reset input so same file can be re-selected if removed
       e.target.value = '';
+    }
+  };
+
+  const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(true);
+  };
+
+  const handleDragLeave = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(false);
+  };
+
+  const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(false);
+    const dropped = Array.from(e.dataTransfer.files);
+    if (dropped.length > 0) {
+      onFilesChange([...files, ...dropped]);
     }
   };
 
@@ -80,7 +102,16 @@ export const CaseInputMethod: React.FC<CaseInputMethodProps> = ({
       </div>
 
       {method === 'upload' && (
-        <div className="mt-4 p-6 border-2 border-dashed border-slate-300 rounded-lg bg-slate-50 transition-all hover:bg-white hover:border-blue-400">
+        <div
+          className={`mt-4 p-6 border-2 border-dashed rounded-lg transition-all ${
+            isDragging
+              ? 'border-blue-500 bg-blue-50 scale-[1.01]'
+              : 'border-slate-300 bg-slate-50 hover:bg-white hover:border-blue-400'
+          }`}
+          onDragOver={handleDragOver}
+          onDragLeave={handleDragLeave}
+          onDrop={handleDrop}
+        >
           {/* Hidden file input — individual files */}
           <input
             ref={fileInputRef}

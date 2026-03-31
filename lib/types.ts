@@ -1,6 +1,6 @@
 export type UserRole = 'lab_admin' | 'dentist';
 
-export type CaseStatus = 'submitted' | 'in_progress' | 'on_hold' | 'completed' | 'rejected';
+export type CaseStatus = 'submitted' | 'in_progress' | 'qc' | 'shipping' | 'on_hold' | 'completed' | 'rejected';
 
 export type PrepType = 'monolithic' | 'layered' | 'digital' | 'traditional';
 
@@ -30,6 +30,7 @@ export interface Case {
   patientName: string;
   caseType: string;
   shade?: string;
+  stump_shade?: string;
   status: CaseStatus;
   dueDate: string;
   createdAt: string;

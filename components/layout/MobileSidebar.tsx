@@ -36,8 +36,8 @@ export function MobileSidebar({ currentUser, labName, isOpen, onClose }: MobileS
       <div className="fixed inset-y-0 left-0 flex flex-col w-64 bg-slate-900 z-50 md:hidden">
         <div className="flex items-center justify-between h-16 px-4 border-b border-slate-800">
           <div className="flex items-center">
-            <Building2 className="h-8 w-8 text-blue-500" />
-            <h1 className="ml-3 text-xl font-bold text-white">LabOps</h1>
+            <img src="/logo.png" alt="LabOps Logo" className="w-8 h-8 object-contain rounded-md" />
+            <h1 className="ml-3 text-xl font-bold text-white tracking-tighter">LabOps</h1>
           </div>
           <button
             onClick={onClose}

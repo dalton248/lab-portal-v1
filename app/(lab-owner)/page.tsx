@@ -23,9 +23,9 @@ export default function Home() {
       {/* Sticky Header */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <Building2 className="h-8 w-8 text-blue-600" />
-            <span className="text-xl font-bold text-slate-900 tracking-tight">Lab Portal</span>
+          <div className="flex items-center gap-3">
+            <img src="/logo.png" alt="LabOps Logo" className="w-10 h-10 object-contain rounded-lg" />
+            <span className="text-2xl font-black text-slate-900 tracking-tighter">LabOps</span>
           </div>
           
           <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
@@ -145,9 +145,9 @@ export default function Home() {
       <footer className="bg-slate-50 border-t border-slate-200 py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-8">
-            <div className="flex items-center gap-2">
-              <Building2 className="h-6 w-6 text-blue-600" />
-              <span className="text-lg font-bold text-slate-900 tracking-tight">Lab Portal</span>
+            <div className="flex items-center gap-3">
+              <img src="/logo.png" alt="LabOps Logo" className="w-8 h-8 object-contain rounded-md" />
+              <span className="text-xl font-black text-slate-900 tracking-tighter">LabOps</span>
             </div>
             <div className="flex gap-8 text-sm text-slate-500 font-medium">
               <a href="#" className="hover:text-slate-900 transition-colors">Privacy Policy</a>

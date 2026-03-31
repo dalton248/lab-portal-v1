@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { AlertCircle, Save, Send, FileText, Plus, ShoppingCart, Trash2, User } from 'lucide-react';
+import { AlertCircle, Save, Send, FileText, Plus, ShoppingCart, Trash2, User, CreditCard, Copy, Check, ExternalLink } from 'lucide-react';
 import { Card, CardHeader, CardContent, CardFooter } from '@/components/ui/Card';
 import { Input } from '@/components/ui/Input';
 import { Select } from '@/components/ui/Select';
@@ -52,6 +52,9 @@ export default function InvoiceGeneratorPage() {
   
   // Validation State
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isCharging, setIsCharging] = useState(false);
+  const [paymentUrl, setPaymentUrl] = useState<string | null>(null);
+  const [copied, setCopied] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   // Fetch lab services on mount
@@ -219,6 +222,43 @@ export default function InvoiceGeneratorPage() {
       setError(err.message || 'An error occurred during submission');
     } finally {
       setIsSubmitting(false);
+    }
+  };
+
+  const handleChargeViaStripe = async () => {
+    if (!isFormValid()) {
+      setError('Please add a patient name and at least one line item before charging.');
+      return;
+    }
+    setIsCharging(true);
+    setError(null);
+    try {
+      const response = await fetch('/api/billing/create-payment-link', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          labId: profile?.lab_id,
+          patientName,
+          items: lineItems,
+          totalAmount: grandTotal,
+          recipientEmail: externalEmail || null,
+        }),
+      });
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.error || 'Failed to create payment link');
+      setPaymentUrl(data.url);
+    } catch (err: any) {
+      setError(err.message);
+    } finally {
+      setIsCharging(false);
+    }
+  };
+
+  const handleCopyLink = () => {
+    if (paymentUrl) {
+      navigator.clipboard.writeText(paymentUrl);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
     }
   };
 
@@ -395,17 +435,64 @@ export default function InvoiceGeneratorPage() {
               </div>
 
               <div className="w-full flex flex-col gap-3">
-                <Button 
+                {/* Stripe charge button */}
+                <Button
+                  type="button"
+                  onClick={handleChargeViaStripe}
+                  disabled={isCharging || !isFormValid()}
+                  className="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-6"
+                >
+                  {isCharging ? (
+                    'Creating link...'
+                  ) : (
+                    <>
+                      <CreditCard className="h-4 w-4 mr-2" />
+                      Charge via Stripe
+                    </>
+                  )}
+                </Button>
+
+                {/* Payment URL display */}
+                {paymentUrl && (
+                  <div className="p-3 bg-green-50 border border-green-200 rounded-xl space-y-2">
+                    <p className="text-xs font-bold text-green-800">Payment link ready — share with clinic:</p>
+                    <div className="flex items-center gap-2">
+                      <input
+                        readOnly
+                        value={paymentUrl}
+                        className="text-xs bg-white border border-green-200 rounded p-1.5 flex-1 truncate"
+                      />
+                      <button
+                        onClick={handleCopyLink}
+                        className="p-1.5 bg-green-100 hover:bg-green-200 rounded text-green-700 transition-colors"
+                        title="Copy link"
+                      >
+                        {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
+                      </button>
+                      <a
+                        href={paymentUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="p-1.5 bg-green-100 hover:bg-green-200 rounded text-green-700 transition-colors"
+                        title="Open link"
+                      >
+                        <ExternalLink className="h-4 w-4" />
+                      </a>
+                    </div>
+                  </div>
+                )}
+
+                <Button
                   onClick={handleSubmit}
                   disabled={isSubmitting || !isFormValid()}
-                  className="w-full bg-slate-900 hover:bg-black text-white py-6"
+                  className="w-full bg-slate-900 hover:bg-black text-white py-4"
                 >
                   {isSubmitting ? (
-                    'Generating...'
+                    'Sending...'
                   ) : (
                     <>
                       <Send className="h-4 w-4 mr-2" />
-                      Create & Send Invoice
+                      Send via n8n
                     </>
                   )}
                 </Button>

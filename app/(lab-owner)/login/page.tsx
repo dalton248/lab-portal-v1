@@ -120,7 +120,7 @@ export default function LoginPage() {
 
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <div className="flex justify-center">
-          <Building2 className="h-12 w-12 text-blue-600" />
+          <img src="/logo.png" alt="LabOps Logo" className="w-16 h-16 object-contain rounded-xl shadow-sm" />
         </div>
         <h2 className="mt-6 text-center text-3xl font-bold text-slate-900">
           {isLogin ? t('login.title') : t('login.createAccount')}

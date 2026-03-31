@@ -11,6 +11,7 @@ import { Button } from '@/components/ui/Button';
 import { useLanguage } from '@/components/providers/LanguageProvider';
 import { ToothChart } from '@/components/ui/ToothChart';
 import { RecipientSelector } from '@/components/cases/RecipientSelector';
+import { CaseInputMethod } from '@/components/cases/CaseInputMethod';
 import { useAuth } from '@/components/providers/AuthProvider';
 import { supabase } from '@/lib/supabase';
 import { getLabServices } from '@/lib/services';
@@ -35,6 +36,7 @@ export default function NewCasePage() {
   const [notes, setNotes] = useState('');
   const [selectedTeeth, setSelectedTeeth] = useState<string[]>([]);
   const [files, setFiles] = useState<File[]>([]);
+  const [inputMethod, setInputMethod] = useState<InputMethodType>('upload');
   const [recipientId, setRecipientId] = useState('');
   const [externalEmail, setExternalEmail] = useState('');
   
@@ -141,7 +143,7 @@ export default function NewCasePage() {
         labId: profile?.lab_id,
         notes,
         teeth_numbers: selectedTeeth,
-        // input_method: inputMethod, // removed
+        input_method: inputMethod,
         recipient_id: recipientId || null,
         recipient_email: externalEmail || null,
         createdAt: new Date().toISOString(),
@@ -234,19 +236,16 @@ export default function NewCasePage() {
 
               <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
                 <Input
-                  label={t('cases.shadeLabelRequired')}
-                  required
+                  label={t('cases.shadeLabel')}
                   value={shade}
                   onChange={(e) => setShade(e.target.value)}
                   placeholder={t('cases.shadePlaceholder')}
-                  className="border-blue-100 focus:border-blue-500"
                 />
                 <Select
-                  label={t('cases.prepTypeLabelRequired')}
-                  options={prepTypeOptions}
+                  label={t('cases.prepTypeLabel')}
+                  options={[{ value: '', label: '—' }, ...prepTypeOptions]}
                   value={prepType}
                   onChange={(e) => setPrepType(e.target.value as PrepType)}
-                  className="border-blue-100"
                 />
                 <Select
                   label={t('cases.whatNeededLabel')}
@@ -286,10 +285,22 @@ export default function NewCasePage() {
           </CardContent>
         </Card>
 
+        {/* Section 3: File Upload */}
+        <Card className="border-slate-200 shadow-sm">
+          <CardContent className="p-6">
+            <CaseInputMethod
+              method={inputMethod}
+              setMethod={setInputMethod}
+              files={files}
+              onFilesChange={setFiles}
+            />
+          </CardContent>
+        </Card>
+
         {/* Section 4: Recipient Selection */}
         <Card className="border-slate-200 shadow-sm">
           <CardContent className="p-6">
-            <RecipientSelector 
+            <RecipientSelector
               recipientId={recipientId} 
               setRecipientId={setRecipientId} 
               externalEmail={externalEmail} 

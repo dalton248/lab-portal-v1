@@ -21,6 +21,7 @@ export function Sidebar({ currentUser, labName }: SidebarProps) {
     { name: t('nav.cases'), href: '/cases', icon: FileText, show: true },
     { name: t('nav.caseInbox'), href: '/case-inbox', icon: Inbox, show: currentUser?.role === 'lab_admin' },
     { name: t('nav.team'), href: '/team', icon: Users, show: true },
+    { name: t('nav.invoices'), href: '/invoices', icon: CreditCard, show: currentUser?.role === 'dentist' },
     { name: t('nav.billing'), href: '/billing', icon: CreditCard, show: currentUser?.role === 'lab_admin' },
     { name: t('services.title'), href: '/billing/services', icon: Building2, show: currentUser?.role === 'lab_admin' },
     { name: t('billing.invoiceGenerator'), href: '/billing/invoices/new', icon: FileText, show: currentUser?.role === 'lab_admin' },
@@ -34,9 +35,9 @@ export function Sidebar({ currentUser, labName }: SidebarProps) {
       <div className="flex flex-col w-64">
         <div className="flex flex-col flex-grow bg-slate-900 pt-5 pb-4 overflow-y-auto">
           <div className="flex items-center flex-shrink-0 px-4 mb-8">
-            <Building2 className="h-8 w-8 text-blue-500" />
+            <img src="/logo.png" alt="LabOps Logo" className="w-10 h-10 object-contain rounded-lg" />
             <div className="ml-3">
-              <h1 className="text-xl font-bold text-white">LabOps</h1>
+              <h1 className="text-2xl font-black text-white tracking-tighter">LabOps</h1>
             </div>
           </div>
 

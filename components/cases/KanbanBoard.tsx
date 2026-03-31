@@ -17,10 +17,11 @@ export function KanbanBoard({ cases, onStatusChange }: KanbanBoardProps) {
   const { t, language } = useLanguage();
   const router = useRouter();
 
-  const columns: { title: string; status: CaseStatus; color: string }[] = [
-    { title: t('status.submitted'), status: 'submitted', color: 'bg-blue-50 border-blue-100' },
-    { title: t('status.in_progress'), status: 'in_progress', color: 'bg-amber-50 border-amber-100' },
-    { title: t('status.completed'), status: 'completed', color: 'bg-green-50 border-green-100' },
+  const columns: { title: string; status: CaseStatus; color: string; next: CaseStatus | null }[] = [
+    { title: t('status.submitted'),   status: 'submitted',   color: 'bg-slate-50 border-slate-100',  next: 'in_progress' },
+    { title: t('status.in_progress'), status: 'in_progress', color: 'bg-blue-50 border-blue-100',    next: 'qc' },
+    { title: t('status.qc'),          status: 'qc',          color: 'bg-purple-50 border-purple-100', next: 'shipping' },
+    { title: t('status.shipping'),    status: 'shipping',    color: 'bg-cyan-50 border-cyan-100',     next: 'completed' },
   ];
 
   const formatDate = (dateString: string) => {
@@ -39,7 +40,7 @@ export function KanbanBoard({ cases, onStatusChange }: KanbanBoardProps) {
   };
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 h-full min-h-[600px]">
+    <div className="grid grid-cols-1 md:grid-cols-4 gap-4 h-full min-h-[600px]">
       {columns.map((column) => (
         <div key={column.status} className={`flex flex-col rounded-xl border ${column.color} p-4`}>
           <div className="flex items-center justify-between mb-4 px-1">
@@ -94,26 +95,14 @@ export function KanbanBoard({ cases, onStatusChange }: KanbanBoardProps) {
                         {caseItem.caseType}
                       </div>
                       <div className="flex space-x-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                        {column.status === 'submitted' && (
-                          <button 
+                        {column.next && (
+                          <button
                             onClick={(e) => {
                               e.stopPropagation();
-                              onStatusChange?.(caseItem.id, 'in_progress');
+                              onStatusChange?.(caseItem.id, column.next!);
                             }}
-                            className="p-1.5 bg-blue-50 text-blue-600 rounded-lg hover:bg-blue-600 hover:text-white transition-all shadow-sm"
-                            title="Start Progress"
-                          >
-                            <ArrowRight className="h-3 w-3" />
-                          </button>
-                        )}
-                        {column.status === 'in_progress' && (
-                          <button 
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              onStatusChange?.(caseItem.id, 'completed');
-                            }}
-                            className="p-1.5 bg-green-50 text-green-600 rounded-lg hover:bg-green-600 hover:text-white transition-all shadow-sm"
-                            title="Complete Case"
+                            className="p-1.5 bg-white/80 text-slate-600 rounded-lg hover:bg-slate-900 hover:text-white transition-all shadow-sm"
+                            title={`Move to ${column.next}`}
                           >
                             <ArrowRight className="h-3 w-3" />
                           </button>
