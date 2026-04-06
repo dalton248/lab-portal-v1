@@ -1,9 +1,10 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/Button';
 import { Scan, Truck, Shield, CheckCircle2, PhoneCall, ArrowRight, X, Loader2 } from 'lucide-react';
+import ProfitRecoveryCalculator from '@/components/shared/ProfitRecoveryCalculator';
 
 export default function DoctorHome() {
   const [isConnectModalOpen, setIsConnectModalOpen] = useState(false);
@@ -12,6 +13,12 @@ export default function DoctorHome() {
   const [phone, setPhone] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+
+  useEffect(() => {
+    const handleOpenModal = () => setIsConnectModalOpen(true);
+    window.addEventListener('openConnectScannerModal', handleOpenModal);
+    return () => window.removeEventListener('openConnectScannerModal', handleOpenModal);
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -158,47 +165,8 @@ export default function DoctorHome() {
           </div>
         </section>
 
-        {/* The Perfect Fit Section */}
-        <section className="py-24 bg-slate-900 text-white overflow-hidden relative">
-          <div className="absolute inset-0 opacity-10 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-400 via-slate-900 to-slate-900"></div>
-          
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-            <div className="grid lg:grid-cols-2 gap-16 items-center">
-              <div>
-                <h2 className="text-4xl md:text-5xl font-bold mb-6">The Perfect Fit. <br/><span className="text-blue-400">Every Time.</span></h2>
-                <p className="text-lg text-slate-300 mb-8 leading-relaxed">
-                  Our advanced digital manufacturing process leverages state-of-the-art milling machines to achieve a staggering <strong>0.02mm margin precision</strong>. 
-                </p>
-                <p className="text-lg text-slate-300 mb-8 leading-relaxed">
-                  What does that mean for you? Minimal chairside adjustments, predictable seating, and a stress-free delivery appointment for your patient.
-                </p>
-                
-                <ul className="space-y-4">
-                  {[
-                    "Zero rocking or tight contacts",
-                    "Perfect shade matching using AI optical analysis",
-                    "Consistently smooth occlusal anatomy"
-                  ].map((item, idx) => (
-                    <li key={idx} className="flex items-center gap-3 text-slate-200">
-                      <CheckCircle2 className="w-5 h-5 text-blue-400 shrink-0" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              
-              <div className="relative aspect-square lg:aspect-[4/3] rounded-2xl bg-slate-800 border border-slate-700 flex items-center justify-center overflow-hidden group">
-                {/* Placeholder for Product Shot */}
-                <div className="absolute inset-0 bg-gradient-to-tr from-slate-800 to-slate-700 mix-blend-overlay"></div>
-                <div className="text-center relative z-10 px-6">
-                  <Scan className="w-16 h-16 text-slate-500 mx-auto mb-4 group-hover:scale-110 transition-transform duration-500" />
-                  <p className="text-slate-400 font-medium">High-Quality Zirconia Crown View</p>
-                  <p className="text-sm text-slate-500 mt-2">[Product Image Placeholder]</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+        {/* Interactive Profit Recovery Calculator */}
+        <ProfitRecoveryCalculator />
 
         {/* CTA Section */}
         <section className="py-24 bg-blue-600 text-white text-center">
@@ -209,7 +177,7 @@ export default function DoctorHome() {
             </p>
             <Button 
               size="lg" 
-              className="px-10 py-7 text-lg bg-white text-blue-600 hover:bg-slate-50 font-bold rounded-xl shadow-2xl"
+              className="px-10 py-7 text-lg !bg-white !text-blue-600 hover:bg-slate-50 font-bold rounded-xl shadow-2xl"
               onClick={() => setIsConnectModalOpen(true)}
             >
               Connect Your Scanner Now

@@ -1,145 +1,35 @@
-[00:00:02.111] Server  LOG     ✓ Ready in 1818ms
-[00:00:11.734] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:00:12.363] Browser LOG     [Auth] Fallback: manual session check
-[00:00:12.979] Browser LOG     [Auth] Event: TOKEN_REFRESHED
-[00:00:12.979] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
-[00:13:46.622] Server  WARN    ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
-[00:13:46.899] Server  LOG     ✓ Compiled in 235ms
-[00:20:54.549] Browser ERROR   uncaughtError: Error: Cannot find the middleware module
-[00:35:51.739] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:35:51.869] Browser LOG     [Auth] Event: INITIAL_SESSION
-[00:36:01.906] Browser LOG     [Auth] Event: SIGNED_IN
-[00:36:01.906] Browser LOG     [Auth] Fetching profile for dca69d69-6e8d-4cd0-96f5-94767f05fffd...
-[00:36:02.428] Browser LOG     [Auth] Profile fetched successfully
-[00:39:03.375] Server  LOG     ✓ Compiled in 224ms
-[00:39:50.664] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:39:50.783] Browser LOG     [Auth] Event: INITIAL_SESSION
-[00:39:50.783] Browser LOG     [Auth] Fetching profile for dca69d69-6e8d-4cd0-96f5-94767f05fffd...
-[00:39:51.043] Browser LOG     [Auth] Profile fetched successfully
-[00:40:04.403] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:40:04.522] Browser LOG     [Auth] Event: INITIAL_SESSION
-[00:40:53.573] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:40:53.691] Browser LOG     [Auth] Event: INITIAL_SESSION
-[00:50:32.777] Server  LOG     ✓ Compiled in 486ms
-[00:54:37.863] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:54:37.995] Browser LOG     [Auth] Event: INITIAL_SESSION
-[00:54:37.995] Browser LOG     [Auth] Fetching profile for dca69d69-6e8d-4cd0-96f5-94767f05fffd...
-[00:54:38.822] Browser LOG     [Auth] Profile fetched successfully
-[00:54:43.900] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:54:44.016] Browser LOG     [Auth] Event: INITIAL_SESSION
-[00:54:44.016] Browser LOG     [Auth] Fetching profile for dca69d69-6e8d-4cd0-96f5-94767f05fffd...
-[00:54:44.215] Browser LOG     [Auth] Profile fetched successfully
-[00:54:48.891] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:54:49.018] Browser LOG     [Auth] Event: INITIAL_SESSION
-[00:54:49.018] Browser LOG     [Auth] Fetching profile for dca69d69-6e8d-4cd0-96f5-94767f05fffd...
-[00:54:49.222] Browser LOG     [Auth] Profile fetched successfully
-[00:54:50.261] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:54:50.376] Browser LOG     [Auth] Event: INITIAL_SESSION
-[00:54:50.376] Browser LOG     [Auth] Fetching profile for dca69d69-6e8d-4cd0-96f5-94767f05fffd...
-[00:54:50.545] Browser LOG     [Auth] Profile fetched successfully
-[00:54:52.145] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:54:52.267] Browser LOG     [Auth] Event: INITIAL_SESSION
-[00:54:52.267] Browser LOG     [Auth] Fetching profile for dca69d69-6e8d-4cd0-96f5-94767f05fffd...
-[00:54:52.267] Browser LOG     [Auth] Profile fetched successfully
-[00:54:54.050] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:54:54.174] Browser LOG     [Auth] Event: INITIAL_SESSION
-[00:54:54.174] Browser LOG     [Auth] Fetching profile for dca69d69-6e8d-4cd0-96f5-94767f05fffd...
-[00:54:54.357] Browser LOG     [Auth] Profile fetched successfully
-[00:54:57.129] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:54:57.252] Browser LOG     [Auth] Event: INITIAL_SESSION
-[00:54:57.252] Browser LOG     [Auth] Fetching profile for dca69d69-6e8d-4cd0-96f5-94767f05fffd...
-[00:54:57.426] Browser LOG     [Auth] Profile fetched successfully
-[01:34:28.406] Browser LOG     [Auth] Event: TOKEN_REFRESHED
-[01:34:28.410] Browser LOG     [Auth] Fetching profile for dca69d69-6e8d-4cd0-96f5-94767f05fffd...
-[03:08:12.801] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[03:08:13.424] Browser LOG     [Auth] Fallback: manual session check
-[03:08:13.992] Browser LOG     [Auth] Event: TOKEN_REFRESHED
-[03:08:13.992] Browser LOG     [Auth] Fetching profile for dca69d69-6e8d-4cd0-96f5-94767f05fffd...
-[03:08:17.820] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[03:08:17.956] Browser LOG     [Auth] Event: INITIAL_SESSION
-[03:08:17.956] Browser LOG     [Auth] Fetching profile for dca69d69-6e8d-4cd0-96f5-94767f05fffd...
-[03:08:18.415] Browser LOG     [Auth] Profile fetched successfully
-[03:08:48.356] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[03:08:48.475] Browser LOG     [Auth] Event: INITIAL_SESSION
-[03:08:48.475] Browser LOG     [Auth] Fetching profile for dca69d69-6e8d-4cd0-96f5-94767f05fffd...
-[03:08:48.931] Browser LOG     [Auth] Profile fetched successfully
-[03:08:50.202] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[03:08:50.324] Browser LOG     [Auth] Event: INITIAL_SESSION
-[03:08:50.324] Browser LOG     [Auth] Fetching profile for dca69d69-6e8d-4cd0-96f5-94767f05fffd...
-[03:08:50.471] Browser LOG     [Auth] Profile fetched successfully
-[03:15:36.907] Server  LOG     ✓ Compiled in 617ms
-[03:17:20.651] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[03:17:20.790] Browser LOG     [Auth] Event: INITIAL_SESSION
-[03:17:20.790] Browser LOG     [Auth] Fetching profile for dca69d69-6e8d-4cd0-96f5-94767f05fffd...
-[03:17:23.451] Browser LOG     [Auth] Profile fetched successfully
-[03:25:37.521] Server  LOG     ✓ Compiled in 0ms
-[03:26:37.401] Browser LOG     [Auth] Event: SIGNED_IN
-[03:26:37.401] Browser LOG     [Auth] Fetching profile for dca69d69-6e8d-4cd0-96f5-94767f05fffd...
-[03:26:38.775] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[03:26:38.924] Browser LOG     [Auth] Event: INITIAL_SESSION
-[03:26:38.924] Browser LOG     [Auth] Fetching profile for dca69d69-6e8d-4cd0-96f5-94767f05fffd...
-[03:26:39.527] Browser LOG     [Auth] Profile fetched successfully
-[03:26:53.871] Server  ERROR   Supabase Insert Error: {}
-[03:26:53.874] Server  ERROR   Onboarding API Error: {}
-[03:26:56.596] Browser ERROR   {}
-[03:27:07.777] Browser LOG     [Auth] Event: SIGNED_IN
-[03:27:07.777] Browser LOG     [Auth] Fetching profile for dca69d69-6e8d-4cd0-96f5-94767f05fffd...
-[03:27:11.205] Server  ERROR   Supabase Insert Error: {}
-[03:27:11.206] Server  ERROR   Onboarding API Error: {}
-[03:27:14.096] Browser ERROR   {}
-[03:27:56.455] Server  ERROR   Supabase Insert Error: {}
-[03:27:56.456] Server  ERROR   Onboarding API Error: {}
-[03:27:57.681] Browser ERROR   {}
-[03:28:04.121] Server  ERROR   Supabase Insert Error: {}
-[03:28:04.123] Server  ERROR   Onboarding API Error: {}
-[03:28:11.166] Browser ERROR   {}
-[03:30:34.079] Server  LOG     ✓ Compiled in 224ms
-[03:57:50.513] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[03:57:50.652] Browser LOG     [Auth] Event: INITIAL_SESSION
-[03:57:50.652] Browser LOG     [Auth] Fetching profile for dca69d69-6e8d-4cd0-96f5-94767f05fffd...
-[03:57:51.295] Browser LOG     [Auth] Profile fetched successfully
-[03:57:52.412] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[03:57:52.530] Browser LOG     [Auth] Event: INITIAL_SESSION
-[03:57:52.530] Browser LOG     [Auth] Fetching profile for dca69d69-6e8d-4cd0-96f5-94767f05fffd...
-[03:57:52.672] Browser LOG     [Auth] Profile fetched successfully
-[03:57:53.536] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[03:57:53.656] Browser LOG     [Auth] Event: INITIAL_SESSION
-[03:57:53.656] Browser LOG     [Auth] Fetching profile for dca69d69-6e8d-4cd0-96f5-94767f05fffd...
-[03:57:53.837] Browser LOG     [Auth] Profile fetched successfully
-[03:57:55.800] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[03:57:55.925] Browser LOG     [Auth] Event: INITIAL_SESSION
-[03:57:55.925] Browser LOG     [Auth] Fetching profile for dca69d69-6e8d-4cd0-96f5-94767f05fffd...
-[03:57:56.103] Browser LOG     [Auth] Profile fetched successfully
-[03:58:09.641] Browser LOG     [Auth] Event: SIGNED_IN
-[03:58:09.641] Browser LOG     [Auth] Fetching profile for dca69d69-6e8d-4cd0-96f5-94767f05fffd...
-[04:05:34.145] Server  LOG     ✓ Compiled in 578ms
-[04:07:10.316] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[04:07:10.971] Browser LOG     [Auth] Fallback: manual session check
-[04:07:11.184] Browser LOG     [Auth] Event: TOKEN_REFRESHED
-[04:07:11.184] Browser LOG     [Auth] Fetching profile for dca69d69-6e8d-4cd0-96f5-94767f05fffd...
-[04:17:48.466] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[04:17:48.594] Browser LOG     [Auth] Event: INITIAL_SESSION
-[04:17:48.594] Browser LOG     [Auth] Fetching profile for dca69d69-6e8d-4cd0-96f5-94767f05fffd...
-[04:17:49.610] Browser LOG     [Auth] Profile fetched successfully
-[04:19:10.131] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[04:19:10.280] Browser LOG     [Auth] Event: INITIAL_SESSION
-[04:19:10.280] Browser LOG     [Auth] Fetching profile for dca69d69-6e8d-4cd0-96f5-94767f05fffd...
-[04:19:10.684] Browser LOG     [Auth] Profile fetched successfully
-[04:20:51.106] Browser LOG     [Auth] Event: SIGNED_IN
-[04:20:51.106] Browser LOG     [Auth] Fetching profile for dca69d69-6e8d-4cd0-96f5-94767f05fffd...
-[04:21:37.704] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[04:21:38.311] Browser LOG     [Auth] Fallback: manual session check
-[04:21:38.756] Browser LOG     [Auth] Event: TOKEN_REFRESHED
-[04:21:38.756] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
-[04:21:43.965] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[04:21:44.083] Browser LOG     [Auth] Event: INITIAL_SESSION
-[04:21:44.083] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
-[04:21:44.350] Browser LOG     [Auth] Profile fetched successfully
-[04:22:56.094] Server  LOG     ✓ Compiled in 224ms
-[04:24:07.110] Browser LOG     [Auth] Event: SIGNED_IN
-[04:24:07.111] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
-[04:24:09.569] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[04:24:09.691] Browser LOG     [Auth] Event: INITIAL_SESSION
-[04:24:09.691] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
-[04:24:10.214] Browser LOG     [Auth] Profile fetched successfully
-[04:26:30.133] Server  LOG     ✓ Compiled in 240ms
+[00:00:01.386] Server  WARN    ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+[00:00:01.478] Server  LOG     ✓ Ready in 1206ms
+[00:00:07.561] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:08.205] Browser LOG     [Auth] Fallback: manual session check
+[00:00:08.806] Browser LOG     [Auth] Event: TOKEN_REFRESHED
+[00:00:08.806] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
+[00:00:12.627] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:12.773] Browser LOG     [Auth] Event: INITIAL_SESSION
+[00:00:12.773] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
+[00:00:13.051] Browser LOG     [Auth] Profile fetched successfully
+[00:00:13.126] Browser LOG     [Auth] Event: SIGNED_IN
+[00:00:13.127] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
+[00:01:54.180] Server  LOG     ✓ Compiled in 86ms
+[00:02:32.473] Browser LOG     [Auth] Event: SIGNED_IN
+[00:02:32.473] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
+[00:02:33.127] Browser LOG     [Auth] Event: SIGNED_IN
+[00:02:33.127] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
+[00:02:35.579] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:02:35.772] Browser LOG     [Auth] Event: INITIAL_SESSION
+[00:02:35.772] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
+[00:02:36.127] Browser LOG     [Auth] Event: SIGNED_IN
+[00:02:36.127] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
+[00:02:36.311] Browser LOG     [Auth] Profile fetched successfully
+[00:05:16.486] Browser LOG     [Auth] Event: SIGNED_IN
+[00:05:16.486] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
+[00:05:17.052] Browser LOG     [Auth] Event: SIGNED_IN
+[00:05:17.052] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
+[00:06:59.392] Server  LOG     ✓ Compiled in 84ms
+[00:07:05.554] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:07:05.752] Browser LOG     [Auth] Event: INITIAL_SESSION
+[00:07:05.752] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
+[00:07:06.618] Browser LOG     [Auth] Profile fetched successfully
+[00:08:32.035] Server  LOG     ✓ Compiled in 247ms
+[00:11:20.180] Browser LOG     [Auth] Event: SIGNED_IN
+[00:11:20.181] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
