@@ -148,7 +148,7 @@ export default function DoctorHome() {
                 </div>
                 <h3 className="text-xl font-bold text-slate-900 mb-3">Global Quality, Local Support</h3>
                 <p className="text-slate-600 leading-relaxed">
-                  Partnered with premier labs like Sunflower, we guarantee high-end Zirconia and PFM crowns with uncompromised aesthetic and structural integrity.
+                  Partnered with premier labs, we guarantee high-end Zirconia and PFM crowns with uncompromised aesthetic and structural integrity.
                 </p>
               </div>
 

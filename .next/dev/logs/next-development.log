@@ -33,3 +33,10 @@
 [00:08:32.035] Server  LOG     ✓ Compiled in 247ms
 [00:11:20.180] Browser LOG     [Auth] Event: SIGNED_IN
 [00:11:20.181] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
+[00:24:54.521] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:24:54.629] Browser LOG     [Auth] Event: INITIAL_SESSION
+[00:24:54.629] Browser LOG     [Auth] Fetching profile for 7758775b-5171-4a49-a59b-518bc45d4350...
+[00:24:55.305] Browser LOG     [Auth] Profile fetched successfully
+[00:25:07.696] Browser LOG     [Auth] Event: SIGNED_OUT
+[00:29:42.303] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:29:42.496] Browser LOG     [Auth] Event: INITIAL_SESSION
