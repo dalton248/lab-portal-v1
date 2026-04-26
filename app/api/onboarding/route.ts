@@ -3,7 +3,7 @@ import { createClient } from '@supabase/supabase-js';
 
 export async function POST(req: Request) {
   try {
-    const { email, phone, method } = await req.json();
+    const { email, phone, officeName, address, method } = await req.json();
 
     const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
     // Prefer service role key for bypassing RLS on inserts if anon fails, but fallback to anon
@@ -16,7 +16,9 @@ export async function POST(req: Request) {
       .insert([
         { 
           'Email': email, 
-          'Phone number': phone 
+          'Phone number': phone,
+          'Office Name': officeName,
+          'Physical Address': address
         }
       ]);
 
@@ -33,7 +35,7 @@ export async function POST(req: Request) {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email, phone, method, source: 'Doctor Connect Scanner' }),
+        body: JSON.stringify({ email, phone, officeName, address, method, source: 'Doctor Connect Scanner' }),
       });
     } catch (webhookError) {
       console.error('Failed to trigger webhook:', webhookError);

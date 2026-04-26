@@ -11,6 +11,8 @@ export default function DoctorHome() {
   const [selectedMethod, setSelectedMethod] = useState<string | null>(null);
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
+  const [officeName, setOfficeName] = useState('');
+  const [address, setAddress] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
@@ -29,7 +31,13 @@ export default function DoctorHome() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email, phone, method: selectedMethod }),
+        body: JSON.stringify({ 
+          email, 
+          phone, 
+          officeName: selectedMethod === 'Physical Impressions' ? officeName : undefined,
+          address: selectedMethod === 'Physical Impressions' ? address : undefined,
+          method: selectedMethod 
+        }),
       });
       
       if (!res.ok) throw new Error('Failed to submit');
@@ -50,6 +58,8 @@ export default function DoctorHome() {
       setIsSuccess(false);
       setEmail('');
       setPhone('');
+      setOfficeName('');
+      setAddress('');
     }, 300);
   };
   return (
@@ -101,7 +111,7 @@ export default function DoctorHome() {
                 Connect Your Scanner
                 <ArrowRight className="w-5 h-5" />
               </Button>
-              <a href="/Sunflower_Dental_Price_List_2025.pdf" download="Sunflower_Dental_Price_List_2025.pdf" target="_blank" rel="noopener noreferrer">
+              <a href="/LabOps_Pricing_and_Materials.pdf" download="LabOps_Pricing_and_Materials.pdf" target="_blank" rel="noopener noreferrer">
                 <Button variant="outline" size="lg" className="w-full sm:w-auto px-8 py-6 text-lg border-2 border-slate-200 text-slate-700 hover:border-slate-300 hover:bg-slate-50 font-semibold rounded-xl transition-all">
                   View Pricing & Materials
                 </Button>
@@ -247,6 +257,32 @@ export default function DoctorHome() {
                   <p className="text-sm text-slate-600 mb-6 font-medium">To provide the exact pairing credentials, please confirm your contact details:</p>
                   
                   <div className="space-y-4 mb-8">
+                    {selectedMethod === 'Physical Impressions' && (
+                      <>
+                        <div className="animate-in fade-in slide-in-from-top-2 duration-300">
+                          <label className="block text-sm font-semibold text-slate-700 mb-1">Office Name</label>
+                          <input 
+                            type="text" 
+                            required 
+                            value={officeName}
+                            onChange={(e) => setOfficeName(e.target.value)}
+                            className="w-full p-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-600 focus:border-blue-600 outline-none transition-all"
+                            placeholder="Smile Dental Care"
+                          />
+                        </div>
+                        <div className="animate-in fade-in slide-in-from-top-2 duration-300">
+                          <label className="block text-sm font-semibold text-slate-700 mb-1">Physical Address</label>
+                          <textarea 
+                            required 
+                            value={address}
+                            onChange={(e) => setAddress(e.target.value)}
+                            className="w-full p-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-600 focus:border-blue-600 outline-none transition-all"
+                            placeholder="123 Dental St, Suite 101, City, State, ZIP"
+                            rows={2}
+                          />
+                        </div>
+                      </>
+                    )}
                     <div>
                       <label className="block text-sm font-semibold text-slate-700 mb-1">Email Address</label>
                       <input 
