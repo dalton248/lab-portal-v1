@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/Button';
-import { Scan, Truck, Shield, CheckCircle2, PhoneCall, ArrowRight, X, Loader2 } from 'lucide-react';
+import { Scan, Truck, Shield, CheckCircle2, PhoneCall, ArrowRight, X, Loader2, Mail } from 'lucide-react';
 import ProfitRecoveryCalculator from '@/components/shared/ProfitRecoveryCalculator';
 
 export default function DoctorHome() {
@@ -62,6 +62,19 @@ export default function DoctorHome() {
       setAddress('');
     }, 300);
   };
+
+  const openWithMethod = (method: string | null) => {
+    setSelectedMethod(method);
+    setIsConnectModalOpen(true);
+  };
+
+  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    e.preventDefault();
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
   return (
     <div className="min-h-screen bg-white text-slate-900 font-sans">
       {/* Header */}
@@ -69,11 +82,42 @@ export default function DoctorHome() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <img src="/logo.png" alt="LabOps Dental Lab Logo" className="w-10 h-10 object-contain rounded-lg" />
-            <span className="text-2xl font-black text-slate-900 tracking-tighter">LabOps<span className="text-blue-600 font-medium">dentallab</span></span>
+            <span className="text-2xl font-black text-slate-900 tracking-tighter">LabOps<span className="text-blue-600 font-medium">DentalLab</span></span>
           </div>
+
+          <nav className="hidden md:flex items-center gap-8">
+            <a 
+              href="#features" 
+              onClick={(e) => scrollToSection(e, 'features')}
+              className="text-sm font-semibold text-slate-600 hover:text-blue-600 transition-colors"
+            >
+              Why LabOps?
+            </a>
+            <a 
+              href="#calculator" 
+              onClick={(e) => scrollToSection(e, 'calculator')}
+              className="text-sm font-semibold text-slate-600 hover:text-blue-600 transition-colors"
+            >
+              Price Comparison
+            </a>
+            <a 
+              href="#contact" 
+              onClick={(e) => scrollToSection(e, 'contact')}
+              className="text-sm font-semibold text-slate-600 hover:text-blue-600 transition-colors"
+            >
+              Contact
+            </a>
+            <button 
+              onClick={() => openWithMethod(null)}
+              className="text-sm font-semibold text-slate-600 hover:text-blue-600 transition-colors"
+            >
+              Scanner Setup Guide
+            </button>
+          </nav>
+
           <div className="flex items-center gap-4">
             <Link href="/login">
-              <Button variant="ghost" className="hidden sm:flex text-slate-600 hover:text-blue-600 font-medium">
+              <Button variant="ghost" className="hidden lg:flex text-slate-600 hover:text-blue-600 font-medium">
                 Log in
               </Button>
             </Link>
@@ -81,7 +125,7 @@ export default function DoctorHome() {
               className="bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-md shadow-blue-500/20"
               onClick={() => setIsConnectModalOpen(true)}
             >
-              Connect Scanner
+              Connect My Dental Office
             </Button>
           </div>
         </div>
@@ -94,12 +138,12 @@ export default function DoctorHome() {
           
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-slate-900 tracking-tight leading-[1.1] mb-8 max-w-5xl mx-auto">
-              The Precision You Felt, <br />
-              <span className="text-blue-600">Scaled to Your Entire Practice.</span>
+              Premium Quality. Unbeatable Pricing. <br />
+              <span className="text-blue-600">Connected in 60 Seconds.</span>
             </h1>
             
             <p className="max-w-3xl mx-auto text-xl text-slate-600 leading-relaxed mb-12">
-              You received our dental case example because we know the pressure of a perfect fit. Stop worrying about margins and start tracking every case in real-time.
+              Didn&apos;t receive our sample case in the mail? See why we are the fastest-growing lab for doctors who refuse to overpay for precision. Connect your scanner or start sending impressions now to start saving on your next unit.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -108,12 +152,12 @@ export default function DoctorHome() {
                 className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-6 text-lg bg-blue-600 hover:bg-blue-700 text-white shadow-xl shadow-blue-500/30 font-bold rounded-xl transition-all hover:-translate-y-0.5"
                 onClick={() => setIsConnectModalOpen(true)}
               >
-                Connect Your Scanner
+                Connect My Dental Office
                 <ArrowRight className="w-5 h-5" />
               </Button>
               <a href="/LabOps_Pricing_and_Materials.pdf" download="LabOps_Pricing_and_Materials.pdf" target="_blank" rel="noopener noreferrer">
                 <Button variant="outline" size="lg" className="w-full sm:w-auto px-8 py-6 text-lg border-2 border-slate-200 text-slate-700 hover:border-slate-300 hover:bg-slate-50 font-semibold rounded-xl transition-all">
-                  View Pricing & Materials
+                  See How Much You&apos;ll Save
                 </Button>
               </a>
             </div>
@@ -134,7 +178,7 @@ export default function DoctorHome() {
         </section>
 
         {/* Features Section */}
-        <section className="py-24 bg-white">
+        <section id="features" className="py-24 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16 max-w-3xl mx-auto">
               <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Focus on Dentistry. Leave the Logistics to Us.</h2>
@@ -148,7 +192,7 @@ export default function DoctorHome() {
                 </div>
                 <h3 className="text-xl font-bold text-slate-900 mb-3">Seamless Integration</h3>
                 <p className="text-slate-600 leading-relaxed">
-                  Send cases directly from your 3Shape or preferred intraoral scanner. We automatically ingest your digital impressions without manual data entry.
+                  Send cases directly from your 3Shape or intraoral scanner, or ship physical impressions with our prepaid kits. We automatically ingest your data without manual entry.
                 </p>
               </div>
 
@@ -176,7 +220,9 @@ export default function DoctorHome() {
         </section>
 
         {/* Interactive Profit Recovery Calculator */}
-        <ProfitRecoveryCalculator />
+        <div id="calculator">
+          <ProfitRecoveryCalculator />
+        </div>
 
         {/* CTA Section */}
         <section className="py-24 bg-blue-600 text-white text-center">
@@ -194,6 +240,58 @@ export default function DoctorHome() {
             </Button>
           </div>
         </section>
+        {/* Contact Section */}
+        <section id="contact" className="py-24 bg-slate-50 border-t border-slate-100">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid md:grid-cols-2 gap-16 items-center">
+              <div>
+                <h2 className="text-4xl font-bold text-slate-900 mb-6">Get in Touch</h2>
+                <p className="text-xl text-slate-600 mb-10 leading-relaxed font-light">
+                  Have questions about our workflow or specific case requirements? Our team is ready to assist you directly.
+                </p>
+                <div className="space-y-8">
+                  <div className="flex items-center gap-5 group">
+                    <div className="w-14 h-14 bg-white shadow-sm border border-slate-100 text-blue-600 rounded-2xl flex items-center justify-center transition-transform group-hover:scale-110">
+                      <Mail className="w-7 h-7" />
+                    </div>
+                    <div>
+                      <p className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-1">Email Our Lead Tech</p>
+                      <a href="mailto:dalton@labopsdental.com" className="text-xl font-black text-slate-900 hover:text-blue-600 transition-colors">
+                        dalton@labopsdental.com
+                      </a>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-5 group">
+                    <div className="w-14 h-14 bg-white shadow-sm border border-slate-100 text-emerald-600 rounded-2xl flex items-center justify-center transition-transform group-hover:scale-110">
+                      <PhoneCall className="w-7 h-7" />
+                    </div>
+                    <div>
+                      <p className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-1">Direct Office Line <span className="text-blue-500/60 lowercase font-medium ml-2">(Text or Call)</span></p>
+                      <a href="tel:5024828356" className="text-xl font-black text-slate-900 hover:text-blue-600 transition-colors">
+                        (502) 482-8356
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="bg-white p-10 rounded-[2.5rem] shadow-2xl shadow-blue-500/5 border border-slate-100 relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-blue-50 rounded-full -mr-16 -mt-16 opacity-50"></div>
+                <h3 className="text-2xl font-bold text-slate-900 mb-4 relative z-10">Direct Lab Support</h3>
+                <p className="text-lg text-slate-500 mb-8 leading-relaxed relative z-10">
+                  Typical response time is less than 15 minutes during office hours. Reach out via email or phone for immediate case inquiries.
+                </p>
+                <Button 
+                   size="lg"
+                   className="w-full py-7 text-lg bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-2xl shadow-xl shadow-blue-500/20 transition-all active:scale-95"
+                   onClick={() => window.open('mailto:dalton@labopsdental.com')}
+                >
+                  Message Dalton Directly
+                </Button>
+              </div>
+            </div>
+          </div>
+        </section>
+
       </main>
 
       {/* Footer */}
@@ -202,7 +300,7 @@ export default function DoctorHome() {
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             <div className="flex items-center gap-3">
                <img src="/logo.png" alt="LabOps Dental Lab Logo" className="w-8 h-8 object-contain rounded-md" />
-               <span className="text-xl font-bold text-white tracking-tighter">LabOps<span className="text-blue-500 font-medium">dentallab</span></span>
+               <span className="text-xl font-bold text-white tracking-tighter">LabOps<span className="text-blue-500 font-medium">DentalLab</span></span>
             </div>
             
             <div className="flex items-center gap-8 text-sm text-slate-400 font-medium">
