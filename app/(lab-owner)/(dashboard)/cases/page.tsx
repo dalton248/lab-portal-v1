@@ -22,6 +22,7 @@ export default function CasesPage() {
   const [loading, setLoading] = useState(true);
   const [statusFilter, setStatusFilter] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState('');
+  const [sortBy, setSortBy] = useState<string>('due_date_asc');
 
   useEffect(() => {
     async function fetchCases() {
@@ -29,9 +30,23 @@ export default function CasesPage() {
       
       setLoading(true);
       try {
+        let sortColumn = 'due_date';
+        let sortAscending = true;
+
+        if (sortBy === 'due_date_desc') {
+          sortAscending = false;
+        } else if (sortBy === 'created_at_desc') {
+          sortColumn = 'created_at';
+          sortAscending = false;
+        } else if (sortBy === 'created_at_asc') {
+          sortColumn = 'created_at';
+          sortAscending = true;
+        }
+
         const query = supabase
           .from('Cases')
-          .select('*');
+          .select('*')
+          .order(sortColumn, { ascending: sortAscending, nullsFirst: false });
 
         if (profile.role === 'dentist') {
           query.eq('dentist_id', profile.id);
@@ -67,7 +82,7 @@ export default function CasesPage() {
     }
 
     fetchCases();
-  }, [profile]);
+  }, [profile, sortBy]);
 
   const statusFiltered =
     statusFilter === 'all'
@@ -99,6 +114,13 @@ export default function CasesPage() {
 
   const currentUserRole = profile?.role || 'dentist';
 
+  const sortOptions = [
+    { value: 'due_date_asc', label: 'Due Date (Soonest)' },
+    { value: 'due_date_desc', label: 'Due Date (Latest)' },
+    { value: 'created_at_desc', label: 'Most Recent' },
+    { value: 'created_at_asc', label: 'Oldest' },
+  ];
+
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
@@ -114,15 +136,24 @@ export default function CasesPage() {
         <CardHeader>
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-lg font-semibold text-slate-900">{t('cases.allCases')}</h2>
-            {currentUserRole === 'lab_admin' && (
+            <div className="flex gap-2">
               <div className="w-48">
                 <Select
-                  options={filterOptions}
-                  value={statusFilter}
-                  onChange={(e) => setStatusFilter(e.target.value)}
+                  options={sortOptions}
+                  value={sortBy}
+                  onChange={(e) => setSortBy(e.target.value)}
                 />
               </div>
-            )}
+              {currentUserRole === 'lab_admin' && (
+                <div className="w-48">
+                  <Select
+                    options={filterOptions}
+                    value={statusFilter}
+                    onChange={(e) => setStatusFilter(e.target.value)}
+                  />
+                </div>
+              )}
+            </div>
           </div>
           <div className="relative">
             <Search className="absolute left-3 top-3 h-5 w-5 text-slate-400" />

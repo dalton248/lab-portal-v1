@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/Button';
 import { Card, CardHeader, CardContent } from '@/components/ui/Card';
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from '@/components/ui/Table';
 import { StatusBadge } from '@/components/ui/StatusBadge';
+import { Select } from '@/components/ui/Select';
 import { searchCases } from '@/lib/mock-data';
 import { useLanguage } from '@/components/providers/LanguageProvider';
 import { useAuth } from '@/components/providers/AuthProvider';
@@ -25,6 +26,7 @@ export default function DashboardPage() {
   const [allCases, setAllCases] = useState<DashboardCase[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
+  const [sortBy, setSortBy] = useState<string>('due_date_asc');
 
   useEffect(() => {
     async function fetchDashboardData() {
@@ -32,9 +34,23 @@ export default function DashboardPage() {
       
       setLoading(true);
       try {
+        let sortColumn = 'due_date';
+        let sortAscending = true;
+
+        if (sortBy === 'due_date_desc') {
+          sortAscending = false;
+        } else if (sortBy === 'created_at_desc') {
+          sortColumn = 'created_at';
+          sortAscending = false;
+        } else if (sortBy === 'created_at_asc') {
+          sortColumn = 'created_at';
+          sortAscending = true;
+        }
+
         const query = supabase
           .from('Cases')
-          .select('*');
+          .select('*')
+          .order(sortColumn, { ascending: sortAscending, nullsFirst: false });
 
         if (profile.role === 'dentist') {
           query.eq('dentist_id', profile.id);
@@ -71,7 +87,7 @@ export default function DashboardPage() {
     }
 
     fetchDashboardData();
-  }, [profile]);
+  }, [profile, sortBy]);
 
   const filteredCases = searchCases(searchQuery, allCases);
 
@@ -212,6 +228,18 @@ export default function DashboardPage() {
             <CardHeader>
               <div className="flex justify-between items-center">
                 <h2 className="text-lg font-semibold text-slate-900">{t('dashboard.recentCases')}</h2>
+                <div className="w-48">
+                  <Select
+                    options={[
+                      { value: 'due_date_asc', label: 'Due Date (Soonest)' },
+                      { value: 'due_date_desc', label: 'Due Date (Latest)' },
+                      { value: 'created_at_desc', label: 'Most Recent' },
+                      { value: 'created_at_asc', label: 'Oldest' },
+                    ]}
+                    value={sortBy}
+                    onChange={(e) => setSortBy(e.target.value)}
+                  />
+                </div>
               </div>
               <div className="mt-4 relative">
                 <Search className="absolute left-3 top-3 h-5 w-5 text-slate-400" />
