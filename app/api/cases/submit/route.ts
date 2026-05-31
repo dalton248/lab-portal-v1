@@ -41,6 +41,28 @@ export async function POST(request: Request) {
       }
     }
 
+    // Pre-insert Check: Query the database for any existing case matching Case_number and lab_id
+    console.log(`[submit/route] Checking if case ${caseId} already exists in database...`);
+    const { data: existingCase, error: checkError } = await supabase
+      .from('Cases')
+      .select('id')
+      .eq('Case_number', caseId)
+      .eq('lab_id', labId)
+      .maybeSingle();
+
+    if (checkError) {
+      console.warn('[submit/route] Warning checking for existing case:', checkError.message);
+    }
+
+    if (existingCase) {
+      console.log(`[submit/route] Case ${caseId} already exists (ID: ${existingCase.id}). Skipping insertion.`);
+      return NextResponse.json({ 
+        success: true, 
+        caseId: existingCase.id,
+        alreadyExists: true 
+      });
+    }
+
     // Pre-generate UUID on the server to avoid running a subsequent SELECT under RLS
     const newCaseDbId = crypto.randomUUID();
 

@@ -5,6 +5,8 @@ import { Case, CaseStatus } from '@/lib/types';
 // Use server-side environment variables for Supabase
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
+// Service role bypasses RLS for audit log writes
+const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY || supabaseAnonKey;
 
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
@@ -100,36 +102,63 @@ export async function GET(
   }
 }
 
+// Human-readable labels for status audit messages
+const STATUS_LABELS: Record<string, string> = {
+  submitted: 'Intake',
+  in_progress: 'Design',
+  qc: 'QC',
+  shipping: 'Shipping',
+  on_hold: 'On Hold',
+  completed: 'Completed',
+  rejected: 'Rejected',
+};
+
 export async function PATCH(
   request: Request,
   { params }: { params: Promise<{ id: string }> }
 ) {
   const { id } = await params;
-  const { status } = await request.json();
+  const body = await request.json();
+  const { status, rejection_reason, sender_id, sender_name } = body;
 
   if (!status) {
     return NextResponse.json({ error: 'Status is required' }, { status: 400 });
   }
 
-  // Extract token from Authorization header or cookies
+  // Extract token from Authorization header
   const authHeader = request.headers.get('Authorization');
   const token = authHeader?.startsWith('Bearer ') ? authHeader.substring(7) : null;
 
-  // Create a customized supabase client for this request
+  // User-scoped client for the Cases update (respects RLS)
   const supabaseClient = createClient(supabaseUrl, supabaseAnonKey, {
     global: {
       headers: token ? { Authorization: `Bearer ${token}` } : {},
     },
   });
 
+  // Service-role client for writing audit messages (bypasses RLS)
+  const supabaseAdmin = createClient(supabaseUrl, supabaseServiceKey);
+
   try {
+    // 1. Fetch the current status so we can build a diff message
+    const { data: current } = await supabaseClient
+      .from('Cases')
+      .select('status, Case_number')
+      .eq('id', id)
+      .single();
+
+    const previousStatus = current?.status || 'unknown';
+    const caseNumber = current?.Case_number || id;
+
+    // 2. Update the case status (and hold_reason for rejections)
+    const updatePayload: Record<string, unknown> = { status };
+    if (status === 'rejected' && rejection_reason) {
+      updatePayload.hold_reason = rejection_reason;
+    }
+
     const { data, error } = await supabaseClient
       .from('Cases')
-      .update({ 
-        status: status,
-        // We'll let Supabase handle updated_at if it's set to auto-update, 
-        // but we can also set it explicitly if needed.
-      })
+      .update(updatePayload)
       .eq('id', id)
       .select()
       .single();
@@ -138,6 +167,28 @@ export async function PATCH(
       console.error('Supabase update error:', error);
       return NextResponse.json({ error: error.message }, { status: 400 });
     }
+
+    // 3. Insert a status-change audit entry into Case_Messages
+    const prevLabel = STATUS_LABELS[previousStatus] ?? previousStatus;
+    const newLabel = STATUS_LABELS[status] ?? status;
+
+    let auditMessage = `Status changed: ${prevLabel} → ${newLabel}`;
+    if (status === 'rejected' && rejection_reason) {
+      auditMessage += `\nReason: ${rejection_reason}`;
+    }
+
+    await supabaseAdmin.from('Case_Messages').insert({
+      case_id: id,
+      sender_id: sender_id || null,
+      message: auditMessage,
+      message_type: 'status_change',
+      metadata: {
+        previous_status: previousStatus,
+        new_status: status,
+        sender_name: sender_name || 'Lab',
+        rejection_reason: rejection_reason || null,
+      },
+    });
 
     return NextResponse.json({ success: true, data });
   } catch (error) {

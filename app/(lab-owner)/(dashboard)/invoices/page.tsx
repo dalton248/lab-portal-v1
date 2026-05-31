@@ -61,12 +61,16 @@ export default function InvoicesPage() {
     fetchCases();
   }, [profile]);
 
-  const formatDate = (dateString: string) =>
-    new Date(dateString).toLocaleDateString(language === 'en' ? 'en-US' : 'zh-CN', {
+  const formatDate = (dateString: string | null | undefined) => {
+    if (!dateString) return 'N/A';
+    const d = new Date(dateString);
+    if (isNaN(d.getTime())) return 'N/A';
+    return d.toLocaleDateString(language === 'en' ? 'en-US' : 'zh-CN', {
       month: 'short',
       day: 'numeric',
       year: 'numeric',
     });
+  };
 
   const totalBilled = cases
     .filter((c) => c.price)
