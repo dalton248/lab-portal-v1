@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { Building2 } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
@@ -11,12 +11,16 @@ import { LanguageSwitcher } from '@/components/LanguageSwitcher';
 import { supabase } from '@/lib/supabase';
 import { useAuth } from '@/components/providers/AuthProvider';
 
+// Possible views on this page
+type View = 'login' | 'signup' | 'forgotPassword';
+
 export default function LoginPage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const { session, profile, loading: authLoading, profileError } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [isLogin, setIsLogin] = useState(true);
+  const [view, setView] = useState<View>('login');
   const [fullName, setFullName] = useState('');
   const [role, setRole] = useState<'dentist' | 'lab'>('dentist');
   const [labEmail, setLabEmail] = useState('');
@@ -24,6 +28,16 @@ export default function LoginPage() {
   const [error, setError] = useState<string | null>(null);
   const [successMsg, setSuccessMsg] = useState<string | null>(null);
   const { t } = useLanguage();
+
+  // Convenience alias so existing code that reads `isLogin` still works
+  const isLogin = view === 'login';
+
+  // Show success banner when redirected back from /auth/reset-password
+  useEffect(() => {
+    if (searchParams.get('reset') === 'success') {
+      setSuccessMsg('Password updated successfully. Sign in with your new password.');
+    }
+  }, [searchParams]);
 
   // Redirect if already logged in and profile loaded, or show error if fetch fails
   useEffect(() => {
@@ -112,6 +126,98 @@ export default function LoginPage() {
     setLoading(false);
   };
 
+  // ── Forgot Password handler ───────────────────────────────────────────────
+  const handleForgotPassword = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setError(null);
+    setSuccessMsg(null);
+
+    // Check if this is a lab-admin email by looking up the profile role
+    const { data: profileData } = await supabase
+      .from('profiles')
+      .select('role')
+      .eq('email', email)
+      .maybeSingle();
+
+    if (profileData && profileData.role === 'lab') {
+      setError('Lab administrator accounts cannot reset their password here. Contact your system administrator.');
+      setLoading(false);
+      return;
+    }
+
+    const redirectTo = `${window.location.origin}/auth/reset-password`;
+    const { error: resetError } = await supabase.auth.resetPasswordForEmail(email, {
+      redirectTo,
+    });
+
+    if (resetError) {
+      setError(resetError.message);
+    } else {
+      setSuccessMsg('Check your inbox for a reset link. It will expire in 1 hour.');
+    }
+    setLoading(false);
+  };
+
+  // ── Forgot Password view ──────────────────────────────────────────────────
+  if (view === 'forgotPassword') {
+    return (
+      <div className="min-h-screen bg-slate-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8 relative">
+        <div className="absolute top-4 right-4 sm:top-8 sm:right-8">
+          <LanguageSwitcher />
+        </div>
+        <div className="sm:mx-auto sm:w-full sm:max-w-md">
+          <div className="flex justify-center">
+            <img src="/logo.png" alt="LabOps Logo" className="w-16 h-16 object-contain rounded-xl shadow-sm" />
+          </div>
+          <h2 className="mt-6 text-center text-3xl font-bold text-slate-900">Reset your password</h2>
+          <p className="mt-2 text-center text-sm text-slate-600">
+            Enter your dentist email and we'll send a reset link.
+          </p>
+        </div>
+
+        <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+          <div className="bg-white py-8 px-4 shadow-sm rounded-lg border border-slate-200 sm:px-10">
+            {error && (
+              <div className="mb-4 p-3 bg-red-50 border border-red-200 text-red-600 text-sm rounded-md">
+                {error}
+              </div>
+            )}
+            {successMsg && (
+              <div className="mb-4 p-3 bg-green-50 border border-green-200 text-green-700 text-sm rounded-md">
+                {successMsg}
+              </div>
+            )}
+            <form className="space-y-6" onSubmit={handleForgotPassword}>
+              <Input
+                label={t('login.email')}
+                type="email"
+                autoComplete="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder={t('login.emailPlaceholder')}
+              />
+              <Button type="submit" variant="primary" className="w-full" disabled={loading}>
+                {loading ? 'Sending…' : 'Send Reset Link'}
+              </Button>
+            </form>
+            <div className="mt-6 text-center">
+              <button
+                type="button"
+                onClick={() => { setView('login'); setError(null); setSuccessMsg(null); }}
+                className="text-sm font-medium text-blue-600 hover:text-blue-500"
+              >
+                ← Back to login
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // ── Login / Sign-up view ──────────────────────────────────────────────────
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8 relative">
       <div className="absolute top-4 right-4 sm:top-8 sm:right-8">
@@ -236,9 +342,13 @@ export default function LoginPage() {
                 </div>
 
                 <div className="text-sm">
-                  <a href="#" className="font-medium text-blue-600 hover:text-blue-500">
+                  <button
+                    type="button"
+                    onClick={() => { setView('forgotPassword'); setError(null); setSuccessMsg(null); }}
+                    className="font-medium text-blue-600 hover:text-blue-500"
+                  >
                     {t('login.forgotPassword')}
-                  </a>
+                  </button>
                 </div>
               </div>
             )}
@@ -252,7 +362,7 @@ export default function LoginPage() {
             <button
               type="button"
               onClick={() => {
-                setIsLogin(!isLogin);
+                setView(view === 'login' ? 'signup' : 'login');
                 setError(null);
                 setSuccessMsg(null);
               }}
