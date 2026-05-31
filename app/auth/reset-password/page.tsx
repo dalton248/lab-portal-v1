@@ -27,7 +27,9 @@ export default function ResetPasswordPage() {
         return;
       }
 
-      // Parse the hash fragment manually
+      // Issue #31: Parse the hash fragment manually directly from window.location.hash.
+      // This bypasses the race condition inherent in Supabase's onAuthStateChange event
+      // listener during redirect recovery flow, preventing UI hangs.
       const params = new URLSearchParams(hash.substring(1));
       const accessToken = params.get('access_token');
       const refreshToken = params.get('refresh_token');
