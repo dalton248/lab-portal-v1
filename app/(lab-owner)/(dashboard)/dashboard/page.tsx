@@ -136,7 +136,7 @@ export default function DashboardPage() {
               : t('dashboard.labSubtitle')}
           </p>
         </div>
-        {currentUser?.role === 'dentist' && (
+        {(currentUser?.role === 'dentist' || currentUser?.role === 'lab_admin') && (
           <Button
             variant="primary"
             onClick={() => router.push('/cases/new')}

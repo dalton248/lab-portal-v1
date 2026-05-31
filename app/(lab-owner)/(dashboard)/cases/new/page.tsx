@@ -11,6 +11,7 @@ import { Button } from '@/components/ui/Button';
 import { useLanguage } from '@/components/providers/LanguageProvider';
 import { ToothChart } from '@/components/ui/ToothChart';
 import { RecipientSelector } from '@/components/cases/RecipientSelector';
+import { DoctorSelector } from '@/components/cases/DoctorSelector';
 import { CaseInputMethod } from '@/components/cases/CaseInputMethod';
 import { useAuth } from '@/components/providers/AuthProvider';
 import { supabase } from '@/lib/supabase';
@@ -39,6 +40,10 @@ export default function NewCasePage() {
   const [inputMethod, setInputMethod] = useState<InputMethodType>('upload');
   const [recipientId, setRecipientId] = useState('');
   const [externalEmail, setExternalEmail] = useState('');
+  
+  // Doctor Selection State (for lab owners creating cases)
+  const [selectedDoctorId, setSelectedDoctorId] = useState('');
+  const [selectedDoctorName, setSelectedDoctorName] = useState('');
   
   // Validation State
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -113,7 +118,9 @@ export default function NewCasePage() {
   };
 
   const isFormValid = () => {
-    return !!patientName.trim();
+    if (!patientName.trim()) return false;
+    if (profile?.role === 'lab_admin' && !selectedDoctorId) return false;
+    return true;
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -128,6 +135,7 @@ export default function NewCasePage() {
 
     try {
       // 1. Prepare case data
+      const isLab = profile?.role === 'lab_admin';
       const caseData = {
         patientName,
         caseId: `CS-${Math.floor(1000 + Math.random() * 9000)}`,
@@ -136,16 +144,16 @@ export default function NewCasePage() {
         price: parseFloat(price) || null,
         prep_type: prepType,
         what_needed: whatNeeded,
-        status: 'submitted',
+        status: 'Submitted',
         dueDate,
-        dentistId: profile?.id,
-        dentistName: profile?.full_name || 'Unknown Dentist',
+        dentistId: isLab ? selectedDoctorId : profile?.id,
+        dentistName: isLab ? selectedDoctorName : (profile?.full_name || 'Unknown Dentist'),
         labId: profile?.lab_id,
         notes,
         teeth_numbers: selectedTeeth,
         input_method: inputMethod,
-        recipient_id: recipientId || null,
-        recipient_email: externalEmail || null,
+        recipient_id: isLab ? profile?.id : (recipientId || null),
+        recipient_email: isLab ? profile?.email : (externalEmail || null),
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString(),
       };
@@ -297,15 +305,25 @@ export default function NewCasePage() {
           </CardContent>
         </Card>
 
-        {/* Section 4: Recipient Selection */}
+        {/* Section 4: Recipient or Doctor Selection */}
         <Card className="border-slate-200 shadow-sm">
           <CardContent className="p-6">
-            <RecipientSelector
-              recipientId={recipientId} 
-              setRecipientId={setRecipientId} 
-              externalEmail={externalEmail} 
-              setExternalEmail={setExternalEmail} 
-            />
+            {profile?.role === 'lab_admin' ? (
+              <DoctorSelector
+                selectedDoctorId={selectedDoctorId}
+                setSelectedDoctorId={setSelectedDoctorId}
+                selectedDoctorName={selectedDoctorName}
+                setSelectedDoctorName={setSelectedDoctorName}
+                labId={profile?.lab_id}
+              />
+            ) : (
+              <RecipientSelector
+                recipientId={recipientId} 
+                setRecipientId={setRecipientId} 
+                externalEmail={externalEmail} 
+                setExternalEmail={setExternalEmail} 
+              />
+            )}
           </CardContent>
         </Card>
 
