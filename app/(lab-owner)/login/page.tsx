@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Building2 } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
@@ -14,7 +14,7 @@ import { useAuth } from '@/components/providers/AuthProvider';
 // Possible views on this page
 type View = 'login' | 'signup' | 'forgotPassword';
 
-export default function LoginPage() {
+function LoginContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { session, profile, loading: authLoading, profileError } = useAuth();
@@ -410,5 +410,17 @@ export default function LoginPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-slate-50 flex items-center justify-center">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+      </div>
+    }>
+      <LoginContent />
+    </Suspense>
   );
 }

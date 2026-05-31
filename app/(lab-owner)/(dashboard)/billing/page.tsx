@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { useLanguage } from '@/components/providers/LanguageProvider';
 import { useAuth } from '@/components/providers/AuthProvider';
@@ -16,7 +16,7 @@ interface LabStatus {
   stripe_onboarding_complete: boolean | null;
 }
 
-export default function BillingPage() {
+function BillingContent() {
   const router = useRouter();
   const { t } = useLanguage();
   const { profile } = useAuth();
@@ -226,5 +226,17 @@ export default function BillingPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function BillingPage() {
+  return (
+    <Suspense fallback={
+      <div className="flex items-center justify-center min-h-[400px]">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+      </div>
+    }>
+      <BillingContent />
+    </Suspense>
   );
 }
