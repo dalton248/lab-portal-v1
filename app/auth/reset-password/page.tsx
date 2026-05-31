@@ -17,46 +17,46 @@ export default function ResetPasswordPage() {
   const [error, setError] = useState<string | null>(null);
   const [tokenError, setTokenError] = useState<string | null>(null);
 
-  // On mount: parse the hash and establish the recovery session
   useEffect(() => {
-    const hash = window.location.hash;
+    async function initSession() {
+      const hash = window.location.hash;
 
-    // Supabase appends the token as a URL hash fragment
-    if (!hash || !hash.includes('access_token')) {
-      setTokenError('No reset token found. This link may be invalid or expired.');
-      setPageState('error');
-      return;
+      if (!hash || !hash.includes('access_token')) {
+        setTokenError('No reset token found. This link may be invalid or expired.');
+        setPageState('error');
+        return;
+      }
+
+      // Parse the hash fragment manually
+      const params = new URLSearchParams(hash.substring(1));
+      const accessToken = params.get('access_token');
+      const refreshToken = params.get('refresh_token');
+      const type = params.get('type');
+
+      if (type !== 'recovery' || !accessToken || !refreshToken) {
+        setTokenError('This link is not a valid password reset link. Please request a new one.');
+        setPageState('error');
+        return;
+      }
+
+      // Explicitly set the session using the tokens from the URL
+      const { error: sessionError } = await supabase.auth.setSession({
+        access_token: accessToken,
+        refresh_token: refreshToken,
+      });
+
+      if (sessionError) {
+        setTokenError(`Could not verify reset link: ${sessionError.message}. It may have expired.`);
+        setPageState('error');
+        return;
+      }
+
+      // Clear the hash from the URL so tokens aren't visible / reused
+      window.history.replaceState(null, '', window.location.pathname);
+      setPageState('form');
     }
 
-    const params = new URLSearchParams(hash.substring(1)); // strip leading '#'
-    const type = params.get('type');
-
-    if (type !== 'recovery') {
-      setTokenError('This link is not a password reset link. Please request a new one.');
-      setPageState('error');
-      return;
-    }
-
-    // Let Supabase process the token in the hash automatically.
-    // Supabase JS v2 does this transparently via onAuthStateChange.
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((event) => {
-      if (event === 'PASSWORD_RECOVERY') {
-        setPageState('form');
-        subscription.unsubscribe();
-      }
-    });
-
-    // Fallback: if the event never fires (e.g. already processed), check existing session
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      if (session) {
-        setPageState('form');
-        subscription.unsubscribe();
-      }
-    });
-
-    return () => {
-      subscription.unsubscribe();
-    };
+    initSession();
   }, []);
 
   const isValid =
@@ -71,20 +71,32 @@ export default function ResetPasswordPage() {
     setSubmitting(true);
     setError(null);
 
-    const { error: updateError } = await supabase.auth.updateUser({ password });
-
-    if (updateError) {
-      setError(updateError.message);
+    // Safety timeout — if updateUser hangs for 15s, surface an error
+    const timeoutId = setTimeout(() => {
+      setError('Request timed out. Please try again or request a new reset link.');
       setSubmitting(false);
-      return;
-    }
+    }, 15000);
 
-    // Sign out so the user logs in fresh with the new password
-    await supabase.auth.signOut();
-    router.push('/login?reset=success');
+    try {
+      const { error: updateError } = await supabase.auth.updateUser({ password });
+      clearTimeout(timeoutId);
+
+      if (updateError) {
+        setError(updateError.message);
+        setSubmitting(false);
+        return;
+      }
+
+      // Redirect immediately — no signOut needed (Supabase handles session on next login)
+      router.push('/login?reset=success');
+    } catch (err: any) {
+      clearTimeout(timeoutId);
+      setError(err?.message || 'An unexpected error occurred.');
+      setSubmitting(false);
+    }
   };
 
-  // ── Loading state ─────────────────────────────────────────────────────────
+  // ── Loading ───────────────────────────────────────────────────────────────
   if (pageState === 'loading') {
     return (
       <div className="min-h-screen bg-slate-50 flex items-center justify-center">
@@ -96,7 +108,7 @@ export default function ResetPasswordPage() {
     );
   }
 
-  // ── Error state (bad / expired token) ────────────────────────────────────
+  // ── Error (bad / expired token) ───────────────────────────────────────────
   if (pageState === 'error') {
     return (
       <div className="min-h-screen bg-slate-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
@@ -123,7 +135,7 @@ export default function ResetPasswordPage() {
     );
   }
 
-  // ── Form state ────────────────────────────────────────────────────────────
+  // ── Form ──────────────────────────────────────────────────────────────────
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
