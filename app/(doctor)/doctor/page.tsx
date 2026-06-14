@@ -155,7 +155,7 @@ export default function DoctorHome() {
                 Connect My Dental Office
                 <ArrowRight className="w-5 h-5" />
               </Button>
-              <a href="/LabOps_Pricing_and_Materials.pdf" download="LabOps_Pricing_and_Materials.pdf" target="_blank" rel="noopener noreferrer">
+              <a href="/LabOps_Dental_Lab_Updated_Prices.pdf" download="LabOps_Dental_Lab_Updated_Prices.pdf" target="_blank" rel="noopener noreferrer">
                 <Button variant="outline" size="lg" className="w-full sm:w-auto px-8 py-6 text-lg border-2 border-slate-200 text-slate-700 hover:border-slate-300 hover:bg-slate-50 font-semibold rounded-xl transition-all">
                   See How Much You&apos;ll Save
                 </Button>
