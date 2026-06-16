@@ -42,24 +42,28 @@ export default function DashboardLayout({
   } as const;
 
   return (
-    <div className="h-screen flex overflow-hidden bg-slate-50">
-      <Sidebar currentUser={currentUser} labName={mockLab.name} />
-      <MobileSidebar
-        currentUser={currentUser}
-        labName={mockLab.name}
-        isOpen={mobileMenuOpen}
-        onClose={() => setMobileMenuOpen(false)}
-      />
-
-      <div className="flex flex-col flex-1 overflow-hidden">
-        <Header
+    <div className="h-screen flex overflow-hidden bg-slate-50 print:h-auto print:overflow-visible print:bg-white">
+      <div className="print:hidden">
+        <Sidebar currentUser={currentUser} labName={mockLab.name} />
+        <MobileSidebar
           currentUser={currentUser}
-          onMenuClick={() => setMobileMenuOpen(true)}
+          labName={mockLab.name}
+          isOpen={mobileMenuOpen}
+          onClose={() => setMobileMenuOpen(false)}
         />
+      </div>
 
-        <main className="flex-1 overflow-y-auto">
-          <div className="py-6">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="flex flex-col flex-1 overflow-hidden print:h-auto print:overflow-visible print:block">
+        <div className="print:hidden">
+          <Header
+            currentUser={currentUser}
+            onMenuClick={() => setMobileMenuOpen(true)}
+          />
+        </div>
+
+        <main className="flex-1 overflow-y-auto print:h-auto print:overflow-visible print:block">
+          <div className="py-6 print:py-0">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 print:max-w-none print:px-0 print:mx-0">
               {children}
             </div>
           </div>

@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
-import { ArrowLeft, FileText, Send, Loader2, Download, ArrowRight, X, AlertTriangle } from 'lucide-react';
+import { ArrowLeft, FileText, Send, Loader2, Download, ArrowRight, X, AlertTriangle, Printer } from 'lucide-react';
 import { Card, CardHeader, CardContent } from '@/components/ui/Card';
 import { StatusBadge } from '@/components/ui/StatusBadge';
 import { Button } from '@/components/ui/Button';
@@ -320,7 +320,7 @@ export default function CaseDetailPage({ params: paramsPromise }: { params: Prom
 
       <div className="space-y-6 pb-12">
         {caseData.n8n_failed && (
-          <div className="bg-amber-50 border border-amber-200 p-4 rounded-xl flex items-center justify-between text-amber-800">
+          <div className="bg-amber-50 border border-amber-200 p-4 rounded-xl flex items-center justify-between text-amber-800 print:hidden">
             <p className="text-sm font-medium">{t('common.partialData')}</p>
             <Button size="sm" variant="outline" className="bg-white border-amber-300 hover:bg-amber-100" onClick={() => fetchCaseDetails(true)} disabled={fetchingScans}>
               {fetchingScans ? <Loader2 className="h-4 w-4 animate-spin" /> : t('common.retry')}
@@ -330,7 +330,7 @@ export default function CaseDetailPage({ params: paramsPromise }: { params: Prom
 
         {/* Header */}
         <div className="flex items-center space-x-4">
-          <button onClick={() => router.back()} className="p-2 -ml-2 text-slate-600 hover:text-slate-900 rounded-full hover:bg-slate-100 transition-colors">
+          <button onClick={() => router.back()} className="p-2 -ml-2 text-slate-600 hover:text-slate-900 rounded-full hover:bg-slate-100 transition-colors print:hidden">
             <ArrowLeft className="h-5 w-5" />
           </button>
           <div className="flex-1">
@@ -342,11 +342,21 @@ export default function CaseDetailPage({ params: paramsPromise }: { params: Prom
               {t('cases.patientLabel')}: <span className="text-slate-900 font-medium">{caseData.patientName}</span>
             </p>
           </div>
+          <div className="flex items-center space-x-3 print:hidden">
+            <Button
+              variant="outline"
+              className="flex items-center space-x-2"
+              onClick={() => window.print()}
+            >
+              <Printer className="h-4 w-4" />
+              <span>Print Case</span>
+            </Button>
+          </div>
           <StatusBadge status={caseStatus} />
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          <div className="lg:col-span-2 space-y-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 print:grid-cols-1 print:gap-4">
+          <div className="lg:col-span-2 space-y-6 print:col-span-3">
 
             {/* Case Details */}
             <Card>
@@ -379,6 +389,14 @@ export default function CaseDetailPage({ params: paramsPromise }: { params: Prom
                     <p className="text-sm font-medium text-slate-500">Current Status</p>
                     <div className="mt-1"><StatusBadge status={caseStatus} size="sm" /></div>
                   </div>
+                  <div>
+                    <p className="text-sm font-medium text-slate-500">{t('cases.priceLabel') || 'Price ($)'}</p>
+                    <p className="mt-1 text-sm font-semibold text-slate-900">
+                      {caseData.price !== undefined && caseData.price !== null
+                        ? `$${Number(caseData.price).toFixed(2)}`
+                        : t('common.na')}
+                    </p>
+                  </div>
                 </div>
 
                 {(caseData.notes || caseData.additional_info) && (
@@ -392,7 +410,7 @@ export default function CaseDetailPage({ params: paramsPromise }: { params: Prom
 
                 {/* Status updater — lab admin only */}
                 {isLabAdmin && (
-                  <div className="pt-4 border-t border-slate-200">
+                  <div className="pt-4 border-t border-slate-200 print:hidden">
                     <div className="flex items-center space-x-3">
                       <div className="flex-1">
                         <Select
@@ -429,7 +447,7 @@ export default function CaseDetailPage({ params: paramsPromise }: { params: Prom
               </CardHeader>
               <CardContent>
                 {/* Message list */}
-                <div className="space-y-3 mb-4 max-h-96 overflow-y-auto pr-1">
+                <div className="space-y-3 mb-4 max-h-96 overflow-y-auto pr-1 print:max-h-none print:overflow-visible">
                   {messagesLoading ? (
                     <div className="flex justify-center py-8">
                       <Loader2 className="h-5 w-5 animate-spin text-blue-400" />
@@ -490,7 +508,7 @@ export default function CaseDetailPage({ params: paramsPromise }: { params: Prom
                 </div>
 
                 {/* Chat input */}
-                <form onSubmit={handleSendMessage} className="border-t border-slate-200 pt-4">
+                <form onSubmit={handleSendMessage} className="border-t border-slate-200 pt-4 print:hidden">
                   <div className="flex space-x-2">
                     <Textarea
                       value={newMessage}
@@ -514,7 +532,7 @@ export default function CaseDetailPage({ params: paramsPromise }: { params: Prom
           </div>
 
           {/* Right sidebar — Files */}
-          <div className="space-y-6">
+          <div className="space-y-6 print:col-span-3">
             <Card className="border-blue-100 bg-blue-50/20">
               <CardHeader>
                 <div className="flex items-center justify-between">
@@ -533,7 +551,7 @@ export default function CaseDetailPage({ params: paramsPromise }: { params: Prom
                       <Button
                         size="sm"
                         variant="primary"
-                        className="rounded-full px-6 shadow-sm flex items-center space-x-2 mx-auto"
+                        className="rounded-full px-6 shadow-sm flex items-center space-x-2 mx-auto print:hidden"
                         onClick={() => {
                           if (caseData.threeShapeId) {
                             window.location.href = `https://n8n-3shape-connection.onrender.com/webhook/get-3shape-file?caseId=${caseData.threeShapeId}`;
@@ -557,16 +575,16 @@ export default function CaseDetailPage({ params: paramsPromise }: { params: Prom
                             <p className="text-sm font-bold text-slate-900 truncate">{file.name}</p>
                             <p className="text-[10px] uppercase font-bold text-blue-400 tracking-wider">3D Scanner Output</p>
                           </div>
-                          <a href={file.url} download className="p-2 text-slate-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all" onClick={(e) => e.stopPropagation()}>
+                          <a href={file.url} download className="p-2 text-slate-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all print:hidden" onClick={(e) => e.stopPropagation()}>
                             <Download className="h-4 w-4" />
                           </a>
                         </div>
                       ))}
-                      <Button variant="outline" className="w-full mt-4 flex items-center justify-center space-x-2 bg-white border-blue-200 text-blue-600 hover:bg-blue-50" onClick={() => fetchCaseDetails(true)} disabled={fetchingScans}>
+                      <Button variant="outline" className="w-full mt-4 flex items-center justify-center space-x-2 bg-white border-blue-200 text-blue-600 hover:bg-blue-50 print:hidden" onClick={() => fetchCaseDetails(true)} disabled={fetchingScans}>
                         <Loader2 className={`h-4 w-4 ${fetchingScans ? 'animate-spin' : 'hidden'}`} />
                         <span>{fetchingScans ? 'Updating...' : 'Sync with 3Shape'}</span>
                       </Button>
-                      <Button variant="primary" className="w-full mt-2 flex items-center justify-center space-x-2 shadow-lg">
+                      <Button variant="primary" className="w-full mt-2 flex items-center justify-center space-x-2 shadow-lg print:hidden">
                         <Download className="h-4 w-4" />
                         <span>Download All Files</span>
                       </Button>
