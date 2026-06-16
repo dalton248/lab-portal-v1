@@ -36,7 +36,7 @@ export default function Home() {
 
           <div className="flex items-center gap-4">
             <Link href="/login">
-              <Button variant="outline" className="hidden sm:flex border-slate-300">
+              <Button variant="outline" className="border-slate-300">
                 Log in
               </Button>
             </Link>

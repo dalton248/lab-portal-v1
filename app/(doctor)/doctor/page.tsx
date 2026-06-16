@@ -80,9 +80,11 @@ export default function DoctorHome() {
       {/* Header */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <img src="/logo.png" alt="LabOps Dental Lab Logo" className="w-10 h-10 object-contain rounded-lg" />
-            <span className="text-2xl font-black text-slate-900 tracking-tighter">LabOps<span className="text-blue-600 font-medium">DentalLab</span></span>
+          <div className="flex items-center gap-2 sm:gap-3">
+            <img src="/logo.png" alt="LabOps Dental Lab Logo" className="w-8 h-8 sm:w-10 sm:h-10 object-contain rounded-lg" />
+            <span className="text-xl sm:text-2xl font-black text-slate-900 tracking-tighter">
+              LabOps<span className="text-blue-600 font-medium hidden sm:inline">DentalLab</span>
+            </span>
           </div>
 
           <nav className="hidden md:flex items-center gap-8">
@@ -115,17 +117,18 @@ export default function DoctorHome() {
             </button>
           </nav>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 sm:gap-4">
             <Link href="/login">
-              <Button variant="ghost" className="hidden lg:flex text-slate-600 hover:text-blue-600 font-medium">
+              <Button variant="ghost" className="text-slate-600 hover:text-blue-600 font-medium px-2 sm:px-4">
                 Log in
               </Button>
             </Link>
             <Button 
-              className="bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-md shadow-blue-500/20"
+              className="bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-md shadow-blue-500/20 text-xs sm:text-sm px-3 sm:px-4"
               onClick={() => setIsConnectModalOpen(true)}
             >
-              Connect My Dental Office
+              <span className="hidden sm:inline">Connect My Dental Office</span>
+              <span className="inline sm:hidden">Connect Office</span>
             </Button>
           </div>
         </div>
