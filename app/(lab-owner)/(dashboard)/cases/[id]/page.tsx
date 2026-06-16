@@ -441,7 +441,7 @@ export default function CaseDetailPage({ params: paramsPromise }: { params: Prom
             </Card>
 
             {/* Messages / Activity Log */}
-            <Card>
+            <Card className="print:hidden">
               <CardHeader>
                 <h2 className="text-lg font-semibold text-slate-900">{t('cases.messagesTitle')}</h2>
               </CardHeader>
@@ -532,7 +532,7 @@ export default function CaseDetailPage({ params: paramsPromise }: { params: Prom
           </div>
 
           {/* Right sidebar — Files */}
-          <div className="space-y-6 print:col-span-3">
+          <div className="space-y-6 print:hidden">
             <Card className="border-blue-100 bg-blue-50/20">
               <CardHeader>
                 <div className="flex items-center justify-between">
