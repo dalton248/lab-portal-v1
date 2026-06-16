@@ -129,6 +129,16 @@ export default function CaseDetailPage({ params: paramsPromise }: { params: Prom
   const [showRejectModal, setShowRejectModal] = useState(false);
   const [pendingStatus, setPendingStatus]     = useState<CaseStatus | null>(null);
 
+  // Edit details state
+  const [isEditingDates, setIsEditingDates] = useState(false);
+  const [editSubmittedDate, setEditSubmittedDate] = useState('');
+  const [editDueDate, setEditDueDate] = useState('');
+  const [editType, setEditType] = useState('');
+  const [editShade, setEditShade] = useState('');
+  const [editUNN, setEditUNN] = useState('');
+  const [editPrice, setEditPrice] = useState('');
+  const [updatingDates, setUpdatingDates] = useState(false);
+
   const { t, language } = useLanguage();
 
   // ── Fetch case ──────────────────────────────────────────────────────────────
@@ -280,6 +290,86 @@ export default function CaseDetailPage({ params: paramsPromise }: { params: Prom
     });
   };
 
+  const toInputDateFormat = (dateString: string | null | undefined) => {
+    if (!dateString) return '';
+    return dateString.substring(0, 10);
+  };
+
+  const handleSaveDates = async () => {
+    if (!params.id || !caseData) return;
+    setUpdatingDates(true);
+    try {
+      const { data: { session } } = await supabase.auth.getSession();
+      const token = session?.access_token;
+
+      const payload: any = {
+        sender_id: profile?.id || null,
+        sender_name: profile?.full_name || profile?.email || 'Lab',
+      };
+
+      const origCreated = toInputDateFormat(caseData.createdAt);
+      const origDue = toInputDateFormat(caseData.dueDate);
+
+      if (editSubmittedDate !== origCreated) {
+        const originalTime = caseData.createdAt && caseData.createdAt.length > 10
+          ? caseData.createdAt.substring(10)
+          : 'T00:00:00.000Z';
+        payload.created_at = editSubmittedDate + originalTime;
+      }
+      if (editDueDate !== origDue) {
+        payload.due_date = editDueDate;
+      }
+      if (editType !== (caseData.caseType || '')) {
+        payload.type = editType;
+      }
+      if (editShade !== (caseData.shade || '')) {
+        payload.shade = editShade;
+      }
+      if (editUNN !== (caseData.unn || '')) {
+        payload.unn = editUNN;
+      }
+      const origPrice = caseData.price !== undefined && caseData.price !== null ? String(caseData.price) : '';
+      if (editPrice !== origPrice) {
+        payload.price = editPrice;
+      }
+
+      if (
+        payload.created_at === undefined &&
+        payload.due_date === undefined &&
+        payload.type === undefined &&
+        payload.shade === undefined &&
+        payload.unn === undefined &&
+        payload.price === undefined
+      ) {
+        setIsEditingDates(false);
+        setUpdatingDates(false);
+        return;
+      }
+
+      const res = await fetch(`/api/cases/${params.id}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          ...(token ? { 'Authorization': `Bearer ${token}` } : {}),
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (!res.ok) {
+        const errorData = await res.json().catch(() => ({}));
+        throw new Error(errorData.error || 'Failed to update details');
+      }
+
+      setIsEditingDates(false);
+      await fetchCaseDetails();
+      await fetchMessages();
+    } catch (err: any) {
+      alert(err.message || 'Failed to update details. Please try again.');
+    } finally {
+      setUpdatingDates(false);
+    }
+  };
+
   const isLabAdmin = profile?.role === 'lab_admin';
 
   // ── Loading / Error states ───────────────────────────────────────────────────
@@ -360,30 +450,120 @@ export default function CaseDetailPage({ params: paramsPromise }: { params: Prom
 
             {/* Case Details */}
             <Card>
-              <CardHeader>
+              <CardHeader className="flex flex-row items-center justify-between space-y-0">
                 <h2 className="text-lg font-semibold text-slate-900">{t('cases.detailsTitle')}</h2>
+                {isLabAdmin && !isEditingDates && (
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="text-xs px-3 py-1 print:hidden"
+                    onClick={() => {
+                      setEditSubmittedDate(toInputDateFormat(caseData.createdAt));
+                      setEditDueDate(toInputDateFormat(caseData.dueDate));
+                      setEditType(caseData.caseType || '');
+                      setEditShade(caseData.shade || '');
+                      setEditUNN(caseData.unn || '');
+                      setEditPrice(caseData.price !== undefined && caseData.price !== null ? String(caseData.price) : '');
+                      setIsEditingDates(true);
+                    }}
+                  >
+                    Edit Details
+                  </Button>
+                )}
+                {isLabAdmin && isEditingDates && (
+                  <div className="flex items-center space-x-2 print:hidden">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="text-xs px-3 py-1"
+                      onClick={() => setIsEditingDates(false)}
+                      disabled={updatingDates}
+                    >
+                      Cancel
+                    </Button>
+                    <Button
+                      variant="primary"
+                      size="sm"
+                      className="text-xs px-3 py-1 bg-blue-600 border-blue-600 hover:bg-blue-700"
+                      onClick={handleSaveDates}
+                      disabled={updatingDates}
+                    >
+                      {updatingDates ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : 'Save'}
+                    </Button>
+                  </div>
+                )}
               </CardHeader>
               <CardContent className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   <div>
                     <p className="text-sm font-medium text-slate-500">{t('cases.typeLabel')}</p>
-                    <p className="mt-1 text-sm font-semibold text-slate-900">{caseData.caseType}</p>
+                    {isEditingDates ? (
+                      <input
+                        type="text"
+                        className="mt-1 block w-full rounded-md border-slate-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-sm py-1 px-2 border"
+                        value={editType}
+                        onChange={(e) => setEditType(e.target.value)}
+                        disabled={updatingDates}
+                      />
+                    ) : (
+                      <p className="mt-1 text-sm font-semibold text-slate-900">{caseData.caseType}</p>
+                    )}
                   </div>
                   <div>
                     <p className="text-sm font-medium text-slate-500">{t('cases.shadeLabel')}</p>
-                    <p className="mt-1 text-sm text-slate-900">{caseData.shade || t('common.na')}</p>
+                    {isEditingDates ? (
+                      <input
+                        type="text"
+                        className="mt-1 block w-full rounded-md border-slate-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-sm py-1 px-2 border"
+                        value={editShade}
+                        onChange={(e) => setEditShade(e.target.value)}
+                        disabled={updatingDates}
+                      />
+                    ) : (
+                      <p className="mt-1 text-sm text-slate-900">{caseData.shade || t('common.na')}</p>
+                    )}
                   </div>
                   <div>
                     <p className="text-sm font-medium text-slate-500">UNN</p>
-                    <p className="mt-1 text-sm text-slate-900 font-medium">{caseData.unn || t('common.na')}</p>
+                    {isEditingDates ? (
+                      <input
+                        type="text"
+                        className="mt-1 block w-full rounded-md border-slate-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-sm py-1 px-2 border"
+                        value={editUNN}
+                        onChange={(e) => setEditUNN(e.target.value)}
+                        disabled={updatingDates}
+                      />
+                    ) : (
+                      <p className="mt-1 text-sm text-slate-900 font-medium">{caseData.unn || t('common.na')}</p>
+                    )}
                   </div>
                   <div>
                     <p className="text-sm font-medium text-slate-500">Submitted Date</p>
-                    <p className="mt-1 text-sm text-slate-900">{formatDate(caseData.createdAt)}</p>
+                    {isEditingDates ? (
+                      <input
+                        type="date"
+                        className="mt-1 block w-full rounded-md border-slate-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-sm py-1 px-2 border"
+                        value={editSubmittedDate}
+                        onChange={(e) => setEditSubmittedDate(e.target.value)}
+                        disabled={updatingDates}
+                      />
+                    ) : (
+                      <p className="mt-1 text-sm text-slate-900">{formatDate(caseData.createdAt)}</p>
+                    )}
                   </div>
                   <div>
                     <p className="text-sm font-medium text-slate-500">{t('cases.dueDateLabel')}</p>
-                    <p className="mt-1 text-sm text-blue-600 font-bold">{formatDate(caseData.dueDate)}</p>
+                    {isEditingDates ? (
+                      <input
+                        type="date"
+                        className="mt-1 block w-full rounded-md border-slate-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-sm py-1 px-2 border"
+                        value={editDueDate}
+                        onChange={(e) => setEditDueDate(e.target.value)}
+                        disabled={updatingDates}
+                      />
+                    ) : (
+                      <p className="mt-1 text-sm text-blue-600 font-bold">{formatDate(caseData.dueDate)}</p>
+                    )}
                   </div>
                   <div>
                     <p className="text-sm font-medium text-slate-500">Current Status</p>
@@ -391,11 +571,22 @@ export default function CaseDetailPage({ params: paramsPromise }: { params: Prom
                   </div>
                   <div>
                     <p className="text-sm font-medium text-slate-500">{t('cases.priceLabel') || 'Price ($)'}</p>
-                    <p className="mt-1 text-sm font-semibold text-slate-900">
-                      {caseData.price !== undefined && caseData.price !== null
-                        ? `$${Number(caseData.price).toFixed(2)}`
-                        : t('common.na')}
-                    </p>
+                    {isEditingDates ? (
+                      <input
+                        type="number"
+                        step="0.01"
+                        className="mt-1 block w-full rounded-md border-slate-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-sm py-1 px-2 border"
+                        value={editPrice}
+                        onChange={(e) => setEditPrice(e.target.value)}
+                        disabled={updatingDates}
+                      />
+                    ) : (
+                      <p className="mt-1 text-sm font-semibold text-slate-900">
+                        {caseData.price !== undefined && caseData.price !== null
+                          ? `$${Number(caseData.price).toFixed(2)}`
+                          : t('common.na')}
+                      </p>
+                    )}
                   </div>
                 </div>
 
@@ -457,33 +648,48 @@ export default function CaseDetailPage({ params: paramsPromise }: { params: Prom
                   ) : (
                     messages.map((msg) => {
                       if (msg.message_type === 'status_change') {
-                        // ── Audit log pill ──
                         const prevStatus = msg.metadata?.previous_status;
                         const newStatus  = msg.metadata?.new_status;
-                        const prevLabel  = prevStatus ? (STATUS_LABELS[prevStatus] ?? prevStatus) : '?';
-                        const newLabel   = newStatus  ? (STATUS_LABELS[newStatus]  ?? newStatus)  : '?';
-                        const newColor   = newStatus  ? (STATUS_COLORS[newStatus]  ?? STATUS_COLORS.submitted) : STATUS_COLORS.submitted;
-                        const rejReason  = msg.metadata?.rejection_reason;
 
-                        return (
-                          <div key={msg.id} className="flex items-center justify-center">
-                            <div className="flex flex-col items-center gap-1 w-full max-w-sm">
-                              <div className="flex items-center gap-2 px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-full text-xs text-slate-500">
-                                <span className={`px-2 py-0.5 rounded-full font-medium border text-xs ${STATUS_COLORS[prevStatus ?? 'submitted']}`}>
-                                  {prevLabel}
-                                </span>
-                                <ArrowRight className="h-3 w-3 text-slate-400" />
-                                <span className={`px-2 py-0.5 rounded-full font-medium border text-xs ${newColor}`}>
-                                  {newLabel}
-                                </span>
+                        if (prevStatus || newStatus) {
+                          // ── Status change transition pill ──
+                          const prevLabel  = prevStatus ? (STATUS_LABELS[prevStatus] ?? prevStatus) : '?';
+                          const newLabel   = newStatus  ? (STATUS_LABELS[newStatus]  ?? newStatus)  : '?';
+                          const newColor   = newStatus  ? (STATUS_COLORS[newStatus]  ?? STATUS_COLORS.submitted) : STATUS_COLORS.submitted;
+                          const rejReason  = msg.metadata?.rejection_reason;
+
+                          return (
+                            <div key={msg.id} className="flex items-center justify-center">
+                              <div className="flex flex-col items-center gap-1 w-full max-w-sm">
+                                <div className="flex items-center gap-2 px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-full text-xs text-slate-500">
+                                  <span className={`px-2 py-0.5 rounded-full font-medium border text-xs ${STATUS_COLORS[prevStatus ?? 'submitted']}`}>
+                                    {prevLabel}
+                                  </span>
+                                  <ArrowRight className="h-3 w-3 text-slate-400" />
+                                  <span className={`px-2 py-0.5 rounded-full font-medium border text-xs ${newColor}`}>
+                                    {newLabel}
+                                  </span>
+                                </div>
+                                {rejReason && (
+                                  <p className="text-xs text-red-500 italic px-3">Reason: {rejReason}</p>
+                                )}
+                                <span className="text-[10px] text-slate-400">{formatTime(msg.created_at)} · {msg.metadata?.sender_name || 'Lab'}</span>
                               </div>
-                              {rejReason && (
-                                <p className="text-xs text-red-500 italic px-3">Reason: {rejReason}</p>
-                              )}
-                              <span className="text-[10px] text-slate-400">{formatTime(msg.created_at)} · {msg.metadata?.sender_name || 'Lab'}</span>
                             </div>
-                          </div>
-                        );
+                          );
+                        } else {
+                          // ── General audit pill (e.g. date change) ──
+                          return (
+                            <div key={msg.id} className="flex items-center justify-center">
+                              <div className="flex flex-col items-center gap-1 w-full max-w-sm">
+                                <div className="px-4 py-1.5 bg-slate-50 border border-slate-200 rounded-full text-xs text-slate-600 text-center font-medium">
+                                  {msg.message}
+                                </div>
+                                <span className="text-[10px] text-slate-400">{formatTime(msg.created_at)} · {msg.metadata?.sender_name || 'Lab'}</span>
+                              </div>
+                            </div>
+                          );
+                        }
                       }
 
                       // ── Chat bubble ──
