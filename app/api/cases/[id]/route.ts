@@ -130,7 +130,8 @@ export async function PATCH(
     type,
     shade,
     unn,
-    price
+    price,
+    notes
   } = body;
 
   if (
@@ -140,7 +141,8 @@ export async function PATCH(
     type === undefined &&
     shade === undefined &&
     unn === undefined &&
-    price === undefined
+    price === undefined &&
+    notes === undefined
   ) {
     return NextResponse.json({ error: 'At least one field to update is required' }, { status: 400 });
   }
@@ -181,7 +183,8 @@ export async function PATCH(
       type !== undefined ||
       shade !== undefined ||
       unn !== undefined ||
-      price !== undefined;
+      price !== undefined ||
+      notes !== undefined;
 
     if (isModifyingSensitiveFields && role !== 'lab_admin') {
       return NextResponse.json({ error: 'Forbidden: Only lab administrators can modify case details.' }, { status: 403 });
@@ -190,7 +193,7 @@ export async function PATCH(
     // 1. Fetch the current status and fields so we can build a diff message
     const { data: current } = await supabaseClient
       .from('Cases')
-      .select('status, Case_number, due_date, created_at, Type, Shade, UNN, price')
+      .select('status, Case_number, due_date, created_at, Type, Shade, UNN, price, hold_reason')
       .eq('id', id)
       .single();
 
@@ -201,6 +204,7 @@ export async function PATCH(
     const previousShade = current?.Shade;
     const previousUNN = current?.UNN;
     const previousPrice = current?.price;
+    const previousNotes = current?.hold_reason;
 
     // 2. Update the case fields
     const updatePayload: Record<string, unknown> = {};
@@ -227,6 +231,9 @@ export async function PATCH(
     }
     if (price !== undefined) {
       updatePayload.price = price !== null && price !== '' ? Number(price) : null;
+    }
+    if (notes !== undefined) {
+      updatePayload.hold_reason = notes || null;
     }
 
     const { data, error } = await supabaseClient
@@ -370,6 +377,20 @@ export async function PATCH(
         metadata: {
           previous_price: previousPrice,
           new_price: price,
+          sender_name: sender_name || 'Lab',
+        },
+      });
+    }
+
+    if (notes !== undefined && notes !== previousNotes) {
+      auditEntries.push({
+        case_id: id,
+        sender_id: sender_id || null,
+        message: `Additional Instructions changed: ${previousNotes || 'N/A'} → ${notes || 'N/A'}`,
+        message_type: 'status_change',
+        metadata: {
+          previous_notes: previousNotes,
+          new_notes: notes,
           sender_name: sender_name || 'Lab',
         },
       });

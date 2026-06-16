@@ -137,6 +137,7 @@ export default function CaseDetailPage({ params: paramsPromise }: { params: Prom
   const [editShade, setEditShade] = useState('');
   const [editUNN, setEditUNN] = useState('');
   const [editPrice, setEditPrice] = useState('');
+  const [editNotes, setEditNotes] = useState('');
   const [updatingDates, setUpdatingDates] = useState(false);
 
   const { t, language } = useLanguage();
@@ -332,6 +333,10 @@ export default function CaseDetailPage({ params: paramsPromise }: { params: Prom
       if (editPrice !== origPrice) {
         payload.price = editPrice;
       }
+      const origNotes = caseData.notes || caseData.additional_info || '';
+      if (editNotes !== origNotes) {
+        payload.notes = editNotes;
+      }
 
       if (
         payload.created_at === undefined &&
@@ -339,7 +344,8 @@ export default function CaseDetailPage({ params: paramsPromise }: { params: Prom
         payload.type === undefined &&
         payload.shade === undefined &&
         payload.unn === undefined &&
-        payload.price === undefined
+        payload.price === undefined &&
+        payload.notes === undefined
       ) {
         setIsEditingDates(false);
         setUpdatingDates(false);
@@ -464,6 +470,7 @@ export default function CaseDetailPage({ params: paramsPromise }: { params: Prom
                       setEditShade(caseData.shade || '');
                       setEditUNN(caseData.unn || '');
                       setEditPrice(caseData.price !== undefined && caseData.price !== null ? String(caseData.price) : '');
+                      setEditNotes(caseData.notes || caseData.additional_info || '');
                       setIsEditingDates(true);
                     }}
                   >
@@ -590,12 +597,22 @@ export default function CaseDetailPage({ params: paramsPromise }: { params: Prom
                   </div>
                 </div>
 
-                {(caseData.notes || caseData.additional_info) && (
+                {(isEditingDates || caseData.notes || caseData.additional_info) && (
                   <div className="pt-4 border-t border-slate-100">
                     <p className="text-sm font-medium text-slate-500">Additional Instructions / Notes</p>
-                    <p className="mt-2 text-sm text-slate-700 leading-relaxed bg-slate-50 p-4 rounded-lg italic">
-                      {caseData.additional_info || caseData.notes}
-                    </p>
+                    {isEditingDates ? (
+                      <textarea
+                        className="mt-2 w-full text-sm text-slate-700 leading-relaxed bg-slate-50 p-3 rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent min-h-[100px] shadow-sm"
+                        value={editNotes}
+                        onChange={(e) => setEditNotes(e.target.value)}
+                        placeholder="Add optional notes or instructions here..."
+                        disabled={updatingDates}
+                      />
+                    ) : (
+                      <p className="mt-2 text-sm text-slate-700 leading-relaxed bg-slate-50 p-4 rounded-lg italic">
+                        {caseData.additional_info || caseData.notes || 'None'}
+                      </p>
+                    )}
                   </div>
                 )}
 
