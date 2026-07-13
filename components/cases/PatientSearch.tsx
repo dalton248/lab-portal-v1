@@ -10,19 +10,24 @@ interface PatientSearchProps {
   onChange: (value: string) => void;
   required?: boolean;
   labId?: string;
+  dentistId?: string;
+  disabled?: boolean;
 }
 
 export const PatientSearch: React.FC<PatientSearchProps> = ({
   value,
   onChange,
   required = false,
-  labId
+  labId,
+  dentistId,
+  disabled = false
 }) => {
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const [recentPatients, setRecentPatients] = useState<string[]>([]);
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+  
   useEffect(() => {
     const fetchRecent = async () => {
       try {
@@ -33,6 +38,9 @@ export const PatientSearch: React.FC<PatientSearchProps> = ({
         
         if (labId) {
           query = query.eq('lab_id', labId);
+        }
+        if (dentistId) {
+          query = query.eq('dentist_id', dentistId);
         }
 
         const { data, error } = await query.limit(20);
@@ -52,7 +60,9 @@ export const PatientSearch: React.FC<PatientSearchProps> = ({
     };
 
     fetchRecent();
+  }, [labId, dentistId]);
 
+  useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
         setIsOpen(false);
@@ -81,6 +91,9 @@ export const PatientSearch: React.FC<PatientSearchProps> = ({
         if (labId) {
           query = query.eq('lab_id', labId);
         }
+        if (dentistId) {
+          query = query.eq('dentist_id', dentistId);
+        }
 
         const { data, error } = await query.limit(10);
 
@@ -104,7 +117,7 @@ export const PatientSearch: React.FC<PatientSearchProps> = ({
 
     const debounce = setTimeout(fetchPatients, 300);
     return () => clearTimeout(debounce);
-  }, [value]);
+  }, [value, labId, dentistId]);
 
   return (
     <div className="relative" ref={containerRef}>
@@ -113,16 +126,20 @@ export const PatientSearch: React.FC<PatientSearchProps> = ({
         required={required}
         value={value}
         onChange={(e) => {
+          if (disabled) return;
           onChange(e.target.value);
           if (e.target.value.length >= 2) setIsOpen(true);
         }}
-        onFocus={() => setIsOpen(true)}
-        placeholder="Search existing patients..."
+        onFocus={() => {
+          if (!disabled) setIsOpen(true);
+        }}
+        placeholder={disabled ? "Patient selected from case" : "Search existing patients..."}
         icon={<Search className="h-4 w-4 text-slate-400" />}
         className="text-lg py-6"
+        disabled={disabled}
       />
 
-      {value.length === 0 && recentPatients.length > 0 && (
+      {!disabled && value.length === 0 && recentPatients.length > 0 && (
         <div className="mt-3">
           <p className="text-[10px] uppercase tracking-wider font-bold text-slate-400 mb-2 flex items-center">
             <Clock className="h-3 w-3 mr-1" />
@@ -150,7 +167,7 @@ export const PatientSearch: React.FC<PatientSearchProps> = ({
         </div>
       )}
 
-      {isOpen && suggestions.length > 0 && (
+      {!disabled && isOpen && suggestions.length > 0 && (
         <div className="absolute z-50 w-full mt-1 bg-white border border-slate-200 rounded-lg shadow-lg max-h-60 overflow-auto">
           {suggestions.map((name, index) => (
             <button

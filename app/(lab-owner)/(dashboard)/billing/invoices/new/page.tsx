@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { AlertCircle, Save, Send, FileText, Plus, ShoppingCart, Trash2, User, CreditCard, Copy, Check, ExternalLink } from 'lucide-react';
+import { AlertCircle, Save, Send, FileText, Plus, ShoppingCart, Trash2, User, CreditCard, Copy, Check, ExternalLink, Loader2 } from 'lucide-react';
 import { Card, CardHeader, CardContent, CardFooter } from '@/components/ui/Card';
 import { Input } from '@/components/ui/Input';
 import { Select } from '@/components/ui/Select';
@@ -26,11 +26,13 @@ interface LineItem {
   basePrice: number;
   totalPrice: number;
   notes?: string;
+  patientName?: string;
+  caseId?: string;
 }
 
 export default function InvoiceGeneratorPage() {
   const router = useRouter();
-  const { profile } = useAuth();
+  const { profile, session } = useAuth();
   const { t } = useLanguage();
 
   // Services State
@@ -49,6 +51,20 @@ export default function InvoiceGeneratorPage() {
   const [lineItems, setLineItems] = useState<LineItem[]>([]);
   const [recipientId, setRecipientId] = useState('');
   const [externalEmail, setExternalEmail] = useState('');
+  const [offices, setOffices] = useState<any[]>([]);
+  const [selectedOfficeId, setSelectedOfficeId] = useState<string>('');
+  
+  // Unpaid Cases & Payments States
+  const [unpaidCases, setUnpaidCases] = useState<any[]>([]);
+  const [selectedCaseId, setSelectedCaseId] = useState<string>('');
+  const [selectedCase, setSelectedCase] = useState<any | null>(null);
+  const [markAsPaid, setMarkAsPaid] = useState<boolean>(false);
+  const [isLoadingCases, setIsLoadingCases] = useState<boolean>(false);
+
+  // Available unpaid cases that haven't been added to the invoice yet
+  const availableUnpaidCases = unpaidCases.filter(
+    (c) => !lineItems.some((item) => item.caseId === c.id)
+  );
   
   // Validation State
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -56,6 +72,159 @@ export default function InvoiceGeneratorPage() {
   const [paymentUrl, setPaymentUrl] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  // Helper to select and auto-populate a case's data
+  const selectCase = (caseObj: any) => {
+    if (!caseObj) {
+      setSelectedCaseId('');
+      setSelectedCase(null);
+      setPrepType('traditional');
+      setSelectedTeeth([]);
+      setNotes('');
+      if (services.length > 0) {
+        setWhatNeeded(services[0].id);
+        setBasePrice(Number(services[0].base_price));
+        setPrice(Number(services[0].base_price).toFixed(2));
+      } else {
+        setWhatNeeded('crown');
+        setPrice('0');
+        setBasePrice(0);
+      }
+      return;
+    }
+    setSelectedCaseId(caseObj.id);
+    setSelectedCase(caseObj);
+    
+    let parsedLineItems: LineItem[] = [];
+    if (caseObj.line_items) {
+      try {
+        parsedLineItems = Array.isArray(caseObj.line_items)
+          ? (caseObj.line_items as any[])
+          : JSON.parse(caseObj.line_items as string);
+      } catch (e) {
+        console.error('Error parsing line items JSON:', e);
+      }
+    }
+    if (!parsedLineItems || parsedLineItems.length === 0) {
+      // Derive
+      const derivedTeeth = caseObj.UNN && caseObj.UNN !== 'N/A'
+        ? caseObj.UNN.split(',').map((t: string) => t.trim()).filter(Boolean)
+        : [];
+      const derivedBasePrice = caseObj.price !== null && caseObj.price !== undefined
+        ? Number(caseObj.price) / (derivedTeeth.length || 1)
+        : 0;
+      parsedLineItems = [{
+        id: `derived-${caseObj.id}`,
+        serviceId: 'custom',
+        serviceName: caseObj.Type || 'Dental Service',
+        prepType: 'traditional',
+        teeth: derivedTeeth,
+        basePrice: derivedBasePrice,
+        totalPrice: caseObj.price !== null ? Number(caseObj.price) : 0,
+        notes: caseObj.hold_reason || ''
+      }];
+    }
+
+    const mainItem = parsedLineItems[0];
+    if (mainItem) {
+      setPrepType((mainItem.prepType as PrepType) || 'traditional');
+      setPrice(String(mainItem.totalPrice));
+      setBasePrice(Number(mainItem.basePrice));
+      setSelectedTeeth(mainItem.teeth || []);
+      setNotes(mainItem.notes || caseObj.hold_reason || '');
+      setWhatNeeded(mainItem.serviceId || 'crown');
+    } else {
+      setPrepType('traditional');
+      setPrice(caseObj.price !== null ? String(caseObj.price) : '0');
+      setBasePrice(caseObj.price !== null ? Number(caseObj.price) : 0);
+      setSelectedTeeth([]);
+      setNotes(caseObj.hold_reason || '');
+    }
+  };
+
+  const autoSelectNextCase = (currentLineItems: LineItem[], currentUnpaidCases: any[]) => {
+    const nextCase = currentUnpaidCases.find(c => !currentLineItems.some(item => item.caseId === c.id));
+    if (nextCase) {
+      selectCase(nextCase);
+    } else {
+      selectCase(null);
+    }
+  };
+
+  const addSelectedCaseToInvoice = () => {
+    if (!selectedCase) return;
+
+    let parsedLineItems: LineItem[] = [];
+    if (selectedCase.line_items) {
+      try {
+        parsedLineItems = Array.isArray(selectedCase.line_items)
+          ? (selectedCase.line_items as any[])
+          : JSON.parse(selectedCase.line_items as string);
+      } catch (e) {
+        console.error('Error parsing line items JSON:', e);
+      }
+    }
+
+    if (!parsedLineItems || parsedLineItems.length === 0) {
+      // Derive
+      const derivedTeeth = selectedCase.UNN && selectedCase.UNN !== 'N/A'
+        ? selectedCase.UNN.split(',').map((t: string) => t.trim()).filter(Boolean)
+        : [];
+      const derivedBasePrice = selectedCase.price !== null && selectedCase.price !== undefined
+        ? Number(selectedCase.price) / (derivedTeeth.length || 1)
+        : 0;
+      parsedLineItems = [{
+        id: `derived-${selectedCase.id}`,
+        serviceId: whatNeeded,
+        serviceName: services.find(s => s.id === whatNeeded)?.name || selectedCase.Type || 'Dental Service',
+        prepType: prepType || 'traditional',
+        teeth: derivedTeeth,
+        basePrice: derivedBasePrice,
+        totalPrice: selectedCase.price !== null ? Number(selectedCase.price) : 0,
+        notes: notes || selectedCase.hold_reason || ''
+      }];
+    }
+
+    // Attach patientName and caseId to each line item
+    const itemsWithPatient = parsedLineItems.map(item => ({
+      ...item,
+      patientName: selectedCase.FirstName_LastName,
+      caseId: selectedCase.id
+    }));
+
+    const nextLineItems = [...lineItems, ...itemsWithPatient];
+    setLineItems(nextLineItems);
+
+    // Append to the invoice patientName field
+    setPatientName(prev => {
+      const currentNames = prev.split(',').map(n => n.trim()).filter(Boolean);
+      if (!currentNames.includes(selectedCase.FirstName_LastName)) {
+        currentNames.push(selectedCase.FirstName_LastName);
+      }
+      return currentNames.join(', ');
+    });
+
+    // Clear selection so they can add another case
+    setSelectedCaseId('');
+    setSelectedCase(null);
+
+    // Reset item form inputs
+    setPrepType('traditional');
+    setSelectedTeeth([]);
+    setNotes('');
+    if (services.length > 0) {
+      setWhatNeeded(services[0].id);
+      setBasePrice(Number(services[0].base_price));
+      setPrice(Number(services[0].base_price).toFixed(2));
+    } else {
+      setWhatNeeded('crown');
+      setPrice('0');
+      setBasePrice(0);
+    }
+
+    // Auto-select the next available case
+    autoSelectNextCase(nextLineItems, unpaidCases);
+  };
 
   // Fetch lab services on mount
   React.useEffect(() => {
@@ -65,6 +234,11 @@ export default function InvoiceGeneratorPage() {
         try {
           const data = await getLabServices(profile.lab_id);
           setServices(data || []);
+          if (data && data.length > 0 && !selectedCaseId) {
+            setWhatNeeded(data[0].id);
+            setBasePrice(Number(data[0].base_price));
+            setPrice(Number(data[0].base_price).toFixed(2));
+          }
         } catch (err) {
           console.error('Error loading services:', err);
         } finally {
@@ -73,7 +247,154 @@ export default function InvoiceGeneratorPage() {
       }
     }
     loadServices();
-  }, [profile?.lab_id]);
+  }, [profile?.lab_id, selectedCaseId]);
+
+  // Sync whatNeeded and prepType when selectedCase or services load
+  React.useEffect(() => {
+    if (selectedCase && services.length > 0) {
+      const matchedService = services.find(s => s.name.toLowerCase() === (selectedCase.Type || '').toLowerCase());
+      if (matchedService) {
+        setWhatNeeded(matchedService.id);
+      } else {
+        setWhatNeeded(selectedCase.Type || 'custom');
+      }
+    }
+  }, [selectedCase, services]);
+
+  // Fetch offices on mount (dependent on session auth)
+  React.useEffect(() => {
+    async function loadOffices() {
+      if (!session) return;
+      try {
+        const response = await fetch('/api/offices', {
+          headers: {
+            'Authorization': `Bearer ${session.access_token}`
+          }
+        });
+        if (response.ok) {
+          const data = await response.json();
+          setOffices(data);
+          
+          // Read query parameters
+          const params = new URLSearchParams(window.location.search);
+          const qDentistId = params.get('dentist_id');
+          const qOfficeId = params.get('office_id');
+          const qPatient = params.get('patient_name');
+          const qCaseId = params.get('case_id');
+          
+          if (qPatient) {
+            setPatientName(qPatient);
+          }
+          
+          if (qDentistId) {
+            const matchedOffice = data.find((o: any) => o.user_id === qDentistId);
+            if (matchedOffice) {
+              setSelectedOfficeId(matchedOffice.id);
+              setRecipientId(qDentistId);
+            }
+          } else if (qOfficeId) {
+            const matchedOffice = data.find((o: any) => o.id === qOfficeId);
+            if (matchedOffice) {
+              setSelectedOfficeId(matchedOffice.id);
+              setRecipientId(matchedOffice.user_id);
+            }
+          }
+
+          if (qCaseId) {
+            const { data: cData, error: cErr } = await supabase
+              .from('Cases')
+              .select('*')
+              .eq('id', qCaseId)
+              .single();
+            if (cData && !cErr) {
+              const matchedOffice = data.find((o: any) => o.user_id === cData.dentist_id);
+              if (matchedOffice) {
+                setSelectedOfficeId(matchedOffice.id);
+                setRecipientId(cData.dentist_id);
+              }
+              selectCase(cData);
+            }
+          }
+        }
+      } catch (err) {
+        console.error('Error loading offices:', err);
+      }
+    }
+    loadOffices();
+  }, [session]);
+
+  // Fetch unpaid cases when recipientId changes
+  React.useEffect(() => {
+    async function loadUnpaidCases() {
+      if (!recipientId || !profile?.lab_id) {
+        setUnpaidCases([]);
+        return;
+      }
+      setIsLoadingCases(true);
+      try {
+        // 1. Fetch cases for the selected dentist and lab
+        const { data: casesData, error: casesError } = await supabase
+          .from('Cases')
+          .select('*')
+          .eq('dentist_id', recipientId)
+          .eq('lab_id', profile.lab_id);
+
+        if (casesError) throw casesError;
+
+        if (!casesData || casesData.length === 0) {
+          setUnpaidCases([]);
+          return;
+        }
+
+        // 2. Fetch payments for those cases to find which ones are already paid
+        const caseIds = casesData.map(c => c.id);
+        const { data: paymentsData, error: paymentsError } = await supabase
+          .from('Payments')
+          .select('case_id')
+          .in('case_id', caseIds);
+
+        if (paymentsError) throw paymentsError;
+
+        const paidCaseIds = new Set(paymentsData?.map(p => p.case_id) || []);
+
+        // 3. Filter cases to include only unpaid ones
+        const unpaid = casesData.filter(c => !paidCaseIds.has(c.id));
+        setUnpaidCases(unpaid);
+        
+        // Auto-select the first unpaid case if none is selected
+        autoSelectNextCase(lineItems, unpaid);
+      } catch (err: any) {
+        console.error('Error loading unpaid cases:', err);
+        setError(err.message || 'Failed to load unpaid cases');
+      } finally {
+        setIsLoadingCases(false);
+      }
+    }
+
+    loadUnpaidCases();
+  }, [recipientId, profile?.lab_id, selectedCaseId]);
+
+  const handleOfficeChange = (officeId: string) => {
+    setSelectedOfficeId(officeId);
+    setPatientName('');
+    setLineItems([]);
+    selectCase(null);
+    const office = offices.find(o => o.id === officeId);
+    if (office) {
+      setRecipientId(office.user_id); // dentist_id is user_id
+    } else {
+      setRecipientId('');
+    }
+  };
+
+  const handleCaseChange = (caseId: string) => {
+    if (!caseId) {
+      selectCase(null);
+      return;
+    }
+    const caseObj = unpaidCases.find(c => c.id === caseId);
+    selectCase(caseObj);
+  };
 
   const prepTypeOptions = [
     { value: 'monolithic', label: 'Monolithic' },
@@ -165,13 +486,13 @@ export default function InvoiceGeneratorPage() {
   const grandTotal = lineItems.reduce((sum, item) => sum + item.totalPrice, 0);
 
   const isFormValid = () => {
-    return !!patientName.trim() && lineItems.length > 0;
+    return !!patientName.trim() && lineItems.length > 0 && !!selectedOfficeId;
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!isFormValid()) {
-      setError('Please fill in all mandatory fields (Patient Name is required)');
+      setError('Please select an office, enter a patient name, and add at least one line item.');
       return;
     }
 
@@ -179,35 +500,25 @@ export default function InvoiceGeneratorPage() {
     setError(null);
 
     try {
-      // 1. Prepare case data
-      // 1. Prepare multi-item data
       const invoiceData = {
         patientName,
-        invoiceId: `INV-${Math.floor(1000 + Math.random() * 9000)}`,
+        invoiceNumber: `INV-${Math.floor(1000 + Math.random() * 9000)}`,
         items: lineItems,
         totalAmount: grandTotal,
         labId: profile?.lab_id,
-        dentistId: profile?.id,
-        recipient_id: recipientId || null,
-        recipient_email: externalEmail || null,
-        createdAt: new Date().toISOString(),
+        dentistId: recipientId || profile?.id,
+        officeId: selectedOfficeId || null,
+        markAsPaid,
       };
 
-      const formData = new FormData();
-      Object.entries(invoiceData).forEach(([key, value]) => {
-        if (value !== null && value !== undefined) {
-          formData.append(key, typeof value === 'object' ? JSON.stringify(value) : String(value));
-        }
-      });
-
-      files.forEach((file) => {
-        formData.append('files', file, file.name);
-      });
-
-      console.log('[Invoice Generator] Sending payload to proxy route...');
-      const response = await fetch('/api/cases/submit', {
+      console.log('[Invoice Generator] Calling /api/invoices/create...');
+      const response = await fetch('/api/invoices/create', {
         method: 'POST',
-        body: formData,
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': session?.access_token ? `Bearer ${session.access_token}` : '',
+        },
+        body: JSON.stringify(invoiceData),
       });
 
       if (!response.ok) {
@@ -215,8 +526,11 @@ export default function InvoiceGeneratorPage() {
         throw new Error(errData.error || `Submission failed with status: ${response.status}`);
       }
 
-      console.log('[Invoice Generator] Invoice/Case generated successfully');
-      router.push('/dashboard');
+      const responseData = await response.json();
+      const invoiceId = responseData.invoiceId;
+      console.log('[Invoice Generator] Invoice generated successfully:', invoiceId);
+
+      router.push(`/billing/invoices/print?invoice_id=${invoiceId}`);
     } catch (err: any) {
       console.error('Error in invoice generation flow:', err);
       setError(err.message || 'An error occurred during submission');
@@ -225,42 +539,7 @@ export default function InvoiceGeneratorPage() {
     }
   };
 
-  const handleChargeViaStripe = async () => {
-    if (!isFormValid()) {
-      setError('Please add a patient name and at least one line item before charging.');
-      return;
-    }
-    setIsCharging(true);
-    setError(null);
-    try {
-      const response = await fetch('/api/billing/create-payment-link', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          labId: profile?.lab_id,
-          patientName,
-          items: lineItems,
-          totalAmount: grandTotal,
-          recipientEmail: externalEmail || null,
-        }),
-      });
-      const data = await response.json();
-      if (!response.ok) throw new Error(data.error || 'Failed to create payment link');
-      setPaymentUrl(data.url);
-    } catch (err: any) {
-      setError(err.message);
-    } finally {
-      setIsCharging(false);
-    }
-  };
 
-  const handleCopyLink = () => {
-    if (paymentUrl) {
-      navigator.clipboard.writeText(paymentUrl);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    }
-  };
 
   return (
     <div className="max-w-[1400px] px-4 pb-20">
@@ -288,47 +567,129 @@ export default function InvoiceGeneratorPage() {
           <div className="space-y-8">
             <Card className="border-slate-200 shadow-sm relative overflow-visible">
               <CardHeader className="bg-slate-50 border-b border-slate-100 py-4">
-                <h2 className="text-lg font-bold text-slate-800">1. Select Patient & General Info</h2>
+                <h2 className="text-lg font-bold text-slate-800">1. Select Office & Patient</h2>
               </CardHeader>
               <CardContent className="p-6">
-                <div className="grid grid-cols-1 gap-6">
-                  <PatientSearch
-                    value={patientName}
-                    onChange={setPatientName}
-                    labId={profile?.lab_id}
-                    required
-                  />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label className="text-sm font-medium text-slate-700 block mb-2">Select Office / Dentist *</label>
+                    <select
+                      value={selectedOfficeId}
+                      onChange={(e) => handleOfficeChange(e.target.value)}
+                      className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all outline-none text-sm bg-white"
+                      required
+                    >
+                      <option value="">-- Choose Office --</option>
+                      {offices.map((office) => (
+                        <option key={office.id} value={office.id}>
+                          {office.office_name} ({office.dentist_name})
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                  <div>
+                    <label className="text-sm font-medium text-slate-700 block mb-2">Patient Name *</label>
+                    <PatientSearch
+                      value={patientName}
+                      onChange={setPatientName}
+                      labId={profile?.lab_id}
+                      dentistId={recipientId}
+                      required
+                    />
+                  </div>
+
+                  {selectedOfficeId && (
+                    <div className="md:col-span-2 border-t border-slate-100 pt-4 mt-2">
+                      <label className="text-sm font-medium text-slate-700 block mb-2 flex items-center justify-between">
+                        <span>Unpaid Patient Case (Optional)</span>
+                        {isLoadingCases && (
+                          <span className="text-xs text-slate-400 flex items-center gap-1">
+                            <Loader2 className="h-3 w-3 animate-spin" />
+                            Checking cases...
+                          </span>
+                        )}
+                      </label>
+                      {unpaidCases.length === 0 ? (
+                        <p className="text-xs text-slate-400 italic">No unpaid cases found for this office. Proceed with manual invoice entry.</p>
+                      ) : availableUnpaidCases.length === 0 ? (
+                        <p className="text-xs text-slate-400 italic text-green-600 font-medium">All unpaid cases for this office have been added to the invoice.</p>
+                      ) : (
+                        <div className="flex flex-col sm:flex-row gap-3 items-stretch">
+                          <select
+                            value={selectedCaseId}
+                            onChange={(e) => handleCaseChange(e.target.value)}
+                            className="flex-1 px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all outline-none text-sm bg-white"
+                          >
+                            <option value="">-- Choose Unpaid Case --</option>
+                            {availableUnpaidCases.map((c) => (
+                              <option key={c.id} value={c.id}>
+                                {c.FirstName_LastName} - {c.Type || 'Service'} (Tooth: {c.UNN || 'N/A'}, Price: ${c.price || 'Not Set'})
+                              </option>
+                            ))}
+                          </select>
+                          {selectedCaseId && (
+                            <Button
+                              type="button"
+                              variant="secondary"
+                              onClick={() => handleCaseChange('')}
+                              className="text-xs font-bold text-slate-600 hover:text-slate-800"
+                            >
+                              Deselect Case
+                            </Button>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                  )}
+
+                  {selectedCaseId && (
+                    <div className="md:col-span-2 mt-2 p-3 bg-blue-50 border border-blue-200 rounded-lg text-blue-800 text-xs">
+                      <strong>Automated Billing Mode:</strong> Case details and tooth selections are locked from the patient records. Manual adding of line items is disabled to preserve database consistency. If you need to make changes, please edit the case record directly.
+                    </div>
+                  )}
                 </div>
               </CardContent>
             </Card>
 
-            <Card className="overflow-hidden border-slate-200 shadow-sm ring-2 ring-blue-500 ring-opacity-10">
-              <CardHeader className="bg-blue-50 border-b border-blue-100 py-4 flex flex-row items-center justify-between">
-                <h2 className="text-lg font-bold text-blue-900">2. Add Line Item</h2>
-                <div className="px-3 py-1 bg-white rounded-full text-xs font-bold text-blue-600 shadow-sm">
-                  Item Pricing: ${price}
+            <Card className={`overflow-hidden border-slate-200 shadow-sm ${selectedCaseId ? 'bg-slate-50/40 opacity-95' : 'ring-2 ring-blue-500 ring-opacity-10'}`}>
+              <CardHeader className={`${selectedCaseId ? 'bg-slate-100 border-slate-200' : 'bg-blue-50 border-blue-100'} border-b py-4 flex flex-row items-center justify-between`}>
+                <h2 className={`text-lg font-bold ${selectedCaseId ? 'text-slate-700' : 'text-blue-900'}`}>
+                  {selectedCaseId ? '2. Case Detail (Imported)' : '2. Add Line Item'}
+                </h2>
+                <div className="px-3 py-1 bg-white rounded-full text-xs font-bold text-slate-600 shadow-sm border border-slate-200">
+                  Item Price: ${price}
                 </div>
               </CardHeader>
               <CardContent className="p-6 space-y-6">
+                {selectedCaseId && (
+                  <div className="p-3 bg-amber-50 border border-amber-200 rounded-lg text-xs text-amber-800 flex items-center space-x-2">
+                    <span className="font-semibold">Automated Case Mode:</span>
+                    <span>These details are imported from the patient's case record and cannot be modified.</span>
+                  </div>
+                )}
+
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   <Select
                     label="Service Type"
                     options={whatNeededOptions}
                     value={whatNeeded}
                     onChange={(e) => handleWhatNeededChange(e.target.value)}
+                    disabled={!!selectedCaseId}
                   />
                   <Select
                     label="Prep Type"
                     options={prepTypeOptions}
                     value={prepType}
                     onChange={(e) => setPrepType(e.target.value as PrepType)}
+                    disabled={!!selectedCaseId}
                   />
                   <Input
                     label="Calculated Price ($)"
                     type="number"
                     value={price}
                     onChange={(e) => setPrice(e.target.value)}
-                    className="font-bold text-blue-600 bg-blue-50/50"
+                    className={`font-bold ${selectedCaseId ? 'text-slate-600 bg-slate-100' : 'text-blue-600 bg-blue-50/50'}`}
+                    disabled={!!selectedCaseId}
                   />
                 </div>
 
@@ -338,6 +699,7 @@ export default function InvoiceGeneratorPage() {
                     selectedTeeth={selectedTeeth} 
                     onToggleTooth={handleToggleTooth} 
                     onSelectArch={handleSelectArch} 
+                    disabled={!!selectedCaseId}
                   />
                   <p className="mt-2 text-xs text-slate-500 italic">
                     Base: ${basePrice} × {selectedTeeth.length || 1} teeth = ${price}
@@ -350,28 +712,18 @@ export default function InvoiceGeneratorPage() {
                   value={notes}
                   onChange={(e) => setNotes(e.target.value)}
                   placeholder="Notes for this specific item..."
+                  disabled={!!selectedCaseId}
                 />
 
                 <Button
                   type="button"
-                  onClick={addToInvoice}
+                  onClick={selectedCaseId ? addSelectedCaseToInvoice : addToInvoice}
                   disabled={!whatNeeded}
-                  className="w-full bg-blue-600 hover:bg-blue-700 text-white py-6 text-lg"
+                  className={`w-full text-white py-6 text-lg font-bold shadow-md transition-all ${selectedCaseId ? 'bg-blue-700 hover:bg-blue-800' : 'bg-blue-600 hover:bg-blue-700'}`}
                 >
                   <Plus className="h-5 w-5 mr-2" />
-                  Add to Invoice
+                  {selectedCaseId ? 'Add Patient Case to Invoice' : 'Add Line Item'}
                 </Button>
-              </CardContent>
-            </Card>
-
-            <Card className="border-slate-200 shadow-sm">
-              <CardContent className="p-6">
-                <RecipientSelector 
-                  recipientId={recipientId} 
-                  setRecipientId={setRecipientId} 
-                  externalEmail={externalEmail} 
-                  setExternalEmail={setExternalEmail} 
-                />
               </CardContent>
             </Card>
           </div>
@@ -401,12 +753,14 @@ export default function InvoiceGeneratorPage() {
                     <div key={item.id} className="p-3 bg-slate-50 rounded-lg border border-slate-100 group relative">
                       <button 
                         onClick={() => removeLineItem(item.id)}
-                        className="absolute -top-2 -right-2 bg-red-100 text-red-600 p-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity hover:bg-red-200"
+                        className="absolute -top-2 -right-2 bg-red-100 text-red-600 p-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity hover:bg-red-200 shadow-sm z-10"
                       >
                         <Trash2 className="h-3 w-3" />
                       </button>
                       <div className="flex justify-between items-start mb-1">
-                        <span className="font-bold text-slate-800 text-sm truncate pr-2">{item.serviceName}</span>
+                        <span className="font-bold text-slate-800 text-sm truncate pr-2">
+                          {item.patientName ? `${item.patientName}: ` : ''}{item.serviceName}
+                        </span>
                         <span className="font-bold text-blue-600 text-sm">${item.totalPrice.toFixed(2)}</span>
                       </div>
                       <div className="flex flex-wrap gap-1 mb-2">
@@ -434,65 +788,33 @@ export default function InvoiceGeneratorPage() {
                 </div>
               </div>
 
-              <div className="w-full flex flex-col gap-3">
-                {/* Stripe charge button */}
-                <Button
-                  type="button"
-                  onClick={handleChargeViaStripe}
-                  disabled={isCharging || !isFormValid()}
-                  className="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-6"
-                >
-                  {isCharging ? (
-                    'Creating link...'
-                  ) : (
-                    <>
-                      <CreditCard className="h-4 w-4 mr-2" />
-                      Charge via Stripe
-                    </>
-                  )}
-                </Button>
-
-                {/* Payment URL display */}
-                {paymentUrl && (
-                  <div className="p-3 bg-green-50 border border-green-200 rounded-xl space-y-2">
-                    <p className="text-xs font-bold text-green-800">Payment link ready — share with clinic:</p>
-                    <div className="flex items-center gap-2">
-                      <input
-                        readOnly
-                        value={paymentUrl}
-                        className="text-xs bg-white border border-green-200 rounded p-1.5 flex-1 truncate"
-                      />
-                      <button
-                        onClick={handleCopyLink}
-                        className="p-1.5 bg-green-100 hover:bg-green-200 rounded text-green-700 transition-colors"
-                        title="Copy link"
-                      >
-                        {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
-                      </button>
-                      <a
-                        href={paymentUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="p-1.5 bg-green-100 hover:bg-green-200 rounded text-green-700 transition-colors"
-                        title="Open link"
-                      >
-                        <ExternalLink className="h-4 w-4" />
-                      </a>
-                    </div>
+              <div className="w-full py-2 border-t border-slate-200">
+                <label className="flex items-center space-x-3 cursor-pointer select-none">
+                  <input
+                    type="checkbox"
+                    checked={markAsPaid}
+                    onChange={(e) => setMarkAsPaid(e.target.checked)}
+                    className="h-4.5 w-4.5 text-blue-600 focus:ring-blue-500 border-slate-300 rounded"
+                  />
+                  <div className="flex flex-col">
+                    <span className="text-sm font-semibold text-slate-800">Mark as Paid</span>
+                    <span className="text-[10px] text-slate-400">Record payment in Payments table upon saving</span>
                   </div>
-                )}
+                </label>
+              </div>
 
+              <div className="w-full flex flex-col gap-3">
                 <Button
                   onClick={handleSubmit}
                   disabled={isSubmitting || !isFormValid()}
-                  className="w-full bg-slate-900 hover:bg-black text-white py-4"
+                  className="w-full bg-blue-600 hover:bg-blue-700 text-white py-4 font-semibold rounded-lg shadow flex items-center justify-center"
                 >
                   {isSubmitting ? (
-                    'Sending...'
+                    'Saving & Generating Invoice...'
                   ) : (
                     <>
-                      <Send className="h-4 w-4 mr-2" />
-                      Send via n8n
+                      <Save className="h-4 w-4 mr-2" />
+                      Save & Print Invoice
                     </>
                   )}
                 </Button>

@@ -52,6 +52,7 @@ export interface Case {
   recipient_id?: string;
   recipient_email?: string;
   price?: number;
+  line_items?: any[];
 }
 
 export interface Message {

@@ -114,6 +114,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     // 1. Set up the listener first
     const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, newSession) => {
       console.log(`[Auth] Event: ${event}`);
+      // TOKEN_REFRESHED only rotates the token — user & profile are unchanged, skip the loading spinner
+      if (event === 'TOKEN_REFRESHED') {
+        setSession(newSession);
+        return;
+      }
       await handleAuthChange(newSession);
     });
 

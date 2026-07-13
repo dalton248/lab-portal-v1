@@ -139,6 +139,7 @@ export default function CaseDetailPage({ params: paramsPromise }: { params: Prom
   const [editPrice, setEditPrice] = useState('');
   const [editNotes, setEditNotes] = useState('');
   const [updatingDates, setUpdatingDates] = useState(false);
+  const [voidingInvoice, setVoidingInvoice] = useState(false);
 
   const { t, language } = useLanguage();
 
@@ -378,6 +379,42 @@ export default function CaseDetailPage({ params: paramsPromise }: { params: Prom
 
   const isLabAdmin = profile?.role === 'lab_admin';
 
+  const handleVoidInvoice = async () => {
+    if (!caseData) return;
+    if (!window.confirm('Are you sure you want to void this invoice? This will revert the case status back to completed and delete all associated payment records.')) {
+      return;
+    }
+    setVoidingInvoice(true);
+    try {
+      // getSession() can return null with the custom auth lock; use refreshSession() for a reliable token
+      let { data: { session } } = await supabase.auth.getSession();
+      if (!session?.access_token) {
+        const { data: refreshed } = await supabase.auth.refreshSession();
+        session = refreshed.session;
+      }
+      const token = session?.access_token;
+      const response = await fetch('/api/invoices/void', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          ...(token ? { 'Authorization': `Bearer ${token}` } : {}),
+        },
+        body: JSON.stringify({ caseId: caseData.id }),
+      });
+      if (response.ok) {
+        alert('Invoice voided successfully.');
+        await fetchCaseDetails();
+      } else {
+        const resData = await response.json();
+        alert(resData.error || 'Failed to void invoice.');
+      }
+    } catch (err: any) {
+      alert(err.message || 'An error occurred while voiding the invoice.');
+    } finally {
+      setVoidingInvoice(false);
+    }
+  };
+
   // ── Loading / Error states ───────────────────────────────────────────────────
 
   if (loading) {
@@ -439,9 +476,36 @@ export default function CaseDetailPage({ params: paramsPromise }: { params: Prom
             </p>
           </div>
           <div className="flex items-center space-x-3 print:hidden">
+            {caseStatus.toLowerCase() === 'invoiced' && (
+              <>
+                <Button
+                  variant="primary"
+                  className="flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white font-bold"
+                  onClick={() => router.push(`/billing/invoices/print?case_id=${caseData.id}`)}
+                >
+                  <FileText className="h-4 w-4" />
+                  <span>Print Statement</span>
+                </Button>
+                {isLabAdmin && (
+                  <Button
+                    variant="outline"
+                    className="flex items-center space-x-2 bg-red-50 border border-red-200 hover:bg-red-100 text-red-700 font-bold"
+                    onClick={handleVoidInvoice}
+                    disabled={voidingInvoice}
+                  >
+                    {voidingInvoice ? (
+                      <Loader2 className="h-4 w-4 animate-spin text-red-600" />
+                    ) : (
+                      <X className="h-4 w-4 text-red-600" />
+                    )}
+                    <span>Void Invoice</span>
+                  </Button>
+                )}
+              </>
+            )}
             <Button
               variant="outline"
-              className="flex items-center space-x-2"
+              className="flex items-center space-x-2 bg-white border border-slate-200 hover:bg-slate-50 text-slate-700"
               onClick={() => window.print()}
             >
               <Printer className="h-4 w-4" />

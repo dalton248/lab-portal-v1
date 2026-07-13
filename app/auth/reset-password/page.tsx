@@ -19,43 +19,67 @@ export default function ResetPasswordPage() {
 
   useEffect(() => {
     async function initSession() {
-      const hash = window.location.hash;
+      console.log('[ResetPassword] Initializing session check...');
+      try {
+        // First check if Supabase has already initialized and set a session from URL fragment
+        const { data: { session }, error: sessionErr } = await supabase.auth.getSession();
+        console.log('[ResetPassword] Current session check results:', { hasSession: !!session, error: sessionErr?.message });
 
-      if (!hash || !hash.includes('access_token')) {
-        setTokenError('No reset token found. This link may be invalid or expired.');
+        if (session) {
+          console.log('[ResetPassword] Active session found (auto-loaded by SDK). Bypassing manual token exchange.');
+          setPageState('form');
+          return;
+        }
+
+        const hash = window.location.hash;
+        console.log('[ResetPassword] Parsing URL hash fragment:', hash ? `Present (length ${hash.length})` : 'Empty');
+
+        if (!hash || !hash.includes('access_token')) {
+          console.error('[ResetPassword] No access_token found in URL hash fragment.');
+          setTokenError('No reset token found. This link may be invalid or expired.');
+          setPageState('error');
+          return;
+        }
+
+        // Issue #31: Parse the hash fragment manually directly from window.location.hash.
+        // This bypasses the race condition inherent in Supabase's onAuthStateChange event
+        // listener during redirect recovery flow, preventing UI hangs.
+        const params = new URLSearchParams(hash.substring(1));
+        const accessToken = params.get('access_token');
+        const refreshToken = params.get('refresh_token');
+        const type = params.get('type');
+
+        console.log('[ResetPassword] Token details:', { type, hasAccessToken: !!accessToken, hasRefreshToken: !!refreshToken });
+
+        if (type !== 'recovery' || !accessToken || !refreshToken) {
+          console.error('[ResetPassword] Invalid recovery token fragment parameters.');
+          setTokenError('This link is not a valid password reset link. Please request a new one.');
+          setPageState('error');
+          return;
+        }
+
+        console.log('[ResetPassword] Explicitly setting session from URL tokens...');
+        const { error: sessionError } = await supabase.auth.setSession({
+          access_token: accessToken,
+          refresh_token: refreshToken,
+        });
+
+        if (sessionError) {
+          console.error('[ResetPassword] setSession failed:', sessionError.message);
+          setTokenError(`Could not verify reset link: ${sessionError.message}. It may have expired.`);
+          setPageState('error');
+          return;
+        }
+
+        console.log('[ResetPassword] setSession succeeded. Clearing URL hash.');
+        // Clear the hash from the URL so tokens aren't visible / reused
+        window.history.replaceState(null, '', window.location.pathname);
+        setPageState('form');
+      } catch (err: any) {
+        console.error('[ResetPassword] Unexpected error during session initialization:', err);
+        setTokenError(err?.message || 'An unexpected error occurred.');
         setPageState('error');
-        return;
       }
-
-      // Issue #31: Parse the hash fragment manually directly from window.location.hash.
-      // This bypasses the race condition inherent in Supabase's onAuthStateChange event
-      // listener during redirect recovery flow, preventing UI hangs.
-      const params = new URLSearchParams(hash.substring(1));
-      const accessToken = params.get('access_token');
-      const refreshToken = params.get('refresh_token');
-      const type = params.get('type');
-
-      if (type !== 'recovery' || !accessToken || !refreshToken) {
-        setTokenError('This link is not a valid password reset link. Please request a new one.');
-        setPageState('error');
-        return;
-      }
-
-      // Explicitly set the session using the tokens from the URL
-      const { error: sessionError } = await supabase.auth.setSession({
-        access_token: accessToken,
-        refresh_token: refreshToken,
-      });
-
-      if (sessionError) {
-        setTokenError(`Could not verify reset link: ${sessionError.message}. It may have expired.`);
-        setPageState('error');
-        return;
-      }
-
-      // Clear the hash from the URL so tokens aren't visible / reused
-      window.history.replaceState(null, '', window.location.pathname);
-      setPageState('form');
     }
 
     initSession();
@@ -72,9 +96,11 @@ export default function ResetPasswordPage() {
 
     setSubmitting(true);
     setError(null);
+    console.log('[ResetPassword] Submitting password update...');
 
     // Safety timeout — if updateUser hangs for 15s, surface an error
     const timeoutId = setTimeout(() => {
+      console.error('[ResetPassword] Update password request timed out after 15s.');
       setError('Request timed out. Please try again or request a new reset link.');
       setSubmitting(false);
     }, 15000);
@@ -84,15 +110,18 @@ export default function ResetPasswordPage() {
       clearTimeout(timeoutId);
 
       if (updateError) {
+        console.error('[ResetPassword] updateUser failed:', updateError.message);
         setError(updateError.message);
         setSubmitting(false);
         return;
       }
 
+      console.log('[ResetPassword] updateUser succeeded. Redirecting to login page.');
       // Redirect immediately — no signOut needed (Supabase handles session on next login)
       router.push('/login?reset=success');
     } catch (err: any) {
       clearTimeout(timeoutId);
+      console.error('[ResetPassword] Unexpected error during password update:', err);
       setError(err?.message || 'An unexpected error occurred.');
       setSubmitting(false);
     }

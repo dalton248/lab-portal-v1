@@ -63,6 +63,7 @@ export async function GET(
       submitted_date: dbCase.created_at,
       threeShapeId: dbCase['3ShapeID'] || dbCase.threeShapeId || '',
       price: dbCase.price !== null && dbCase.price !== undefined ? Number(dbCase.price) : undefined,
+      line_items: dbCase.line_items || null,
     };
 
     // 2. Conditionally fetch STL scans from n8n

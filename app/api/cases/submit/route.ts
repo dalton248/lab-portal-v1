@@ -17,15 +17,37 @@ export async function POST(request: Request) {
     // 1. Prepare fields for direct Supabase Insertion
     const patientName = incomingForm.get('patientName') as string || 'N/A';
     const caseId = incomingForm.get('caseId') as string || `CS-${Math.floor(1000 + Math.random() * 9000)}`;
-    const caseType = incomingForm.get('caseType') as string || 'Crown';
     const shade = incomingForm.get('shade') as string || 'N/A';
-    const priceStr = incomingForm.get('price');
+    
+    // Support either price or totalAmount
+    const priceStr = incomingForm.get('price') || incomingForm.get('totalAmount');
     const price = priceStr ? parseFloat(priceStr as string) : null;
+    
     const dueDate = incomingForm.get('dueDate') as string || null;
     const dentistId = incomingForm.get('dentistId') as string || null;
     const labId = incomingForm.get('labId') as string || null;
     const notes = incomingForm.get('notes') as string || '';
     const inputMethod = incomingForm.get('input_method') as string || 'email';
+
+    // Parse items (multi-item line items)
+    const itemsRaw = incomingForm.get('items') as string || null;
+    let lineItemsJson = null;
+    if (itemsRaw) {
+      try {
+        lineItemsJson = JSON.parse(itemsRaw);
+      } catch (e) {
+        console.warn('[submit/route] Failed to parse items JSON:', e);
+      }
+    }
+
+    // Determine caseType
+    let caseType = incomingForm.get('caseType') as string || '';
+    if (!caseType && lineItemsJson && Array.isArray(lineItemsJson)) {
+      caseType = lineItemsJson.map(item => item.serviceName).join(', ');
+    }
+    if (!caseType) {
+      caseType = 'Crown';
+    }
 
     // Parse teeth numbers (JSON array of strings) and format as comma-separated values for UNN
     const teethRaw = incomingForm.get('teeth_numbers');
@@ -38,6 +60,16 @@ export async function POST(request: Request) {
         }
       } catch (e) {
         teethJoined = String(teethRaw);
+      }
+    } else if (lineItemsJson && Array.isArray(lineItemsJson)) {
+      const allTeeth = new Set<string>();
+      lineItemsJson.forEach(item => {
+        if (Array.isArray(item.teeth)) {
+          item.teeth.forEach((t: any) => allTeeth.add(String(t)));
+        }
+      });
+      if (allTeeth.size > 0) {
+        teethJoined = Array.from(allTeeth).join(', ');
       }
     }
 
@@ -86,6 +118,7 @@ export async function POST(request: Request) {
           Case_inbox_method: inputMethod === 'upload' ? 'email' : inputMethod,
           sent_to_lab: true,
           completed: false,
+          line_items: lineItemsJson,
         }
       ]);
 

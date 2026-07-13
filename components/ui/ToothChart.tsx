@@ -7,12 +7,14 @@ interface ToothChartProps {
   selectedTeeth: string[];
   onToggleTooth: (tooth: string) => void;
   onSelectArch: (arch: 'upper' | 'lower') => void;
+  disabled?: boolean;
 }
 
 export const ToothChart: React.FC<ToothChartProps> = ({
   selectedTeeth,
   onToggleTooth,
   onSelectArch,
+  disabled = false,
 }) => {
   const { t } = useLanguage();
 
@@ -29,15 +31,25 @@ export const ToothChart: React.FC<ToothChartProps> = ({
         <div className="flex space-x-2">
           <button
             type="button"
-            onClick={() => onSelectArch('upper')}
-            className="px-3 py-1 text-xs font-medium bg-blue-100 text-blue-700 rounded-full hover:bg-blue-200 transition-colors"
+            onClick={() => !disabled && onSelectArch('upper')}
+            disabled={disabled}
+            className={`px-3 py-1 text-xs font-medium rounded-full transition-colors ${
+              disabled 
+                ? 'bg-slate-100 text-slate-400 cursor-not-allowed' 
+                : 'bg-blue-100 text-blue-700 hover:bg-blue-200'
+            }`}
           >
             {t('cases.upperArch')}
           </button>
           <button
             type="button"
-            onClick={() => onSelectArch('lower')}
-            className="px-3 py-1 text-xs font-medium bg-blue-100 text-blue-700 rounded-full hover:bg-blue-200 transition-colors"
+            onClick={() => !disabled && onSelectArch('lower')}
+            disabled={disabled}
+            className={`px-3 py-1 text-xs font-medium rounded-full transition-colors ${
+              disabled 
+                ? 'bg-slate-100 text-slate-400 cursor-not-allowed' 
+                : 'bg-blue-100 text-blue-700 hover:bg-blue-200'
+            }`}
           >
             {t('cases.lowerArch')}
           </button>
@@ -49,12 +61,15 @@ export const ToothChart: React.FC<ToothChartProps> = ({
           <button
             key={tooth}
             type="button"
-            onClick={() => onToggleTooth(tooth)}
+            onClick={() => !disabled && onToggleTooth(tooth)}
+            disabled={disabled}
             className={`
               h-10 w-10 flex items-center justify-center rounded border text-xs font-bold transition-all
               ${isSelected(tooth) 
                 ? 'bg-blue-600 border-blue-700 text-white transform scale-105 shadow-md' 
-                : 'bg-white border-slate-200 text-slate-600 hover:border-blue-400 hover:text-blue-600'}
+                : disabled
+                  ? 'bg-slate-50 border-slate-200 text-slate-400 cursor-not-allowed'
+                  : 'bg-white border-slate-200 text-slate-600 hover:border-blue-400 hover:text-blue-600'}
             `}
           >
             {tooth}
@@ -67,12 +82,15 @@ export const ToothChart: React.FC<ToothChartProps> = ({
           <button
             key={tooth}
             type="button"
-            onClick={() => onToggleTooth(tooth)}
+            onClick={() => !disabled && onToggleTooth(tooth)}
+            disabled={disabled}
             className={`
               h-10 w-10 flex items-center justify-center rounded border text-xs font-bold transition-all
               ${isSelected(tooth) 
                 ? 'bg-blue-600 border-blue-700 text-white transform scale-105 shadow-md' 
-                : 'bg-white border-slate-200 text-slate-600 hover:border-blue-400 hover:text-blue-600'}
+                : disabled
+                  ? 'bg-slate-50 border-slate-200 text-slate-400 cursor-not-allowed'
+                  : 'bg-white border-slate-200 text-slate-600 hover:border-blue-400 hover:text-blue-600'}
             `}
           >
             {tooth}

@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { FileText, Loader2, ArrowRight, DollarSign } from 'lucide-react';
+import { FileText, Loader2, ArrowRight, DollarSign, Search } from 'lucide-react';
 import { Card, CardHeader, CardContent } from '@/components/ui/Card';
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from '@/components/ui/Table';
 import { StatusBadge } from '@/components/ui/StatusBadge';
@@ -18,6 +18,7 @@ export default function InvoicesPage() {
 
   const [cases, setCases] = useState<Case[]>([]);
   const [loading, setLoading] = useState(true);
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
     async function fetchCases() {
@@ -76,6 +77,16 @@ export default function InvoicesPage() {
     .filter((c) => c.price)
     .reduce((sum, c) => sum + (c.price ?? 0), 0);
 
+  const filteredCases = cases.filter((c) => {
+    const term = searchQuery.toLowerCase().trim();
+    if (!term) return true;
+    return (
+      (c.patientName?.toLowerCase() || '').includes(term) ||
+      (c.caseId?.toLowerCase() || '').includes(term) ||
+      (c.caseType?.toLowerCase() || '').includes(term)
+    );
+  });
+
   return (
     <div className="space-y-6">
       <div>
@@ -90,15 +101,28 @@ export default function InvoicesPage() {
         </p>
       </div>
 
-      {totalBilled > 0 && (
-        <div className="inline-flex items-center px-4 py-3 bg-green-50 border border-green-100 rounded-xl">
-          <DollarSign className="h-5 w-5 text-green-600 mr-2" />
-          <span className="text-sm font-medium text-green-800">
-            {language === 'en' ? 'Total billed:' : '总计费:'}{' '}
-            <span className="font-black">${totalBilled.toFixed(2)}</span>
-          </span>
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        {totalBilled > 0 && (
+          <div className="inline-flex items-center px-4 py-3 bg-green-50 border border-green-100 rounded-xl self-start">
+            <DollarSign className="h-5 w-5 text-green-600 mr-2" />
+            <span className="text-sm font-medium text-green-800">
+              {language === 'en' ? 'Total billed:' : '总计费:'}{' '}
+              <span className="font-black">${totalBilled.toFixed(2)}</span>
+            </span>
+          </div>
+        )}
+
+        <div className="relative w-full sm:max-w-md">
+          <Search className="absolute left-3 top-3 h-5 w-5 text-slate-400" />
+          <input
+            type="text"
+            placeholder={language === 'en' ? 'Search invoices by patient name, case ID...' : '按患者姓名、案件ID搜索账单...'}
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="w-full pl-10 pr-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm bg-white"
+          />
         </div>
-      )}
+      </div>
 
       {loading ? (
         <div className="flex items-center justify-center py-20">
@@ -120,15 +144,19 @@ export default function InvoicesPage() {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {cases.length === 0 ? (
+                {filteredCases.length === 0 ? (
                   <TableRow>
                     <TableCell colSpan={7} className="text-center py-12 text-slate-400">
                       <FileText className="h-10 w-10 mx-auto mb-3 opacity-20" />
-                      <p>{language === 'en' ? 'No cases yet.' : '暂无案件。'}</p>
+                      <p>
+                        {cases.length === 0
+                          ? (language === 'en' ? 'No cases yet.' : '暂无案件。')
+                          : (language === 'en' ? 'No matching invoices found.' : '未找到匹配的账单。')}
+                      </p>
                     </TableCell>
                   </TableRow>
                 ) : (
-                  cases.map((c) => (
+                  filteredCases.map((c) => (
                     <TableRow
                       key={c.id}
                       className="cursor-pointer hover:bg-slate-50 transition-colors group"
